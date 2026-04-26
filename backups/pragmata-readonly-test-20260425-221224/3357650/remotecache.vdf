@@ -1,0 +1,53 @@
+"3357650"
+{
+	"ChangeNumber"		"0"
+	"OSType"		"0"
+	"sharedconfig.vdf"
+	{
+		"root"		"0"
+		"size"		"152"
+		"localtime"		"1777143774"
+		"time"		"1777143801"
+		"remotetime"		"1777143801"
+		"sha"		"d0341ebb6e881d0e77e9a73c9a92089bd128c464"
+		"syncstate"		"3"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+	"win64_save/data00-1.bin"
+	{
+		"root"		"0"
+		"size"		"131756"
+		"localtime"		"1777143913"
+		"time"		"1777143913"
+		"remotetime"		"0"
+		"sha"		"0ae7ece2fd225a956deebd72ea043ee1432671b9"
+		"syncstate"		"3"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+	"win64_save/data000.bin"
+	{
+		"root"		"0"
+		"size"		"3070284"
+		"localtime"		"1777143933"
+		"time"		"1777143933"
+		"remotetime"		"0"
+		"sha"		"74bbb06623c01d1b35d6f6849edb5477e839d206"
+		"syncstate"		"3"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+	"win64_save/data001Slot.bin"
+	{
+		"root"		"0"
+		"size"		"3070284"
+		"localtime"		"1777143774"
+		"time"		"1777143801"
+		"remotetime"		"0"
+		"sha"		"00f2154049b526861640f5725d6f05be7383fa7d"
+		"syncstate"		"3"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+}

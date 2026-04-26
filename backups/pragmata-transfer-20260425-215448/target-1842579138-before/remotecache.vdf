@@ -1,0 +1,29 @@
+"3357650"
+{
+	"ChangeNumber"		"2"
+	"OSType"		"0"
+	"sharedconfig.vdf"
+	{
+		"root"		"0"
+		"size"		"152"
+		"localtime"		"1777133490"
+		"time"		"1777133490"
+		"remotetime"		"1777133490"
+		"sha"		"d0341ebb6e881d0e77e9a73c9a92089bd128c464"
+		"syncstate"		"1"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+	"win64_save/data00-1.bin"
+	{
+		"root"		"0"
+		"size"		"131756"
+		"localtime"		"1777142732"
+		"time"		"1777142733"
+		"remotetime"		"1777142733"
+		"sha"		"1eba12a90cc72cb269ac6aa8cd4ade49ea93802e"
+		"syncstate"		"1"
+		"persiststate"		"0"
+		"platformstosync2"		"-1"
+	}
+}

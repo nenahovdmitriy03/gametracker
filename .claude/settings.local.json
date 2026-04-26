@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xxd \"K:/backup/Root/steam/userdata/1009101708/282070/remote/achievements\")",
+      "Bash(node -e ':*)",
+      "Bash(node -e:*)",
+      "Bash(npx electron:*)",
+      "WebFetch(domain:skrinshoter.ru)"
+    ]
+  }
+}

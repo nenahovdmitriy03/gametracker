@@ -1,0 +1,47 @@
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('api', {
+  minimize:             () => ipcRenderer.send('window:minimize'),
+  maximize:             () => ipcRenderer.send('window:maximize'),
+  close:                () => ipcRenderer.send('window:close'),
+  openExternal:         (url)  => ipcRenderer.send('open:external', url),
+
+  loadData:             ()     => ipcRenderer.invoke('data:load'),
+  saveData:             (data) => ipcRenderer.invoke('data:save', data),
+
+  exportBackup:         (data) => ipcRenderer.invoke('backup:export', data),
+  importBackup:         ()     => ipcRenderer.invoke('backup:import'),
+
+  steamSearch:          (q)    => ipcRenderer.invoke('steam:search', q),
+  steamMedia:           (appId) => ipcRenderer.invoke('steam:media', appId),
+  steamGetAchievements: (opts) => ipcRenderer.invoke('steam:getAchievements', opts),
+  steamImport:          (opts) => ipcRenderer.invoke('steam:import', opts),
+  eaImport:             (opts) => ipcRenderer.invoke('ea:import', opts),
+  steamLocalAchievements: (opts) => ipcRenderer.invoke('steam:localAchievements', opts),
+  steamScanLocal:         (opts) => ipcRenderer.invoke('steam:scanLocal', opts),
+  steamTags:              (appId) => ipcRenderer.invoke('steam:tags', appId),
+  steamArtwork:           (appId) => ipcRenderer.invoke('steam:artwork', appId),
+
+  driveInit:         (opts)  => ipcRenderer.invoke('drive:init', opts),
+  driveConnect:      (opts)  => ipcRenderer.invoke('drive:connect', opts),
+  driveDisconnect:   ()      => ipcRenderer.invoke('drive:disconnect'),
+  driveUploadData:   (data)  => ipcRenderer.invoke('drive:uploadData', data),
+  driveDownloadData: ()      => ipcRenderer.invoke('drive:downloadData'),
+  driveUploadScreenshots:   (opts) => ipcRenderer.invoke('drive:uploadScreenshots', opts),
+  driveDownloadScreenshots: (opts) => ipcRenderer.invoke('drive:downloadScreenshots', opts),
+  driveUploadSave:   (opts)  => ipcRenderer.invoke('drive:uploadSave', opts),
+  driveDownloadSave: (opts)  => ipcRenderer.invoke('drive:downloadSave', opts),
+  drivePickFolder:   ()      => ipcRenderer.invoke('drive:pickFolder'),
+  driveExportToken:  ()      => ipcRenderer.invoke('drive:exportToken'),
+  screenshotsAdd:    (opts)  => ipcRenderer.invoke('screenshots:add', opts),
+  screenshotsResolve:(opts)  => ipcRenderer.invoke('screenshots:resolve', opts),
+  screenshotsDeleteLocal: (opts) => ipcRenderer.invoke('screenshots:deleteLocal', opts),
+  pickExecutable:    ()      => ipcRenderer.invoke('game:pickExecutable'),
+  launchLocalGame:   (opts)  => ipcRenderer.invoke('game:launchLocal', opts),
+
+  saveDataSync:        (data) => ipcRenderer.sendSync('data:save-sync', data),
+  watchGameProcess:    (opts) => ipcRenderer.invoke('game:startWatch', opts),
+  onGameProcessExited: (cb)   => ipcRenderer.on('game:processExited', cb),
+  onAppRequestClose:   (cb)   => ipcRenderer.on('app:request-close', cb),
+  readyToClose:        ()     => ipcRenderer.send('app:ready-to-close'),
+});

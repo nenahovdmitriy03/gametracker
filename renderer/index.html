@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+             script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+             font-src 'self' https://fonts.gstatic.com;
+             img-src 'self' data: blob: file:
+               https://media.steampowered.com
+               https://*.steamstatic.com
+               https://cdn.akamai.steamstatic.com
+               https://shared.akamai.steamstatic.com
+               https://cdn.cloudflare.steamstatic.com
+               https://shared.cloudflare.steamstatic.com
+               https://video.cloudflare.steamstatic.com
+               https://steamcdn-a.akamaihd.net
+               https://*.akamaihd.net
+               https://avatars.steamstatic.com
+               https://steamcommunity-a.akamaihd.net
+               https://img.icons8.com
+               https://icons8.com;
+             media-src 'self' blob: file:
+               https://media.steampowered.com
+               https://*.steamstatic.com
+               https://cdn.akamai.steamstatic.com
+               https://shared.akamai.steamstatic.com
+               https://cdn.cloudflare.steamstatic.com
+               https://shared.cloudflare.steamstatic.com
+               https://video.cloudflare.steamstatic.com
+               https://steamcdn-a.akamaihd.net
+               https://*.akamaihd.net;
+             connect-src 'self' https://search.icons8.com;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══ ЗАГОЛОВОК ════════════════════════════════════ -->
+<div class="titlebar">
+  <div class="titlebar-drag">
+    <span class="titlebar-logo">🎮</span>
+    <span class="titlebar-title">GAME TRACKER</span>
+  </div>
+  <div class="titlebar-controls">
+    <button class="tb-btn" id="btn-minimize">─</button>
+    <button class="tb-btn" id="btn-maximize">□</button>
+    <button class="tb-btn tb-close" id="btn-close">✕</button>
+  </div>
+</div>
+
+<!-- ══ ПРИЛОЖЕНИЕ ═══════════════════════════════════ -->
+<div id="app" class="app-layout" data-view="library">
+
+  <!-- ─── Сайдбар ─── -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">🎮</span>
+      <div>
+        <div class="brand-name">Game Tracker</div>
+      </div>
+    </div>
+
+    <ul class="nav-list">
+      <li><a class="nav-item active" data-view="library"><span class="nav-icon">🎮</span>Библиотека</a></li>
+      <li><a class="nav-item" data-view="stats"><span class="nav-icon">📊</span>Статистика</a></li>
+      <li><a class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>Настройки</a></li>
+    </ul>
+
+    <!-- Коллекции -->
+    <div class="sidebar-collections">
+      <div class="sc-header">
+        <span class="sc-title">Коллекции</span>
+        <button class="sc-add-btn" id="btn-new-collection" title="Создать коллекцию">＋</button>
+      </div>
+      <div class="sc-list" id="sc-list"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-action" id="btn-add-game">
+        <span class="btn-action-icon">＋</span><span>Добавить игру</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── Контент ─── -->
+  <main class="content">
+
+    <!-- ГЛАВНАЯ -->
+    <section id="view-dashboard" class="view">
+      <div class="view-header">
+        <div>
+          <h2>Главная</h2>
+          <p class="view-sub" id="dashboard-date"></p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card stat-purple"><div class="stat-icon">⏱</div><div><div class="stat-value" id="stat-hours">0</div><div class="stat-label">Всего часов</div></div></div>
+        <div class="stat-card stat-cyan"><div class="stat-icon">🎮</div><div><div class="stat-value" id="stat-games">0</div><div class="stat-label">Игр в библиотеке</div></div></div>
+        <div class="stat-card stat-gold"><div class="stat-icon">🏆</div><div><div class="stat-value" id="stat-ach">0</div><div class="stat-label">Достижений</div></div></div>
+        <div class="stat-card stat-green"><div class="stat-icon">🔥</div><div><div class="stat-value" id="stat-streak">0</div><div class="stat-label">Дней подряд</div></div></div>
+      </div>
+      <div class="section-header"><h3 class="section-title">Недавно запускал</h3></div>
+      <div class="game-grid" id="recent-games">
+        <div class="empty-hint">Добавь первую игру или импортируй Steam-библиотеку</div>
+      </div>
+    </section>
+
+    <!-- БИБЛИОТЕКА -->
+    <section id="view-library" class="view sl-layout active">
+
+      <!-- ── Левый список ── -->
+      <div class="sl-left" id="sl-left">
+        <div class="sl-left-header" id="sl-left-header">БИБЛИОТЕКА</div>
+        <div class="sl-search-wrap">
+          <input class="sl-search" id="sl-search" type="search" placeholder="Поиск…"/>
+        </div>
+        <div class="sl-sort-bar">
+          <select class="sl-sort-select" id="sl-sort">
+            <option value="recent">Недавние</option>
+            <option value="alpha">По алфавиту</option>
+            <option value="hours" selected>По времени</option>
+            <option value="rating">По оценке</option>
+          </select>
+        </div>
+        <div class="lib-filter-bar sl-lib-filter-bar">
+          <div class="lib-filter-group lib-platform-filter-group">
+            <button class="lib-filter-btn active" data-filter-type="platform" data-filter-val="">Все</button>
+            <button class="lib-filter-btn" data-filter-type="platform" data-filter-val="steam">Steam</button>
+            <button class="lib-filter-btn" data-filter-type="platform" data-filter-val="ea">EA</button>
+          </div>
+          <div class="lib-filter-sep"></div>
+          <div class="lib-filter-group">
+            <button class="lib-filter-btn active" data-filter-type="status" data-filter-val="">Все</button>
+            <button class="lib-filter-btn" data-filter-type="status" data-filter-val="playing">Играю</button>
+            <button class="lib-filter-btn" data-filter-type="status" data-filter-val="completed">Пройдено</button>
+            <button class="lib-filter-btn" data-filter-type="status" data-filter-val="planned">В планах</button>
+            <button class="lib-filter-btn" data-filter-type="status" data-filter-val="dropped">Брошено</button>
+            <button class="lib-filter-btn" data-filter-type="status" data-filter-val="none">Без статуса</button>
+          </div>
+          <div class="lib-filter-sep"></div>
+          <div class="lib-filter-group">
+            <button class="lib-filter-btn" data-filter-type="rating" data-filter-val="9">9-10</button>
+            <button class="lib-filter-btn" data-filter-type="rating" data-filter-val="7">7-8</button>
+            <button class="lib-filter-btn" data-filter-type="rating" data-filter-val="5">5-6</button>
+            <button class="lib-filter-btn" data-filter-type="rating" data-filter-val="1">1-4</button>
+            <button class="lib-filter-btn" data-filter-type="rating" data-filter-val="0">Без оценки</button>
+          </div>
+        </div>
+        <div class="sl-game-list" id="sl-game-list"></div>
+      </div>
+      <button class="sl-left-toggle" id="sl-left-toggle" type="button" aria-controls="sl-left" aria-expanded="true" title="Свернуть библиотеку">
+        <span class="sl-left-toggle-icon" id="sl-left-toggle-icon" aria-hidden="true">◀</span>
+        <span class="sl-left-toggle-label">Библиотека</span>
+      </button>
+
+      <!-- ── Правая панель ── -->
+      <div class="sl-right" id="sl-right">
+
+        <!-- Обзор библиотеки -->
+        <div class="sl-overview" id="sl-overview">
+          <div class="sl-overview-shell">
+            <div class="sl-overview-head">
+              <div>
+                <div class="sl-overview-eyebrow">Библиотека</div>
+                <div class="sl-overview-heading" id="sl-overview-heading">Мои игры</div>
+              </div>
+              <div class="sl-overview-summary" id="sl-overview-summary">0 игр</div>
+            </div>
+            <div class="sl-overview-controls" id="sl-overview-controls">
+              <div class="sl-overview-controls-head">
+                <div>
+                  <div class="sl-overview-controls-title">Полки библиотеки</div>
+                  <div class="sl-overview-controls-note">Включай и убирай блоки по нужному принципу</div>
+                </div>
+                <button class="sl-overview-reset" id="sl-overview-reset" type="button">Сбросить</button>
+              </div>
+              <div class="sl-overview-toggle-list" id="sl-overview-toggle-list"></div>
+            </div>
+            <div class="sl-overview-sections" id="sl-overview-sections"></div>
+          </div>
+        </div>
+
+        <!-- Детали игры -->
+        <div class="sl-detail hidden" id="sl-detail">
+
+          <!-- Hero: полная ширина, уходит за левую панель -->
+          <div class="sl-hero" id="sl-hero">
+            <div class="sl-hero-bg" id="sl-hero-bg">
+              <img class="sl-hero-backdrop" id="sl-hero-backdrop" alt="" />
+              <img class="sl-hero-img" id="sl-hero-img" alt="" />
+            </div>
+            <div class="sl-hero-overlay"></div>
+            <div class="sl-hero-info">
+              <div class="sl-game-title-stack">
+                <img class="sl-game-logo hidden" id="sl-game-logo" alt="" />
+                <div class="sl-game-title" id="sl-game-title"></div>
+              </div>
+              <div class="sl-hero-recent hidden" id="sl-hero-recent-wrap">
+                <div class="sl-hero-recent-label">Последние достижения</div>
+                <div class="sl-hero-recent-list" id="sl-hero-recent-list"></div>
+              </div>
+            </div>
+            <div class="sl-hero-side-meta">
+              <div class="sl-hero-status" id="sl-hero-status">
+                <button class="sl-status-pill" data-status="playing">▶ Играю</button>
+                <button class="sl-status-pill" data-status="completed">◆ Пройдено</button>
+                <button class="sl-status-pill" data-status="dropped">✕ Брошено</button>
+                <button class="sl-status-pill" data-status="planned">◎ В планах</button>
+              </div>
+              <div class="sl-rating-wrap sl-hero-rating">
+                <span class="sl-rating-label">Оценка</span>
+                <button class="sl-rating-display" id="sl-rating-display" title="Нажми чтобы выбрать">
+                  <span class="sl-rating-star">★</span>
+                  <span class="sl-rating-num" id="sl-rating-val">—</span>
+                </button>
+                <div class="sl-rating-popup hidden" id="sl-rating-popup">
+                  <button class="sl-rpick-clear" data-val="0">✕ убрать</button>
+                  <div class="sl-rpick-grid">
+                    <button class="sl-rpick-btn" data-val="1">1</button>
+                    <button class="sl-rpick-btn" data-val="2">2</button>
+                    <button class="sl-rpick-btn" data-val="3">3</button>
+                    <button class="sl-rpick-btn" data-val="4">4</button>
+                    <button class="sl-rpick-btn" data-val="5">5</button>
+                    <button class="sl-rpick-btn" data-val="6">6</button>
+                    <button class="sl-rpick-btn" data-val="7">7</button>
+                    <button class="sl-rpick-btn" data-val="8">8</button>
+                    <button class="sl-rpick-btn" data-val="9">9</button>
+                    <button class="sl-rpick-btn" data-val="10">10</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action bar -->
+          <div class="sl-action-bar">
+            <button class="sl-back-btn" id="sl-back-btn">← БИБЛИОТЕКА</button>
+            <div class="sl-mini-header" id="sl-mini-header">
+              <div class="sl-mini-cover-wrap">
+                <img class="sl-mini-cover hidden" id="sl-mini-cover" alt="" />
+                <div class="sl-mini-cover-ph" id="sl-mini-cover-ph">🎮</div>
+              </div>
+              <div class="sl-mini-copy">
+                <div class="sl-mini-title" id="sl-mini-title"></div>
+                <div class="sl-mini-sub" id="sl-mini-sub">Достижений пока нет</div>
+              </div>
+            </div>
+            <button class="sl-play-btn" id="sl-play-btn">▶ ИГРАТЬ</button>
+            <div class="sl-action-stats">
+              <div class="sl-astat">
+                <div class="sl-astat-label">ПОСЛЕДНИЙ ЗАПУСК</div>
+                <div class="sl-astat-val" id="sl-last-played">—</div>
+              </div>
+              <div class="sl-astat-sep"></div>
+              <div class="sl-astat">
+                <div class="sl-astat-label">ВЫ ИГРАЛИ</div>
+                <div class="sl-astat-val" id="sl-hours-played">0 ч.</div>
+              </div>
+              <div class="sl-astat-sep"></div>
+              <div class="sl-astat hidden" id="sl-astat-ach">
+                <div class="sl-astat-label">ДОСТИЖЕНИЯ</div>
+                <div class="sl-astat-val" id="sl-ach-count">—</div>
+                <div class="sl-ach-mini-bar"><div class="sl-ach-mini-fill" id="sl-ach-mini-fill"></div></div>
+              </div>
+            </div>
+            <div class="sl-action-right">
+              <div class="sl-gear-wrap">
+                <button class="sl-gear-btn" id="sl-gear-btn" title="Настройки игры">⚙</button>
+              </div>
+              <button class="sl-delete-btn" id="sl-delete-btn" title="Удалить игру">🗑</button>
+            </div>
+          </div>
+
+          <!-- Body: сессии + достижения -->
+          <div class="sl-body">
+            <div class="sl-body-main">
+              <div class="sl-section sl-media-section hidden" id="sl-media-section">
+                <div class="sl-media-head">
+                  <div class="sl-media-title-row">
+                    <div class="sl-section-title">Снимки экрана и видео</div>
+                    <button class="sl-media-see-all" id="sl-media-see-all">Посмотреть всё</button>
+                    <button class="sl-media-add" id="sl-media-add" type="button">+ Добавить</button>
+                    <button class="sl-media-sync" id="sl-media-sync" type="button">☁ Синхр.</button>
+                  </div>
+                  <div class="sl-media-controls">
+                    <button class="sl-media-nav" id="sl-media-prev" aria-label="Назад">‹</button>
+                    <button class="sl-media-nav" id="sl-media-next" aria-label="Вперёд">›</button>
+                  </div>
+                </div>
+                <div class="sl-media-strip" id="sl-media-strip"></div>
+              </div>
+
+              <div class="sl-section">
+                <div class="sl-section-title">История активности</div>
+                <div class="sl-sessions-list" id="sl-sessions-list"></div>
+              </div>
+            </div>
+
+            <!-- Достижения (кликабельный блок) -->
+            <div class="sl-body-side">
+              <div class="sl-notes-card">
+                <div class="sl-notes-card-head">
+                  <div class="sl-section-title">Личные заметки</div>
+                  <button class="btn-sm btn-ghost" id="sl-btn-save-notes">Сохранить</button>
+                </div>
+                <textarea class="sl-notes-textarea" id="sl-notes" rows="5" placeholder="Запиши, на чем остановился, что хочется попробовать или к чему вернуться позже..."></textarea>
+                <div class="sl-notes-meta" id="sl-notes-meta">Заметок пока нет</div>
+              </div>
+              <div class="sl-ach-panel" id="sl-ach-panel">
+                <div class="sl-ach-panel-header" id="sl-ach-panel-header">
+                  <div class="sl-section-title">ДОСТИЖЕНИЯ</div>
+                  <span class="sl-ach-open-hint">нажми чтобы открыть →</span>
+                </div>
+                <div class="sl-ach-summary" id="sl-ach-summary"></div>
+                <div class="sl-ach-bar-wrap">
+                  <div class="sl-ach-bar-fill" id="sl-ach-bar-fill"></div>
+                </div>
+                <div class="sl-rare-wrap hidden" id="sl-rare-wrap">
+                  <div class="sl-rare-head">
+                    <div class="sl-section-title">Редкие достижения</div>
+                    <span class="sl-rare-count" id="sl-rare-count"></span>
+                  </div>
+                  <div class="sl-rare-list" id="sl-rare-list"></div>
+                </div>
+                <div class="sl-section-title">Получено</div>
+                <div class="sl-ach-icons-row" id="sl-ach-icons-row"></div>
+                <div class="sl-section-title" style="margin-top:16px">НЕ ВЫПОЛНЕНО</div>
+                <div class="sl-locked-ach-list" id="sl-locked-ach-list"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Попап со всеми достижениями ── -->
+        <div class="sl-ach-modal hidden" id="sl-ach-modal">
+          <div class="sl-ach-modal-bg" id="sl-ach-modal-bg"></div>
+          <div class="sl-ach-modal-box">
+            <div class="sl-ach-modal-hero">
+              <div class="sl-ach-modal-hero-bg" id="sl-ach-modal-hero-bg"></div>
+              <div class="sl-ach-modal-head">
+                <div class="sl-ach-modal-game">
+                  <div class="sl-ach-modal-game-icon-wrap">
+                    <img class="sl-ach-modal-game-icon hidden" id="sl-ach-modal-game-icon" alt="" />
+                    <div class="sl-ach-modal-game-icon-ph" id="sl-ach-modal-game-icon-ph">🎮</div>
+                  </div>
+                  <div class="sl-ach-modal-game-copy">
+                    <span id="sl-ach-modal-title">Достижения</span>
+                    <div class="sl-ach-modal-subtitle" id="sl-ach-modal-subtitle"></div>
+                  </div>
+                </div>
+                <button class="sl-ach-modal-close" id="sl-ach-modal-close">✕</button>
+              </div>
+              <div class="sl-ach-modal-progress">
+                <div class="sl-ach-modal-progress-head">
+                  <span id="sl-ach-modal-progress-label">Получено 0 из 0 достижений</span>
+                  <span id="sl-ach-modal-progress-pct">(0%)</span>
+                </div>
+                <div class="sl-ach-modal-progress-bar">
+                  <div class="sl-ach-modal-progress-fill" id="sl-ach-modal-progress-fill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sl-ach-modal-filters">
+              <button class="sl-ach-mf" data-mf="rare">Редкие</button>
+              <button class="sl-ach-mf active" data-mf="all">Все</button>
+              <button class="sl-ach-mf" data-mf="unlocked">Выполненные</button>
+              <button class="sl-ach-mf" data-mf="locked">Нет</button>
+            </div>
+            <div class="sl-ach-modal-tools">
+              <input class="sl-ach-modal-search" id="sl-ach-modal-search" type="search" placeholder="Поиск достижений" />
+              <select class="sl-ach-modal-sort" id="sl-ach-modal-sort">
+                <option value="recent">Сначала новые</option>
+                <option value="rarity">По редкости</option>
+                <option value="alpha">По алфавиту</option>
+                <option value="locked">Сначала не выполненные</option>
+              </select>
+            </div>
+            <div class="sl-ach-modal-list" id="sl-ach-modal-list"></div>
+          </div>
+        </div>
+
+        <div class="sl-media-modal hidden" id="sl-media-modal">
+          <div class="sl-media-modal-bg" id="sl-media-modal-bg"></div>
+          <button class="sl-media-modal-close" id="sl-media-modal-close" aria-label="Закрыть">×</button>
+          <button class="sl-media-modal-arrow prev" id="sl-media-modal-prev" aria-label="Предыдущее">‹</button>
+          <button class="sl-media-modal-arrow next" id="sl-media-modal-next" aria-label="Следующее">›</button>
+          <div class="sl-media-modal-box">
+            <div class="sl-media-stage" id="sl-media-stage"></div>
+            <div class="sl-media-modal-foot">
+              <div class="sl-media-modal-title" id="sl-media-modal-title"></div>
+              <div class="sl-media-modal-count" id="sl-media-modal-count"></div>
+            </div>
+            <div class="sl-media-modal-thumbs" id="sl-media-modal-thumbs"></div>
+          </div>
+        </div>
+
+        <div id="modal-sl-settings" class="modal-overlay hidden">
+          <div class="modal sl-settings-modal">
+            <div class="modal-header">
+              <div>
+                <h3>Настройки игры</h3>
+                <div class="modal-desc sl-settings-subtitle" id="sl-settings-subtitle">Управление достижениями и сохранениями</div>
+              </div>
+              <button class="modal-close" data-close="modal-sl-settings">✕</button>
+            </div>
+            <div class="modal-body sl-settings-body">
+              <div class="sl-settings-section">
+                <div class="sl-settings-section-title">Достижения</div>
+                <button class="sl-gear-item" id="sl-btn-ach-online">🔄 Загрузить из Steam (онлайн)</button>
+                <button class="sl-gear-item" id="sl-btn-ach-local">💾 Из локального кеша</button>
+              </div>
+              <div class="sl-settings-section">
+                <div class="sl-settings-section-title">Локальный запуск</div>
+                <div class="sl-gear-path-row sl-settings-path-row">
+                  <span class="sl-gear-path-val" id="sl-launch-path-val">Исполняемый файл не задан</span>
+                  <button class="sl-gear-path-pick" id="sl-btn-pick-launch" title="Выбрать файл игры">📁</button>
+                </div>
+                <input class="sl-settings-input" id="sl-steam-appid" type="text" placeholder="Steam AppID для локального трекинга достижений" inputmode="numeric" />
+                <div class="sl-settings-note">Можно привязать локальную игру к Steam AppID, чтобы подтянуть список достижений и ловить новые открытия во время сессии.</div>
+                <button class="sl-gear-item" id="sl-btn-save-local-link">Сохранить локальную связку</button>
+              </div>
+              <div class="sl-settings-section">
+                <div class="sl-settings-section-title">Сохранения (Drive)</div>
+                <div class="sl-gear-path-row sl-settings-path-row">
+                  <span class="sl-gear-path-val" id="sl-save-path-val">Папка не задана</span>
+                  <button class="sl-gear-path-pick" id="sl-btn-pick-save" title="Выбрать папку">📁</button>
+                </div>
+                <div class="sl-settings-actions">
+                  <button class="sl-gear-item" id="sl-btn-upload-save">↑ Загрузить в Drive</button>
+                  <button class="sl-gear-item" id="sl-btn-download-save">↓ Восстановить</button>
+                </div>
+              </div>
+              <div class="sl-gear-status sl-settings-status" id="sl-gear-status"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <section id="view-achievements" class="view">
+      <div class="view-header">
+        <div><h2>Достижения</h2><p class="view-sub">Разблокировано: <strong id="ach-total-count">0</strong></p></div>
+        <div class="ach-filter-bar">
+          <div class="ach-filter-tabs">
+            <button class="ach-filter-btn active" data-filter="all">Все</button>
+            <button class="ach-filter-btn" data-filter="unlocked">Выполненные</button>
+            <button class="ach-filter-btn" data-filter="locked">Невыполненные</button>
+          </div>
+          <input class="search-input ach-search-input" id="ach-search" type="search" placeholder="Поиск достижений…" />
+        </div>
+      </div>
+      <div id="ach-list"></div>
+      <div id="ach-empty" class="empty-state hidden">
+        <div class="empty-icon">🏆</div>
+        <p>Достижений пока нет. Импортируй Steam-библиотеку или добавь вручную!</p>
+      </div>
+    </section>
+
+    <!-- НАСТРОЙКИ -->
+    <section id="view-settings" class="view">
+      <div class="view-header">
+        <div><h2>Настройки</h2></div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Тема интерфейса</div>
+        <div class="theme-grid" id="theme-grid">
+
+          <div class="theme-card" data-theme-id="aurora">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#0f1629">
+                <div class="theme-preview-dot" style="background:#818cf8"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#6366f1,#818cf8,#2dd4bf)"></div>
+                  <div class="theme-preview-line2" style="background:#64748b;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Aurora</div>
+              <div class="theme-card-desc">Indigo + Teal · Glassmorphism</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+          <div class="theme-card" data-theme-id="obsidian">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#111111">
+                <div class="theme-preview-dot" style="background:#f97316"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#ea580c,#f97316,#fb923c)"></div>
+                  <div class="theme-preview-line2" style="background:#555;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Obsidian</div>
+              <div class="theme-card-desc">Оранжевый · Минимализм</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+          <div class="theme-card" data-theme-id="neon">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#0a0014">
+                <div class="theme-preview-dot" style="background:#e040fb"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#cc00ff,#e040fb,#00e5ff)"></div>
+                  <div class="theme-preview-line2" style="background:#3a0a4d;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Neon</div>
+              <div class="theme-card-desc">Пурпурный + Циан · Cyberpunk</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+          <div class="theme-card" data-theme-id="forest">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#07140d">
+                <div class="theme-preview-dot" style="background:#4ade80"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#22c55e,#4ade80,#fbbf24)"></div>
+                  <div class="theme-preview-line2" style="background:#1a3a28;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Forest</div>
+              <div class="theme-card-desc">Зелёный + Янтарный · Уютный</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+          <div class="theme-card" data-theme-id="crimson">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#1a040d">
+                <div class="theme-preview-dot" style="background:#f87171"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#dc2626,#f87171,#fbbf24)"></div>
+                  <div class="theme-preview-line2" style="background:#3d0a14;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Crimson</div>
+              <div class="theme-card-desc">Красный + Золото · RPG-стиль</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+          <div class="theme-card" data-theme-id="slate">
+            <div class="theme-preview">
+              <div class="theme-preview-bg" style="background:#111827">
+                <div class="theme-preview-dot" style="background:#60a5fa"></div>
+                <div>
+                  <div class="theme-preview-line" style="background:linear-gradient(90deg,#3b82f6,#60a5fa,#a78bfa)"></div>
+                  <div class="theme-preview-line2" style="background:#374151;margin-top:4px"></div>
+                </div>
+              </div>
+            </div>
+            <div class="theme-card-body">
+              <div class="theme-card-name">Slate</div>
+              <div class="theme-card-desc">Синий + Фиолетовый · Профессиональный</div>
+            </div>
+            <div class="theme-card-check">✓</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Плотность интерфейса</div>
+        <div class="density-grid" id="density-grid">
+          <button class="density-card" data-density-id="compact" type="button">
+            <div class="density-card-head">Compact</div>
+            <div class="density-card-desc">Больше информации на экране и плотнее сетки.</div>
+          </button>
+          <button class="density-card" data-density-id="normal" type="button">
+            <div class="density-card-head">Normal</div>
+            <div class="density-card-desc">Сбалансированный режим для ежедневного использования.</div>
+          </button>
+          <button class="density-card" data-density-id="wide" type="button">
+            <div class="density-card-head">Wide</div>
+            <div class="density-card-desc">Больше воздуха, крупнее hero и свободнее отступы.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Google Drive -->
+    <div class="settings-section">
+      <div class="settings-section-title">Google Drive — синхронизация</div>
+
+        <div id="drive-disconnected">
+          <div class="drive-setup-hint">
+            Нужен <strong>Client ID</strong> и <strong>Client Secret</strong> из
+            <a href="#" id="link-gcp">Google Cloud Console ↗</a>
+            (бесплатно, 5 минут настройки)
+          </div>
+          <div class="drive-creds-grid">
+            <div class="field">
+              <label>Client ID</label>
+              <input type="text" id="drive-client-id" placeholder="xxxx.apps.googleusercontent.com" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label>Client Secret</label>
+              <input type="password" id="drive-client-secret" placeholder="GOCSPX-…" autocomplete="off" />
+            </div>
+          </div>
+          <button class="btn-primary" id="btn-drive-connect">
+            <span id="btn-drive-connect-label">Подключить Google Drive</span>
+          </button>
+        </div>
+
+        <div id="drive-connected" class="hidden">
+          <div class="drive-status-row">
+            <div class="drive-status-icon">✓</div>
+            <div>
+              <div class="drive-status-email" id="drive-email">—</div>
+              <div class="drive-status-sync" id="drive-last-sync">Ещё не синхронизировалось</div>
+            </div>
+            <div class="drive-status-actions">
+              <button class="btn-sm btn-ghost" id="btn-drive-sync-now">↑↓ Синхронизировать</button>
+              <button class="btn-sm btn-ghost btn-danger-soft" id="btn-drive-disconnect">Отключить</button>
+            </div>
+          </div>
+          <div class="drive-autosync-row">
+            <label class="toggle-label">
+              <input type="checkbox" id="drive-autosync" />
+              <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              Авто-синхронизация при каждом сохранении
+            </label>
+          </div>
+          <div class="drive-mobile-export">
+            <div class="drive-mobile-label">📱 Мобильное приложение</div>
+            <button class="btn-sm btn-ghost" id="btn-drive-export-token">Скопировать токен для мобильного</button>
+            <div class="drive-mobile-hint">Вставь скопированный токен в настройках мобильного приложения</div>
+          </div>
+        </div>
+
+        <div id="drive-error" class="error-box hidden"></div>
+      </div>
+
+      <!-- Библиотека и резервные копии -->
+      <div class="settings-section">
+        <div class="settings-section-title">Библиотека и резервные копии</div>
+        <div class="settings-actions-grid">
+          <button class="btn-action" id="btn-open-search">
+            <span class="btn-action-icon">🔍</span><span>Найти игру в Steam</span>
+          </button>
+          <button class="btn-action" id="btn-steam-import">
+            <span class="btn-action-icon">⬇</span><span>Импорт библиотеки Steam</span>
+          </button>
+          <button class="btn-action" id="btn-ea-import">
+            <span class="btn-action-icon">⬇</span><span>Импорт библиотеки EA App</span>
+          </button>
+          <button class="btn-action btn-action-dim" id="btn-backup">
+            <span class="btn-action-icon">💾</span><span>Резервная копия</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Удаление шуточных названий -->
+      <div class="settings-section">
+        <div class="settings-section-title">Управление данными</div>
+        <label class="toggle-label" style="gap:8px;margin-top:6px;display:flex;align-items:center;">
+          <input type="checkbox" id="hide-jokes-toggle" />
+          <span>Скрывать шутки и незначимые названия в списке игр</span>
+        </label>
+    </div>
+    </section>
+
+    <!-- ДЕТАЛИ ИГРЫ (полная страница) -->
+    <section id="view-game-detail" class="view view-game-detail">
+
+      <!-- Верхняя панель -->
+      <div class="gd2-topbar">
+        <button class="gd2-back" id="btn-game-back">← Назад</button>
+        <div class="gd2-topbar-title" id="gd2-topbar-title"></div>
+        <div class="gd2-topbar-actions">
+          <button class="btn-primary btn-sm" id="gd2-btn-play">▶ Начать сессию</button>
+          <button class="btn-danger btn-icon" id="gd2-btn-delete" title="Удалить игру">🗑</button>
+        </div>
+      </div>
+
+      <!-- Карусель -->
+      <div class="gd2-carousel" id="gd2-carousel">
+        <div class="gd2-carousel-track" id="gd2-carousel-track"></div>
+        <button class="gd2-carousel-prev" id="gd2-carousel-prev">❮</button>
+        <button class="gd2-carousel-next" id="gd2-carousel-next">❯</button>
+        <div class="gd2-carousel-dots" id="gd2-carousel-dots"></div>
+      </div>
+
+      <!-- Контент под каруселью -->
+      <div class="gd2-content">
+
+        <!-- Левая колонка: обложка + основные данные -->
+        <div class="gd2-left">
+          <div class="gd2-cover-wrap">
+            <img class="gd2-cover-img" id="gd2-cover" src="" alt="" />
+            <div class="gd2-cover-ph hidden" id="gd2-cover-ph">🎮</div>
+          </div>
+
+          <div class="gd2-meta-block">
+            <div class="gd2-stat-row"><span class="gd2-stat-icon">⏱</span><span id="gd2-hours">0 ч</span><button class="gd2-edit-btn" id="gd2-hours-edit-btn" title="Изменить время">✏</button></div>
+            <div class="gd2-stat-row"><span class="gd2-stat-icon">🏆</span><span id="gd2-ach-count">0 / 0</span></div>
+            <div class="gd2-stat-row"><span class="gd2-stat-icon">📅</span><span id="gd2-last">Никогда</span></div>
+            <div class="gd2-stat-row"><span class="gd2-stat-icon">🖥</span><span id="gd2-platform">—</span></div>
+          </div>
+
+          <!-- Изменить время -->
+          <div class="gd2-hours-edit hidden" id="gd2-hours-edit">
+            <input type="number" id="gd2-hours-input" min="0" step="0.5" placeholder="0" />
+            <span>ч</span>
+            <button class="btn-sm btn-primary" id="gd2-hours-ok">Сохранить</button>
+            <button class="btn-sm btn-ghost" id="gd2-hours-cancel">✕</button>
+          </div>
+
+          <!-- Статус -->
+          <div class="gd2-status-wrap">
+            <div class="gd2-section-label">Статус</div>
+            <div class="gd2-status-pills" id="gd2-status-pills">
+              <button class="gd2-status-pill" data-status="playing">▶ Играю</button>
+              <button class="gd2-status-pill" data-status="completed">◆ Пройдено</button>
+              <button class="gd2-status-pill" data-status="dropped">✕ Брошено</button>
+              <button class="gd2-status-pill" data-status="planned">◎ В планах</button>
+            </div>
+          </div>
+
+          <!-- Оценка -->
+          <div class="gd2-rating-wrap">
+            <div class="gd2-section-label">Оценка</div>
+            <div class="rating-picker" id="gd2-rating">
+              <button class="rating-btn" data-val="1">1</button>
+              <button class="rating-btn" data-val="2">2</button>
+              <button class="rating-btn" data-val="3">3</button>
+              <button class="rating-btn" data-val="4">4</button>
+              <button class="rating-btn" data-val="5">5</button>
+              <button class="rating-btn" data-val="6">6</button>
+              <button class="rating-btn" data-val="7">7</button>
+              <button class="rating-btn" data-val="8">8</button>
+              <button class="rating-btn" data-val="9">9</button>
+              <button class="rating-btn" data-val="10">10</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая колонка: заметки, теги, коллекции, достижения -->
+        <div class="gd2-right">
+
+          <!-- Заметки -->
+          <div class="gd2-section">
+            <div class="gd2-section-label">📝 Заметки</div>
+            <textarea id="gd2-notes" class="notes-textarea" rows="3"
+              placeholder="Личные заметки, впечатления, советы…"></textarea>
+            <div class="notes-footer">
+              <button class="btn-sm btn-ghost" id="gd2-btn-save-notes">Сохранить заметки</button>
+            </div>
+          </div>
+
+          <!-- Теги -->
+          <div class="gd2-section">
+            <div class="gd2-section-label">🏷 Теги</div>
+            <div class="tags-container" id="gd2-tags"></div>
+            <div class="tags-input-row">
+              <input type="text" id="gd2-tag-input" class="tags-input" placeholder="Добавить тег…" maxlength="24" autocomplete="off" />
+              <button class="btn-sm btn-ghost" id="gd2-tag-add">＋</button>
+            </div>
+            <div class="tags-suggestions" id="gd2-tag-suggestions"></div>
+          </div>
+
+          <!-- Коллекции -->
+          <div class="gd2-section">
+            <div class="gd2-section-label">📂 Коллекции</div>
+            <div class="gd-collections" id="gd2-collections"></div>
+          </div>
+
+          <!-- Достижения -->
+          <div class="gd2-section">
+            <div class="gd2-section-label">
+              🏆 Достижения
+              <span class="gd-ach-badge" id="gd2-ach-badge"></span>
+            </div>
+            <div id="gd2-fetch-ach-wrap" class="hidden">
+              <button class="btn-fetch-ach" id="gd2-btn-fetch-ach">🔄 Загрузить из Steam (онлайн)</button>
+              <button class="btn-fetch-ach btn-fetch-local" id="gd2-btn-fetch-local-ach">💾 Из локального кеша</button>
+            </div>
+            <div id="gd2-manual-ach-form" class="manual-ach-form hidden">
+              <input type="text" id="gd2-new-ach-name" placeholder="Название достижения *" />
+              <input type="text" id="gd2-new-ach-desc" placeholder="Описание (необязательно)" />
+              <button class="btn-sm btn-primary" id="gd2-btn-add-ach">＋ Добавить</button>
+            </div>
+            <div class="ach-grid-detail" id="gd2-ach-list"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- СТАТИСТИКА -->
+    <section id="view-stats" class="view">
+      <div class="view-header"><div><h2>Статистика</h2></div></div>
+      <div class="stats-summary-row">
+        <div class="stat-summary-card">
+          <div class="ssc-value" id="ssc-games">0</div>
+          <div class="ssc-label">Игр в библиотеке</div>
+        </div>
+        <div class="stat-summary-card">
+          <div class="ssc-value" id="ssc-hours">0</div>
+          <div class="ssc-label">Часов сыграно</div>
+        </div>
+        <div class="stat-summary-card">
+          <div class="ssc-value" id="ssc-ach">0</div>
+          <div class="ssc-label">Достижений</div>
+        </div>
+        <div class="stat-summary-card">
+          <div class="ssc-value" id="ssc-rating">—</div>
+          <div class="ssc-label">Средняя оценка</div>
+        </div>
+        <div class="stat-summary-card">
+          <div class="ssc-value" id="ssc-sessions">0</div>
+          <div class="ssc-label">Игровых сессий</div>
+        </div>
+      </div>
+      <!-- Недавняя активность -->
+      <div class="recent-activity-wrap">
+        <div class="ra-header">
+          <span class="ra-title">Недавняя активность</span>
+          <span class="ra-subtitle" id="ra-subtitle"></span>
+        </div>
+        <div id="recent-activity-list"></div>
+      </div>
+
+      <div class="stats-detail-grid">
+        <div class="chart-card stats-panel">
+          <h4>Топ игр по времени</h4>
+          <div class="stats-bars-chart" id="stats-top-chart"></div>
+          <div class="stats-game-list" id="stats-top-games"></div>
+        </div>
+        <div class="chart-card stats-panel">
+          <h4>Активность за 30 дней</h4>
+          <div class="stats-line-chart" id="stats-activity-chart"></div>
+          <div class="stats-game-list" id="stats-activity-games"></div>
+        </div>
+        <div class="chart-card stats-panel">
+          <h4>Оценки по играм</h4>
+          <div class="stats-rating-chart" id="stats-rating-chart"></div>
+          <div class="stats-rating-list" id="stats-rating-list"></div>
+        </div>
+        <div class="chart-card stats-panel">
+          <h4>Прогресс достижений</h4>
+          <div class="stats-ach-chart" id="stats-ach-chart"></div>
+          <div class="stats-game-list" id="stats-achievements-list"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ══ ТАЙМЕР СЕССИИ ════════════════════════════════ -->
+<div id="now-playing" class="now-playing hidden">
+  <img class="np-cover" id="np-cover" src="" alt="" />
+  <div class="np-info">
+    <span class="np-game" id="np-game">Игра</span>
+    <span class="np-timer" id="np-timer">00:00:00</span>
+  </div>
+  <button class="btn-stop" id="btn-stop-session">■ Стоп</button>
+</div>
+
+<!-- ══════════════════ МОДАЛКИ ══════════════════════ -->
+
+<!-- Поиск игры в Steam -->
+<div id="modal-search" class="modal-overlay hidden">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <h3>Найти игру в Steam</h3>
+      <button class="modal-close" data-close="modal-search">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="search-row">
+        <input type="search" id="game-search-input" placeholder="Введи название игры…" autocomplete="off" />
+        <button class="btn-primary" id="btn-do-search">Найти</button>
+      </div>
+      <div id="search-status" class="search-status hidden"></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-search">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- Импорт всей библиотеки Steam -->
+<div id="modal-steam" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Импорт библиотеки Steam</h3>
+      <button class="modal-close" data-close="modal-steam">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box">
+        Нужен бесплатный API-ключ →
+        <a href="#" id="link-steam-key">получить за минуту ↗</a>
+      </div>
+      <div class="field">
+        <label>Steam API-ключ</label>
+        <input type="text" id="steam-api-key" placeholder="Вставь ключ из Steam" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label>Steam ID (64-битный)</label>
+        <input type="text" id="steam-id" placeholder="76561198XXXXXXXXX" />
+        <span class="field-hint">Узнать на steamid.io — вставь ссылку на профиль</span>
+      </div>
+      <div class="field">
+        <label>Путь к папке Steam (для локальных достижений)</label>
+        <input type="text" id="steam-path" placeholder="C:\Program Files (x86)\Steam" autocomplete="off" />
+        <span class="field-hint">Папка где лежит steam.exe — нужна для чтения оффлайн-достижений</span>
+      </div>
+      <div id="steam-error" class="error-box hidden"></div>
+      <div id="steam-progress" class="progress-wrap hidden">
+        <div class="progress-bar"><div class="progress-fill" id="steam-fill"></div></div>
+        <span id="steam-progress-text">Подключаюсь…</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-steam">Отмена</button>
+      <button class="btn-primary" id="btn-do-import">⬇ Импортировать</button>
+    </div>
+  </div>
+</div>
+
+<!-- Импорт всей библиотеки EA App -->
+<div id="modal-ea" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Импорт библиотеки EA App</h3>
+      <button class="modal-close" data-close="modal-ea">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box">
+        Лаунчер прочитает локальные данные EA Desktop на этом ПК: игры из аккаунта, статусы установки,
+        достижения и доступную историю сессий/часов.
+      </div>
+      <div class="field">
+        <label>Что подтягиваем</label>
+        <span class="field-hint">Игры из библиотеки EA, пути запуска для установленных тайтлов и весь доступный локальный кэш достижений и времени.</span>
+      </div>
+      <div id="ea-error" class="error-box hidden"></div>
+      <div id="ea-progress" class="progress-wrap hidden">
+        <div class="progress-bar"><div class="progress-fill" id="ea-fill"></div></div>
+        <span id="ea-progress-text">Сканирую EA Desktop…</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-ea">Отмена</button>
+      <button class="btn-primary" id="btn-do-ea-import">⬇ Импортировать</button>
+    </div>
+  </div>
+</div>
+
+<!-- Добавить вручную -->
+<div id="modal-add-game" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Добавить игру вручную</h3>
+      <button class="modal-close" data-close="modal-add-game">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Название *</label>
+        <input type="text" id="ag-title" placeholder="Например: The Witcher 3" />
+      </div>
+      <div class="field">
+        <label>Платформа</label>
+        <select id="ag-platform">
+          <option>Steam</option><option>EA App</option><option>Epic Games</option><option>GOG</option>
+          <option>Xbox</option><option>PlayStation</option><option>Nintendo Switch</option><option>Другое</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Steam AppID (необязательно)</label>
+        <input type="text" id="ag-appid" placeholder="Например: 1091500" inputmode="numeric" />
+        <span class="field-hint">Нужен, если хочешь подтягивать достижения как шаблон и отслеживать локальный прогресс в лаунчере.</span>
+      </div>
+      <div class="field">
+        <label>Исполняемый файл игры (необязательно)</label>
+        <div class="cover-input-row">
+          <input type="text" id="ag-launch-path" placeholder="C:\Games\Game\game.exe" autocomplete="off" />
+          <button class="btn-sm btn-ghost" id="btn-pick-launch-path" type="button">📁 Выбрать .exe</button>
+        </div>
+        <span class="field-hint">Если указать `.exe`, лаунчер сможет сам запускать игру, отслеживать сессию и проверять новые достижения во время игры.</span>
+      </div>
+      <div class="field">
+        <label>Уже сыграно (часов)</label>
+        <input type="number" id="ag-hours" placeholder="0" min="0" step="0.1" />
+      </div>
+      <div class="field">
+        <label>Обложка (URL, необязательно)</label>
+        <div class="cover-input-row">
+          <input type="url" id="ag-cover" placeholder="https://…" />
+          <button class="btn-sm btn-ghost" id="btn-search-icon" type="button">🔍 Найти иконку</button>
+        </div>
+      </div>
+      <div id="ag-error" class="error-box hidden"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-add-game">Отмена</button>
+      <button class="btn-primary" id="btn-do-add">＋ Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Детали игры -->
+<div id="modal-game" class="modal-overlay hidden">
+  <div class="modal modal-game-detail">
+
+    <!-- ── ГЕРОЙ: размытый фон + обложка + инфо ── -->
+    <div class="gd-hero" id="gd-hero">
+      <div class="gd-hero-bg" id="gd-hero-bg"></div>
+      <div class="gd-hero-gradient"></div>
+      <button class="gd-close-btn" data-close="modal-game">✕</button>
+
+      <div class="gd-hero-inner">
+        <!-- Обложка -->
+        <div class="gd-cover-wrap">
+          <img class="gd-cover-img" id="gd-cover" src="" alt="" />
+          <div class="gd-cover-ph hidden" id="gd-cover-ph">🎮</div>
+        </div>
+
+        <!-- Мета -->
+        <div class="gd-hero-text">
+          <div class="gd-platform-tag" id="gd-platform"></div>
+          <h2 class="gd-title" id="gd-title">Игра</h2>
+
+          <div class="gd-stats-row">
+            <div class="gd-stat-pill gd-hours-pill" id="gd-hours-pill" title="Нажми чтобы изменить время">
+              <span class="gd-stat-icon">⏱</span>
+              <span id="gd-hours">0 ч</span>
+              <span class="gd-edit-hint">✏</span>
+            </div>
+            <div class="gd-stat-pill">
+              <span class="gd-stat-icon">🏆</span>
+              <span id="gd-ach-count">0 / 0</span>
+            </div>
+            <div class="gd-stat-pill">
+              <span class="gd-stat-icon">📅</span>
+              <span id="gd-last">Никогда</span>
+            </div>
+          </div>
+          <div class="gd-hours-edit hidden" id="gd-hours-edit">
+            <span class="gd-hours-edit-label">⏱ Изменить время игры</span>
+            <div class="gd-hours-edit-row">
+              <input type="number" id="gd-hours-input" class="gd-hours-input" min="0" step="0.5" placeholder="0" />
+              <span class="gd-hours-edit-unit">ч</span>
+              <button class="btn-sm btn-primary" id="btn-hours-ok">Сохранить</button>
+              <button class="btn-sm btn-ghost" id="btn-hours-cancel">Отмена</button>
+            </div>
+          </div>
+
+          <!-- Статус -->
+          <div class="gd-status-row" id="gd-status-row">
+            <button class="gd-status-pill" data-status="playing">▶ Играю</button>
+            <button class="gd-status-pill" data-status="completed">◆ Пройдено</button>
+            <button class="gd-status-pill" data-status="dropped">✕ Брошено</button>
+            <button class="gd-status-pill" data-status="planned">◎ В планах</button>
+          </div>
+
+          <!-- Оценка в герое -->
+          <div class="gd-rating-row">
+            <span class="gd-rating-label">Оценка</span>
+            <div class="rating-picker" id="gd-rating">
+              <button class="rating-btn" data-val="1">1</button>
+              <button class="rating-btn" data-val="2">2</button>
+              <button class="rating-btn" data-val="3">3</button>
+              <button class="rating-btn" data-val="4">4</button>
+              <button class="rating-btn" data-val="5">5</button>
+              <button class="rating-btn" data-val="6">6</button>
+              <button class="rating-btn" data-val="7">7</button>
+              <button class="rating-btn" data-val="8">8</button>
+              <button class="rating-btn" data-val="9">9</button>
+              <button class="rating-btn" data-val="10">10</button>
+            </div>
+          </div>
+
+          <div class="gd-hero-actions">
+            <button class="btn-primary" id="btn-start-session">▶ Начать сессию</button>
+            <button class="btn-danger btn-icon" id="btn-delete-game" title="Удалить игру">🗑</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ТЕЛО ── -->
+    <div class="gd-body">
+
+      <!-- Заметки -->
+      <div class="gd-section">
+        <div class="gd-section-hdr">
+          <span class="gd-section-lbl">📝 Заметки</span>
+          <button class="btn-sm btn-ghost" id="btn-notes-toggle">Открыть</button>
+        </div>
+        <div id="gd-notes-wrap" class="hidden">
+          <textarea id="gd-notes" class="notes-textarea"
+            placeholder="Личные заметки, впечатления, советы для прохождения…" rows="4"></textarea>
+          <div class="notes-footer">
+            <button class="btn-sm btn-ghost" id="btn-save-notes">Сохранить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Сохранения -->
+      <div class="gd-section" id="gd-saves-section">
+        <div class="gd-section-hdr">
+          <span class="gd-section-lbl">☁ Сохранения</span>
+        </div>
+        <div class="save-path-row">
+          <input type="text" id="gd-save-path" class="save-path-input" placeholder="Папка с сохранениями игры…" readonly />
+          <button class="btn-sm btn-ghost" id="btn-pick-save-path" title="Выбрать папку">📁</button>
+        </div>
+        <div class="save-actions">
+          <button class="btn-sm btn-ghost" id="btn-upload-save">↑ Загрузить в Drive</button>
+          <button class="btn-sm btn-ghost" id="btn-download-save">↓ Восстановить</button>
+          <span class="save-last-sync" id="gd-save-last-sync"></span>
+        </div>
+        <div class="save-progress hidden" id="gd-save-progress">
+          <div class="save-progress-bar">
+            <div class="save-progress-fill" id="gd-save-progress-fill"></div>
+          </div>
+          <span class="save-progress-label" id="gd-save-progress-label">Подготовка…</span>
+        </div>
+      </div>
+
+      <!-- Теги -->
+      <div class="gd-section">
+        <div class="gd-section-hdr">
+          <span class="gd-section-lbl">🏷 Теги</span>
+          <button class="btn-sm btn-ghost gd-tag-open-btn" id="btn-tag-input-toggle">＋</button>
+        </div>
+        <div class="tags-container" id="gd-tags"></div>
+        <div class="tags-input-row hidden" id="gd-tags-input-row">
+          <input type="text" id="gd-tag-input" class="tags-input" placeholder="Добавить тег…" maxlength="24" autocomplete="off" />
+          <button class="btn-sm btn-ghost" id="gd-tag-add">＋</button>
+        </div>
+        <div class="tags-suggestions" id="gd-tag-suggestions"></div>
+      </div>
+
+      <!-- Коллекции -->
+      <div class="gd-section">
+        <div class="gd-section-hdr">
+          <span class="gd-section-lbl">📂 Коллекции</span>
+        </div>
+        <div class="gd-collections" id="gd-collections"></div>
+      </div>
+
+      <!-- Достижения -->
+      <div class="gd-section">
+        <div class="gd-section-hdr">
+          <span class="gd-section-lbl">🏆 Достижения</span>
+          <span class="gd-ach-badge" id="gd-ach-badge"></span>
+          <div class="gd-ach-refresh-wrap hidden" id="gd-ach-refresh-wrap">
+            <button class="btn-sm btn-ghost gd-ach-refresh-btn" id="btn-refresh-ach">🔄 Онлайн</button>
+            <button class="btn-sm btn-ghost gd-ach-refresh-btn" id="btn-refresh-ach-local">💾 Локально</button>
+          </div>
+        </div>
+
+        <div id="gd-fetch-ach-wrap" class="hidden">
+          <button class="btn-fetch-ach" id="btn-fetch-ach">
+            🔄 Загрузить достижения из Steam (онлайн)
+          </button>
+          <button class="btn-fetch-ach btn-fetch-local" id="btn-fetch-local-ach">
+            💾 Загрузить из локального кеша Steam
+          </button>
+        </div>
+
+        <div id="gd-manual-ach-form" class="manual-ach-form hidden">
+          <input type="text" id="new-ach-name" placeholder="Название достижения *" />
+          <input type="text" id="new-ach-desc" placeholder="Описание (необязательно)" />
+          <button class="btn-sm btn-primary" id="btn-add-ach">＋ Добавить</button>
+        </div>
+
+        <div class="ach-grid-detail" id="gd-ach-list"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Резервная копия -->
+<div id="modal-backup" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Резервная копия</h3>
+      <button class="modal-close" data-close="modal-backup">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc">Сохраняй данные в JSON-файл и восстанавливай при необходимости.</p>
+      <div id="backup-last" class="backup-info hidden"></div>
+      <div class="backup-actions">
+        <button class="btn-backup-item" id="btn-export">
+          <span class="backup-item-icon">📤</span>
+          <div><div class="backup-item-title">Экспорт</div><div class="backup-item-sub">Сохранить все данные в файл</div></div>
+        </button>
+        <button class="btn-backup-item" id="btn-import">
+          <span class="backup-item-icon">📥</span>
+          <div><div class="backup-item-title">Импорт</div><div class="backup-item-sub">Восстановить данные из файла</div></div>
+        </button>
+      </div>
+      <div id="backup-error" class="error-box hidden"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-backup">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- Создать / Редактировать коллекцию -->
+<div id="modal-collection" class="modal-overlay hidden">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <h3 id="mc-title">Новая коллекция</h3>
+      <button class="modal-close" data-close="modal-collection">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="mc-emoji-row">
+        <button class="mc-emoji-pick" id="mc-emoji" title="Выбрать иконку">📁</button>
+        <input type="text" id="mc-name" placeholder="Название коллекции" autocomplete="off" />
+        <button class="btn-sm btn-ghost" id="btn-search-collection-icon" type="button" title="Найти иконку на Icons8">🔍</button>
+      </div>
+      <div class="mc-emoji-grid hidden" id="mc-emoji-grid">
+        <input type="search" class="mc-emoji-search" id="mc-emoji-search" placeholder="Поиск иконок..." />
+        <div class="mc-emoji-categories" id="mc-emoji-categories"></div>
+        <div class="mc-emoji-list" id="mc-emoji-list"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-collection">Отмена</button>
+      <button class="btn-danger btn-sm hidden" id="btn-delete-collection">Удалить</button>
+      <button class="btn-primary" id="btn-save-collection">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Поиск иконок Icons8 -->
+<div id="modal-icon-search" class="modal-overlay hidden">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <h3>Найти иконку для игры</h3>
+      <button class="modal-close" data-close="modal-icon-search">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="icon-search-info">
+        <p>Введите название игры или жанр для поиска подходящей иконки на Icons8</p>
+      </div>
+      <div class="search-row">
+        <input type="search" id="icon-search-input" placeholder="Например: RPG, shooter, fantasy..." autocomplete="off" />
+        <button class="btn-primary" id="btn-do-icon-search">Найти</button>
+      </div>
+      <div id="icon-search-status" class="search-status hidden"></div>
+      <div id="icon-search-results" class="icon-search-results"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="modal-icon-search">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- Тост -->
+<div id="achievement-feed" class="achievement-feed" aria-live="polite" aria-atomic="false"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

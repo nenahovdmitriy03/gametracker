@@ -1,0 +1,5597 @@
+{
+  "games": {
+    "manual_1776031422971": {
+      "id": "manual_1776031422971",
+      "title": "stellaris",
+      "platform": "Другое",
+      "hoursPlayed": 70,
+      "coverUrl": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/281990/a87012836a8ca34bca814140d20521021baf2b51/capsule_616x353.jpg?t=1774472425",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "manual",
+      "addedAt": "2026-04-12T22:03:42.971Z",
+      "lastPlayedAt": "2026-04-12T22:03:42.971Z"
+    },
+    "steam_730": {
+      "id": "steam_730",
+      "title": "Counter-Strike 2",
+      "appid": "730",
+      "platform": "Steam",
+      "hoursPlayed": 404.22,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg",
+      "achievements": [
+        {
+          "apiname": "PLAY_CS2",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Новое начало",
+          "description": ""
+        }
+      ],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 1,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2026-01-09T19:13:15.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2990": {
+      "id": "steam_2990",
+      "title": "FlatOut 2",
+      "appid": "2990",
+      "platform": "Steam",
+      "hoursPlayed": 2.63,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2990/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2022-02-03T20:09:47.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_4000": {
+      "id": "steam_4000",
+      "title": "Garry's Mod",
+      "appid": "4000",
+      "platform": "Steam",
+      "hoursPlayed": 39.03,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/4000/header.jpg",
+      "achievements": [
+        {
+          "apiname": "GMA_PLAY_SINGLEPLAYER",
+          "achieved": 1,
+          "unlocktime": 1562659207,
+          "name": "Сыграть в одиночную игру",
+          "description": "Сыграйте в одиночную игру хотя бы раз."
+        },
+        {
+          "apiname": "GMA_PLAY_MULTIPLAYER",
+          "achieved": 1,
+          "unlocktime": 1562528062,
+          "name": "Сыграть в сетевую игру",
+          "description": "Сыграйте в сетевую игру хотя бы раз."
+        },
+        {
+          "apiname": "GMA_X_STARTUPS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Тысячелетие запусков",
+          "description": "Запустите Garry's Mod 1 000 раз."
+        },
+        {
+          "apiname": "GMA_SAY_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Секретная фраза",
+          "description": "Скажите секретную фразу."
+        },
+        {
+          "apiname": "GMA_X_MINUTES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Зависимый",
+          "description": "Потратьте впустую год своей жизни, играя в GMod!"
+        },
+        {
+          "apiname": "GMA_X_MAPS",
+          "achieved": 1,
+          "unlocktime": 1565960181,
+          "name": "Загрузчик карт",
+          "description": "Сыграйте на 20 разных картах."
+        },
+        {
+          "apiname": "GMA_NOT_SANDBOX",
+          "achieved": 1,
+          "unlocktime": 1562528202,
+          "name": "Поиграться",
+          "description": "Сыграйте в режим игры, который не Sandbox."
+        },
+        {
+          "apiname": "GMA_BADDIES",
+          "achieved": 1,
+          "unlocktime": 1565540005,
+          "name": "Зона боевых действий",
+          "description": "Убейте 1 000 «плохишей»."
+        },
+        {
+          "apiname": "GMA_FRIENDS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дружелюбный",
+          "description": "Сыграйте с десятью друзьями."
+        },
+        {
+          "apiname": "GMA_PLAYWITH_GARRY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Да, я настоящий Гарри!",
+          "description": "Сыграйте на том же сервере, что и Гарри."
+        },
+        {
+          "apiname": "GMA_MARATHON",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Марафон",
+          "description": "Сыграйте на одном сервере и карте восемь часов подряд."
+        },
+        {
+          "apiname": "GMA_HALFMARATHON",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Полумарафон",
+          "description": "Сыграйте на одном сервере и карте четыре часа подряд."
+        },
+        {
+          "apiname": "GMA_DAY",
+          "achieved": 1,
+          "unlocktime": 1578253546,
+          "name": "Один день",
+          "description": "Потратьте впустую 24 часа своей жизни."
+        },
+        {
+          "apiname": "GMA_WEEK",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Одна неделя",
+          "description": "Потратьте впустую целую неделю своей жизни."
+        },
+        {
+          "apiname": "GMA_MONTH",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Один месяц",
+          "description": "Потратьте впустую целый месяц своей жизни."
+        },
+        {
+          "apiname": "GMA_BYSTANDER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Невинный свидетель",
+          "description": "Убейте 1 000 невинных животных."
+        },
+        {
+          "apiname": "GMA_BALLEATER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Шароед",
+          "description": "Съешьте 200 попрыгунчиков."
+        },
+        {
+          "apiname": "GMA_PROPSPAWNER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Создатель",
+          "description": "Создайте 5 000 объектов."
+        },
+        {
+          "apiname": "GMA_BALLOONPOPPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хлопушка",
+          "description": "Лопните 1 000 воздушных шаров."
+        },
+        {
+          "apiname": "GMA_REMOVER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Уничтожитель",
+          "description": "Удалите 5 000 любых элементов."
+        },
+        {
+          "apiname": "GMA_SPAWNMENUER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пользователь меню",
+          "description": "Откройте меню создания 100 000 раз."
+        },
+        {
+          "apiname": "GMA_BADCODER",
+          "achieved": 1,
+          "unlocktime": 1562579726,
+          "name": "Плохой кодер",
+          "description": "Испытайте появление 500 ошибок программирования Lua."
+        },
+        {
+          "apiname": "GMA_NPCSPAWNER",
+          "achieved": 1,
+          "unlocktime": 1573036358,
+          "name": "Родоначальник",
+          "description": "Создайте 1 000 неигровых персонажей."
+        },
+        {
+          "apiname": "GMA_RAGDOLLSPAWNER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Кукольный домик",
+          "description": "Создайте 2 000 рэгдоллов."
+        },
+        {
+          "apiname": "GMA_GOODIES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Плохой друг",
+          "description": "Убейте 1 000 дружественных неигровых персонажей."
+        },
+        {
+          "apiname": "GMA_SMALLTHUMB",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "10 оценок",
+          "description": "Получите 10 положительных оценок у своих работ в Мастерской."
+        },
+        {
+          "apiname": "GMA_MEDIUMTHUMB",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "100 оценок",
+          "description": "Получите 100 положительных оценок у своих работ в Мастерской."
+        },
+        {
+          "apiname": "GMA_HUGETHUMB",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "1 000 оценок",
+          "description": "Получите 1 000 положительных оценок у своих работ в Мастерской."
+        },
+        {
+          "apiname": "GMA_MEGAUPLOAD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мегаработа",
+          "description": "Получите 1 000 положительных оценок за одну работу в Мастерской (после отправьтесь за решётку)."
+        }
+      ],
+      "achievementsUnlocked": 8,
+      "achievementsTotal": 29,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-09-28T16:16:49.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_4500": {
+      "id": "steam_4500",
+      "title": "S.T.A.L.K.E.R.: Shadow of Chernobyl",
+      "appid": "4500",
+      "platform": "Steam",
+      "hoursPlayed": 7.68,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/4500/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-04-05T21:10:13.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_4570": {
+      "id": "steam_4570",
+      "title": "Warhammer 40,000: Dawn of War - Anniversary Edition ",
+      "appid": "4570",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/4570/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_4580": {
+      "id": "steam_4580",
+      "title": "Warhammer 40,000: Dawn of War - Dark Crusade",
+      "appid": "4580",
+      "platform": "Steam",
+      "hoursPlayed": 28.12,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/4580/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2021-08-01T20:29:14.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_9310": {
+      "id": "steam_9310",
+      "title": "Warhammer 40,000: Dawn of War - Winter Assault",
+      "appid": "9310",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/9310/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_9450": {
+      "id": "steam_9450",
+      "title": "Warhammer 40,000: Dawn of War - Soulstorm",
+      "appid": "9450",
+      "platform": "Steam",
+      "hoursPlayed": 97.98,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/9450/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-10-25T21:23:17.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_22490": {
+      "id": "steam_22490",
+      "title": "Fallout: New Vegas PCR",
+      "appid": "22490",
+      "platform": "Steam",
+      "hoursPlayed": 111.32,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/22490/header.jpg",
+      "achievements": [
+        {
+          "apiname": "A01",
+          "achieved": 1,
+          "unlocktime": 1714206263,
+          "name": "Новенький",
+          "description": "Достичь 10-го уровня."
+        },
+        {
+          "apiname": "A02",
+          "achieved": 1,
+          "unlocktime": 1714593908,
+          "name": "Молодой, да ранний",
+          "description": "Достичь 20-го уровня."
+        },
+        {
+          "apiname": "A03",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Босс",
+          "description": "Достичь 30-го уровня."
+        },
+        {
+          "apiname": "A04",
+          "achieved": 1,
+          "unlocktime": 1713804607,
+          "name": "Старый друг лучше новых двух",
+          "description": "Взять любого спутника."
+        },
+        {
+          "apiname": "A05",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Вся банда в сборе",
+          "description": "Взять всех возможных спутников."
+        },
+        {
+          "apiname": "A06",
+          "achieved": 1,
+          "unlocktime": 1713480731,
+          "name": "Мастер",
+          "description": "Создать 20 предметов."
+        },
+        {
+          "apiname": "A07",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Привереда",
+          "description": "Установить 20 оружейных модификаций."
+        },
+        {
+          "apiname": "A08",
+          "achieved": 1,
+          "unlocktime": 1713900679,
+          "name": "Путник в Мохаве",
+          "description": "Найти 50 локаций."
+        },
+        {
+          "apiname": "A09",
+          "achieved": 1,
+          "unlocktime": 1714733978,
+          "name": "Хозяин Мохаве",
+          "description": "Найти 125 локаций."
+        },
+        {
+          "apiname": "A10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Снеговик",
+          "description": "Найти все снежные шары."
+        },
+        {
+          "apiname": "A11",
+          "achieved": 1,
+          "unlocktime": 1714588713,
+          "name": "Хозяин рынка",
+          "description": "Продать товаров на 10000 крышек."
+        },
+        {
+          "apiname": "A12",
+          "achieved": 1,
+          "unlocktime": 1714422523,
+          "name": "Повелитель лучей",
+          "description": "Нанести 10000 урона энергооружием."
+        },
+        {
+          "apiname": "A13",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Я люблю бомбу",
+          "description": "Нанести 10000 урона взрывчаткой."
+        },
+        {
+          "apiname": "A14",
+          "achieved": 1,
+          "unlocktime": 1713559509,
+          "name": "Свинцовый дождь",
+          "description": "Нанести 10000 урона стрелковым оружием."
+        },
+        {
+          "apiname": "A15",
+          "achieved": 1,
+          "unlocktime": 1714160684,
+          "name": "Домушник",
+          "description": "Вскрыть 25 замков."
+        },
+        {
+          "apiname": "A16",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Стимул к жизни",
+          "description": "Вылечить 10000 очков здоровья стимуляторами."
+        },
+        {
+          "apiname": "A17",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Самурай Нью-Вегаса",
+          "description": "Нанести 10000 урона холодным оружием."
+        },
+        {
+          "apiname": "A18",
+          "achieved": 1,
+          "unlocktime": 1713519259,
+          "name": "Самоделкин",
+          "description": "Починить 30 предметов."
+        },
+        {
+          "apiname": "A19",
+          "achieved": 1,
+          "unlocktime": 1714679893,
+          "name": "Хакер Мохаве",
+          "description": "Взломать 25 терминалов."
+        },
+        {
+          "apiname": "A20",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Карманник",
+          "description": "Обчистить 50 карманов."
+        },
+        {
+          "apiname": "A21",
+          "achieved": 1,
+          "unlocktime": 1714515701,
+          "name": "Знаменитый оратор",
+          "description": "Сделать 50 внушений красноречием."
+        },
+        {
+          "apiname": "A22",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пустынный житель",
+          "description": "Вылечить 10000 очков здоровья едой."
+        },
+        {
+          "apiname": "A23",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Кулачный боец",
+          "description": "Нанести 10000 урона без оружия."
+        },
+        {
+          "apiname": "A24",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Знающий прикуп",
+          "description": "Выиграть 3 игры в караван."
+        },
+        {
+          "apiname": "A25",
+          "achieved": 1,
+          "unlocktime": 1714552747,
+          "name": "Однорукий бандит",
+          "description": "10 раз сыграть на игровых автоматах."
+        },
+        {
+          "apiname": "A26",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Крутись, колесико",
+          "description": "10 раз сыграть в рулетку."
+        },
+        {
+          "apiname": "A27",
+          "achieved": 1,
+          "unlocktime": 1714553111,
+          "name": "Двадцать одно",
+          "description": "Сыграть 10 партий в блэкджек."
+        },
+        {
+          "apiname": "A28",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хозяин каравана",
+          "description": "Выиграть 30 партий в караван."
+        },
+        {
+          "apiname": "A29",
+          "achieved": 1,
+          "unlocktime": 1715076791,
+          "name": "Курьер, который сорвал банк",
+          "description": "Стать персоной нон грата во всех казино на Стрипе."
+        },
+        {
+          "apiname": "A30",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хардкор",
+          "description": "Пройти игру с начала до конца в режиме \"Хардкор\"."
+        },
+        {
+          "apiname": "A31",
+          "achieved": 1,
+          "unlocktime": 1571586422,
+          "name": "Удар по голове",
+          "description": "Выполнить задание \"Удар по голове\"."
+        },
+        {
+          "apiname": "A32",
+          "achieved": 1,
+          "unlocktime": 1714593717,
+          "name": "Расследование",
+          "description": "Выполнить задание \"Расследование\"."
+        },
+        {
+          "apiname": "A33",
+          "achieved": 1,
+          "unlocktime": 1715204128,
+          "name": "Динь-динь-динь",
+          "description": "Выполнить задание \"Динь-динь-динь\"."
+        },
+        {
+          "apiname": "A34",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Казино всегда в выигрыше",
+          "description": "Выполнить задание \"Казино всегда в выигрыше\"."
+        },
+        {
+          "apiname": "A35",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "За Республику",
+          "description": "Выполнить задание \"За Республику\"."
+        },
+        {
+          "apiname": "A36",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Кесарю кесарево ",
+          "description": "Выполнить задание \"Кесарю кесарево\"."
+        },
+        {
+          "apiname": "A37",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Джокер",
+          "description": "Выполнить задание \"Wild Card\"."
+        },
+        {
+          "apiname": "A38",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Все или ничего",
+          "description": "Выполнить задание \"Все или ничего\"."
+        },
+        {
+          "apiname": "A39",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пришел, увидел, победил",
+          "description": "Выполнить задание \"Пришел, увидел, победил\"."
+        },
+        {
+          "apiname": "A40",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Эврика!",
+          "description": "Выполнить задание \"Эврика!\""
+        },
+        {
+          "apiname": "A41",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ни богов, ни господ",
+          "description": "Выполнить задание \"Ни богов, ни господ\""
+        },
+        {
+          "apiname": "A42",
+          "achieved": 1,
+          "unlocktime": 1714320339,
+          "name": "Давай полетаем",
+          "description": "Выполнить задание \"Давай полетаем\"."
+        },
+        {
+          "apiname": "A43",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Таланты, отзовитесь!",
+          "description": "Выполнить задание \"Таланты, отзовитесь!\"."
+        },
+        {
+          "apiname": "A44",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Бумеранг",
+          "description": "Выполнить задание \"Бумеранг\"."
+        },
+        {
+          "apiname": "A45",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Аризонский убийца",
+          "description": "Выполнить задание \"Аризонский убийца\"."
+        },
+        {
+          "apiname": "A46",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ты почувствуешь приближение",
+          "description": "Выполнить задание \"Ты почувствуешь приближение\"."
+        },
+        {
+          "apiname": "A47",
+          "achieved": 1,
+          "unlocktime": 1715248439,
+          "name": "Солдатский блюз",
+          "description": "Выполнить задание \"Солдатский блюз\"."
+        },
+        {
+          "apiname": "A48",
+          "achieved": 1,
+          "unlocktime": 1714335991,
+          "name": "Солнечные блики",
+          "description": "Выполнить задание \"Солнечные блики\"."
+        },
+        {
+          "apiname": "A49",
+          "achieved": 1,
+          "unlocktime": 1715073392,
+          "name": "В небо!",
+          "description": "Выполнить задание \"В небо!\""
+        },
+        {
+          "apiname": "A50",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легенда о звезде",
+          "description": "Выполнить задание \"Легенда о звезде\"."
+        },
+        {
+          "apiname": "A51",
+          "achieved": 1,
+          "unlocktime": 1714604490,
+          "name": "Собери свою команду",
+          "description": "Принять в команду Дина Домино, Кристин и Дога."
+        },
+        {
+          "apiname": "A52",
+          "achieved": 1,
+          "unlocktime": 1714695104,
+          "name": "Оплата по счету",
+          "description": "Встретиться с отцом Элайджей в хранилище  \"Сьерра-Мадре \"."
+        },
+        {
+          "apiname": "A53",
+          "achieved": 1,
+          "unlocktime": 1714681601,
+          "name": "Веселье до упаду",
+          "description": "Запустить гала-представление в  \"Сьерра-Мадре \"."
+        },
+        {
+          "apiname": "A54",
+          "achieved": 1,
+          "unlocktime": 1714695104,
+          "name": "Банковская ячейка",
+          "description": "Запереть отца Элайджу в хранилище \"Сьерра-Мадре \"."
+        },
+        {
+          "apiname": "A55",
+          "achieved": 1,
+          "unlocktime": 1714683301,
+          "name": "Коллекционер реликвий  \"Сьерра-Мадре \"",
+          "description": "Собрать 500 фишек  \"Сьерра-Мадре \"."
+        },
+        {
+          "apiname": "A56",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Забудь меня десница моя",
+          "description": "Эвакуировать Зайон."
+        },
+        {
+          "apiname": "A57",
+          "achieved": 1,
+          "unlocktime": 1715465160,
+          "name": "На земле чужой",
+          "description": "Найти места пребывания Белоногих в долине Зайон."
+        },
+        {
+          "apiname": "A58",
+          "achieved": 1,
+          "unlocktime": 1715465739,
+          "name": "Дочь Вавилона",
+          "description": "Сокрушить Белоногих."
+        },
+        {
+          "apiname": "A59",
+          "achieved": 1,
+          "unlocktime": 1715373045,
+          "name": "Когда вспоминали о Сионе",
+          "description": "Прибыть в Зайон."
+        },
+        {
+          "apiname": "A60",
+          "achieved": 1,
+          "unlocktime": 1715439170,
+          "name": "Возврати добро наше",
+          "description": "Обеспечить припасами Дэниэла и Скорбящих."
+        },
+        {
+          "apiname": "A61",
+          "achieved": 1,
+          "unlocktime": 1713989501,
+          "name": "Гнев на милость",
+          "description": "Проявить сочувствие... к своему сердцу."
+        },
+        {
+          "apiname": "A62",
+          "achieved": 1,
+          "unlocktime": 1713901267,
+          "name": "Завоевание друзей",
+          "description": "Активировать все устройства Умного Дома."
+        },
+        {
+          "apiname": "A63",
+          "achieved": 1,
+          "unlocktime": 1714259890,
+          "name": "Примирение с мыслями",
+          "description": "Примириться с мыслями... в собственной голове."
+        },
+        {
+          "apiname": "A64",
+          "achieved": 1,
+          "unlocktime": 1714295481,
+          "name": "Умница",
+          "description": "Завершить прохождение  \"Блюза Старого мира \"."
+        },
+        {
+          "apiname": "A65",
+          "achieved": 1,
+          "unlocktime": 1714204523,
+          "name": "Спинальный десенсибилизатор",
+          "description": "Набраться храбрости... найти свой хребет."
+        },
+        {
+          "apiname": "A66",
+          "achieved": 1,
+          "unlocktime": 1715024984,
+          "name": "Улучшение ЭД-Э",
+          "description": "Найти в Разломе все модули усовершенствования ЭД-Э."
+        },
+        {
+          "apiname": "A67",
+          "achieved": 1,
+          "unlocktime": 1714927515,
+          "name": "Вынужден повторить",
+          "description": "Решить судьбу обитателей Разлома."
+        },
+        {
+          "apiname": "A68",
+          "achieved": 1,
+          "unlocktime": 1714941894,
+          "name": "Герой родного города",
+          "description": "Завершить прохождение Одинокой дороги."
+        },
+        {
+          "apiname": "A69",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сполох ракет",
+          "description": "Добыть все модификации для оружия - символа Разлома."
+        },
+        {
+          "apiname": "A70",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Охотник за боеголовками",
+          "description": "Взорвать все боеголовки в Разломе."
+        },
+        {
+          "apiname": "A71",
+          "achieved": 1,
+          "unlocktime": 1715374399,
+          "name": "Антиквариат и древности",
+          "description": "Нанести 10000 ед. урона уникальным оружием Мохавской пустоши."
+        },
+        {
+          "apiname": "A72",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Знаток оружия",
+          "description": "Нанести 10000 ед. урона оружием из нового арсенала оружейников (GRA)."
+        },
+        {
+          "apiname": "A73",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Нет ничего невозможного",
+          "description": "Пройти любые три однозвездочные испытания (*) Gun Runners' Arsenal (GRA)."
+        },
+        {
+          "apiname": "A74",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ветеран",
+          "description": "Пройти любые три двухзвездочные испытания (**) Gun Runners' Arsenal (GRA)."
+        },
+        {
+          "apiname": "A75",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Профи",
+          "description": "Пройти любые три трехзвездочные испытания (***) Gun Runners' Arsenal (GRA)."
+        }
+      ],
+      "achievementsUnlocked": 41,
+      "achievementsTotal": 75,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-04-27T08:01:53.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_34330": {
+      "id": "steam_34330",
+      "title": "Total War: SHOGUN 2",
+      "appid": "34330",
+      "platform": "Steam",
+      "hoursPlayed": 44.73,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/34330/header.jpg",
+      "achievements": [
+        {
+          "apiname": "ACHIEVEMENT_A_5_CLAN_REGIONS_SIMULTANEOUSLY_OWNED",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мертвая хватка",
+          "description": "В сетевой игре на стратегической карте ваш клан должен контролировать пять провинций одновременно."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_CAPTURE_15_AVATAR_CAMPAIGN_REGIONS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дорога к власти",
+          "description": "Захватить 15 провинций на стратегической карте персонажа."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_CAPTURE_ALL_AVATAR_CAMPAIGN_REGIONS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Объединитель Японии",
+          "description": "Захватите все провинции на стратегической карте персонажа."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_EARN_20_CLAN_TOKENS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Верность дому",
+          "description": "Лично заслужите 20 клановых знаков."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_JOIN_A_CLAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Достойная служба",
+          "description": "Присоединитесь к одному из кланов в сетевой игре Shogun 2."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_MAX_OUT_AVATAR_SKILLS_TREE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Путь предводителя",
+          "description": "Наберите максимальное количество очков в системе навыков вашего персонажа."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_VETERAN_UNIT_LEVEL_10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Героические воины",
+          "description": "Пользуясь системой персонажа, переведите отряд ветеранов на 9-й уровень."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_VETERAN_UNIT_LEVEL_5",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Могучие воины",
+          "description": "Пользуясь системой персонажа, переведите отряд ветеранов на 4-й уровень."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_4_ASHIGARU_UNITS_WHOLE_BATTLE",
+          "achieved": 1,
+          "unlocktime": 1588144742,
+          "name": "Командир простолюдинов",
+          "description": "Продержите на поле боя хотя бы 4 отряда асигару в течение всего сражения, не дав ни одному из них обратиться в бегство."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_ALL_UNITS_HIDDEN",
+          "achieved": 1,
+          "unlocktime": 1588797579,
+          "name": "Мастер тактики",
+          "description": "Продержите всю свою армию без военачальника в укрытии более 30 секунд."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_BEAT_CA_STAFF_VIRAL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Лесной пожар",
+          "description": "Победите в бою представителя Creative Assembly или любого другого противника, уже получившего это достижение."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_FIELD_ENTIRELY_HEROES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легендарная сила",
+          "description": "Выиграйте сражение армией, состоящей исключительно из героев и военачальника."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_HOLD_ALL_KEY_BUILDINGS_2_MINS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Боевое превосходство",
+          "description": "Вы и ваши союзники должны занять все ключевые постройки на карте более чем с одной ключевой постройкой."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_PLAY_10_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Опытный тайсё",
+          "description": "Выиграйте 10 сражений любого типа в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_RALLY_5_UNITS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ответный удар",
+          "description": "Соберите сразу пять отрядов, один раз применив способность вашего военачальника «Сбор войск»."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_10_ATTACKING_SIEGES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Разрушитель замков",
+          "description": "Успешно завершите 10 осад в роли осаждающего."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_10_DEFENDING_SIEGES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Нерушимая стена",
+          "description": "Успешно завершите 10 осад в роли осаждаемого."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_100_RANKED_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дракон Японии",
+          "description": "Выиграйте 100 найденных сражений в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_20_NAVAL_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Повелитель морей",
+          "description": "Выиграйте 20 морских сражений в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_20_RANKED_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Несущий смерть",
+          "description": "Выиграйте 50 найденных сражений в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_200_MULTIPLAYER_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победитель по призванию",
+          "description": "Выиграйте 200 сражений любого типа в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_25_LAND_BATTLES",
+          "achieved": 1,
+          "unlocktime": 1588362670,
+          "name": "Армия на марше",
+          "description": "Выиграйте 25 сухопутных сражений."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_25_RANKED_BATTLES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Коготь тигра",
+          "description": "Выиграйте 25 найденных сражений в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_50_PERCENT_MATCHLOCK",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Град пуль",
+          "description": "Выиграйте сражение армией, более 50% которой состоит из стрелковых отрядов, в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_EVERY_TYPE_OF_UNIT",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Баланс сил",
+          "description": "Выиграйте сражение армией, в кот. входит хотя бы по одному отр. разных видов войск (пехотинцы с мечами, кавалерия, лучники, воины с тэппо, воины с нагинатами.)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_NO_CAVALRY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Грядущая буря",
+          "description": "Выиграйте сражение армией, в которой нет ни одного всадника (за исключением военачальника), в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_NO_RANGED",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Свирепый натиск",
+          "description": "Выиграйте сражение армией без отрядов дальнего боя в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_NO_SPEAR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Бесстрашие перед кавалерией",
+          "description": "Выиграйте сражение армией без копейщиков в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_BATTLE_ONNA_BUGEISHA_AS_GENERAL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Онна-бугэйся",
+          "description": "Выиграйте осаду в роли осаждаемого. Вашим военачальником будет хозяйка поместья, женщина-воин «онна-бугэйся» (только для одиночной кампании)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_MP_BATTLE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Закаленный в пламени",
+          "description": "Выиграйте свое первое сражение в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIN_MP_BATTLE_LESS_THAN_15_PERCENT_LOSSES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Смертоносная молния",
+          "description": "Выиграйте сражение, потеряв при этом менее 15% начального состава своей армии, в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_WIPE_OUT_A_UNIT",
+          "achieved": 1,
+          "unlocktime": 1588024628,
+          "name": "Беспощадный",
+          "description": "Полностью уничтожьте вражеский отряд."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_BECOME_SHOGUN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Божий промысел",
+          "description": "Добейтесь конечной цели - станьте сёгуном в основной кампании."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_CONTROL_KYUSHU",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Правитель Кюсю",
+          "description": "В кампании завладейте всеми провинциями на острове Кюсю."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_CONTROL_SHIKOKU",
+          "achieved": 1,
+          "unlocktime": 1588408706,
+          "name": "Правитель Сикоку",
+          "description": "В кампании завладейте всеми провинциями на острове Сикоку."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_IGA_CLAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Смерть дому Хаттори",
+          "description": "В кампании уничтожьте дом Хаттори."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_KILL_10000_ENEMY_SOLDIERS",
+          "achieved": 1,
+          "unlocktime": 1588191272,
+          "name": "Охотник за головами",
+          "description": "Убейте 10 000 вражеских воинов и соберите их головы."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MAX_LEVEL_GENERAL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Грозный командир",
+          "description": "В кампании обзаведитесь военачальником самого высокого уровня."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MAX_LEVEL_METSUKE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мастер допросов",
+          "description": "Обзаведитесь мэцукэ самого высокого уровня."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MAX_LEVEL_MISSIONARY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Слуга Божий",
+          "description": "Обзаведитесь проповедником самого высокого уровня."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MAX_LEVEL_MONK",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легендарный сохэй",
+          "description": "Обзаведитесь монахом самого высокого уровня."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MAX_LEVEL_NINJA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мастер сокрытого клинка",
+          "description": "В кампании обзаведитесь ниндзя самого высокого уровня."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_OBTAIN_100_FAME_IN_20_TURNS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Искатель славы",
+          "description": "Заработайте 100 очков славы за 50 ходов."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_OBTAIN_MAX_LEVEL_UNIT",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Жизнь ради битвы",
+          "description": "Обзаведитесь отрядом высочайшего уровня в основной кампании."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_POSESS_ALL_TRADE_NODES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Монополия на торговлю",
+          "description": "В кампании одновременно контролируйте все торговые фактории на карте."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_RESEARCH_EPIC_ARCHITECTURE_FIRST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Величие городов",
+          "description": "В кампании пусть ваш дом первым овладеет искусством величественной архитектуры."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_RESEARCH_GUNPOWDER_TECH_FIRST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сила пороха",
+          "description": "В кампании пусть ваш дом первым овладеет умением тэппо."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_RESEARCH_SHIH_TECH_FIRST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Военная мощь",
+          "description": "В кампании пусть ваш дом первым постигнет учение Ки."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_SINK_CARAVEL_OR_NIHON_MARU",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Грозный военачальник",
+          "description": "Пустите ко дну иноземное торговое судно или флагманский корабль «Нихон-мару» во время морского сражения."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CAMPAIGN_AS_HOJO",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Ходзё",
+          "description": "Выиграйте кампанию за дом Ходзё."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CAMPAIGN_AS_ODA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Ода",
+          "description": "Выиграйте кампанию за дом Ода."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CAMPAIGN_AS_TAKEDA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Такэда",
+          "description": "Выиграйте кампанию за дом Такэда."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CAMPAIGN_AS_TOKUGAWA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Токугава",
+          "description": "Выиграйте кампанию за дом Токугава."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CHOSOKABE_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Тёсокабэ",
+          "description": "Выиграйте кампанию за дом Тёсокабэ."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_DATE_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Датэ",
+          "description": "Выиграйте кампанию за дом Датэ."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_EASY_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Многообещающее начало",
+          "description": "Выиграйте кампанию на низком уровне сложности."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_GAME_AS_CHRISTIAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Правитель Божьей милостью",
+          "description": "Выиграйте кампанию в роли даймё-христианина."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_HARD_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Славный сёгун",
+          "description": "Выиграйте кампанию на высоком уровне сложности."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_MEDIUM_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Достойное правление",
+          "description": "Выиграйте кампанию на среднем уровне сложности."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_MORI_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Мори",
+          "description": "Выиграйте кампанию за дом Мори."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_MP_COOP_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Единство целей",
+          "description": "Выиграйте кампанию в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_MP_VS_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Междоусобица",
+          "description": "Выиграйте кампанию в турнирном режиме сетевой игры."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_MP_VS_CAMPAIGN_GIVING_OTHER_PLAYER_GOLD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Опозоренный враг",
+          "description": "Проходя кампанию в турнирном режиме сетевой игры, выдайте своему противнику 10 000 коку и выиграйте."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_SHIMAZU_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Симадзу",
+          "description": "Выиграйте кампанию за дом Симадзу."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_UESUGI_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Победа дома Уэсуги",
+          "description": "Выиграйте кампанию за дом Уэсуги."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIPE_OUT_IKKO_IKKI",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Смерть Икко-икки",
+          "description": "В кампании уничтожьте Икко-икки."
+        },
+        {
+          "apiname": "ACHIEVEMENT_WIN_HARD_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Несгибаемый",
+          "description": "Выиграйте кампанию на высочайшем уровне сложности."
+        },
+        {
+          "apiname": "ACHIEVEMENT_RANK_1_SHOGUN_LADDER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Он может быть только один",
+          "description": "Добейтесь высшей награды - станьте первым в рейтинге сёгуна в сетевой игре."
+        },
+        {
+          "apiname": "ACHIEVEMENT_WIN_LEGENDARY_CAMPAIGN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легендарный полководец",
+          "description": "Выиграйте кампанию на легендарном уровне сложности."
+        },
+        {
+          "apiname": "ACHIEVEMENT_STEAM_SUMMER_SALE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сын лета",
+          "description": "Ваш даймё одержал 3 последовательных победы в сухопутных сражениях в течение лета."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_MAX_POINTS_IN_BOSHIN_SKILLS_TREE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Опытный воин",
+          "description": "Усовершенствуйте до максимума любую группу навыков героя «Заката самураев», потратив по одному очку на улучшение каждого навыка."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_CREATE_SECOND_AVATAR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Два дракона",
+          "description": "Создайте второго героя для режима сражений."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_DEFEAT_BOSHIN_ARMY_WITH_SHOGUN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Верность традициям",
+          "description": "Победите армию «Заката самураев», командуя армией Shogun 2."
+        },
+        {
+          "apiname": "ACHIEVEMENT_A_DEFEAT_SHOGUN_ARMY_WITH_BOSHIN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Модернизация",
+          "description": "Победите армию Shogun 2, командуя армией «Заката самураев» (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_TOBA_FUSHIMI_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Не уйдешь!",
+          "description": "Догоните и разгромите любой вражеский отряд, когда он попытается отступить с поля боя при Тоба-Фусими (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_TOBA_FUSHIMI_2",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Начало пути",
+          "description": "Пройдите историческое сражение (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_OSAKA_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Крутой подъем",
+          "description": "Победите в битве при Осаке после того, как защитники взорвут оба моста (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_UENO_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Гибель богов",
+          "description": "Выиграйте битву при Уэно, не захватив ни одной ключевой храмовой постройки (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_AIZU_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дубина народной войны",
+          "description": "Победите в битве в Айдзу, выманив одновременно все четыре замаскированные армии (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_MIYAKO_BAY_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Железная леди",
+          "description": "Выиграйте битву в заливе Мияко так, чтобы «Котэцу» получил менее 25% повреждений (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_HAKODATE_1",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легендарная десятка",
+          "description": "Победите в битве при Хакодатэ, не потеряв при этом ни одного отряда императорской армии (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_HAKODATE_WON",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Конец пути",
+          "description": "Пройдите все исторические сражения (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_MIDWINTER",
+          "achieved": 1,
+          "unlocktime": 1588148241,
+          "name": "Погребальная молитва",
+          "description": "Защитите замок войском во главе с даймё в любой из зимних месяцев."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_GIFT_ARMY_OR_NAVY_IN_COOP",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Презент",
+          "description": "Передайте союзнику армию или флот."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_INCITE_3_REBELLIONS_WITH_ISHIN_SHISHI",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Провокатор",
+          "description": "Выступая за Тёсю, при помощи своих исин-сиси устройте 3 восстания в ходе одной кампании (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_CONSTRUCT_3_TRADE_DISTRICTS_WITH_SATSUMA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Окно на Запад",
+          "description": "Играя за Сацуму, постройте торговый квартал и торгуйте с иностранными государствами в ходе одной кампании (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_5_NAVAL_BOMBARDMENTS_WITH_TOSA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Отец императорского флота",
+          "description": "Играя за Тосу, проведите в одной кампании 5 обстрелов с моря (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_3_ASSASSINATIONS_WITH_SHINSENGUMI",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Волки Мибу",
+          "description": "Играя за Айдзу, проведите в одной кампании 3 успешных покушения синсэнгуми на военачальников (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_RESEARCH_8TH_TIER_TECH_WITH_NAGOKA",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сто мешков риса",
+          "description": "Играя за Нагаоку, исследуйте любую технологию восьмого уровня (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_3_AMBUSH_BATTLES_WITH_JOZAI",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Положение обязывает",
+          "description": "Играя за Дзёдзаи, победите в 3 сражениях, попав в засаду, в ходе одной кампании (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_BATTLE_WITH_AMERICAN_MARINES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Всегда верен",
+          "description": "Победите в сражении, командуя армией, в состав которой входит американская морская пехота (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_BATTLE_WITH_BRITISH_SHIPS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Правь, Британия, морями!",
+          "description": "Победите в сражении, командуя флотом, в состав которого входят британские корабли (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_BOMBARDMENT_WITH_FRENCH_IRONCLAD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Владыка океанов",
+          "description": "Проведите обстрел с моря флотом, в состав которого входит французский броненосец (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_ATTAIN_MAX_MODERNISATION",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Навстречу будущему",
+          "description": "Доведите развитие дома до максимального уровня (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_CONNECT_A_RAILWAY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "По местам!",
+          "description": "Соедините 2 провинции железной дорогой (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_ATTAIN_MAX_LEVEL_ALL_AGENTS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Будет исполнено!",
+          "description": "Усовершенствуйте до максимального уровня одного агента каждого типа (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_LEGENDARY_CAMPAIGN_IMPERIAL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Герой империи",
+          "description": "Играя за Сацуму, Тосу или Тёсю, одержите победу в кампании (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_LEGENDARY_CAMPAIGN_SHOGUNATE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Герой сёгуната",
+          "description": "Играя за Айдзу, Дзёдзаи или Нагаоку, одержите победу в кампании на легендарном уровне сложности (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_FIGHT_DROP_IN_BATTLE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дуэлянт",
+          "description": "Примите участие в открытом сражении."
+        },
+        {
+          "apiname": "ACHIEVEMENT_C_WIN_CAMPAIGN_AFTER_DECLARING_INDEPENDENCE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Республика Эдзо",
+          "description": "Объявите о своей независимости и одержите победу в кампании (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_SINK_HMS_WARRIOR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Гроза воинов",
+          "description": "Потопите вражеский корабль класса «Ворриор» (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_KILL_10000_MEN_WITH_ARTILLERY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Вдребезги",
+          "description": "Во время сухопутного сражения запросите огневую поддержку флота (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_SINK_ENEMY_SHIP_WITH_RAMMING",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чертовы торпеды",
+          "description": "Потопите любой вражеский корабль, протаранив его (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_SINK_ENEMY_SHIP_WITH_TORPEDOES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Боеголовка",
+          "description": "Потопите любой вражеский корабль с помощью торпеды (доступно только в «Закате самураев»)."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_BURN_CASTLE_DOWN_AND_WIN_BATTLE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Замок в огне",
+          "description": "Штурмуя поселение, сожгите ворота замка, охранные башни и тэнсю огненными стрелами и выиграйте битву."
+        },
+        {
+          "apiname": "ACHIEVEMENT_B_AS_DEFENDER_RECAPTURE_A_TOWER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Бесстрашие",
+          "description": "Защищая поселение, отбейте у противника башню."
+        }
+      ],
+      "achievementsUnlocked": 7,
+      "achievementsTotal": 106,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2024-06-25T19:35:13.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_105600": {
+      "id": "steam_105600",
+      "title": "Terraria",
+      "appid": "105600",
+      "platform": "Steam",
+      "hoursPlayed": 6.23,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2022-11-21T16:00:01.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_203160": {
+      "id": "steam_203160",
+      "title": "Tomb Raider",
+      "appid": "203160",
+      "platform": "Steam",
+      "hoursPlayed": 14.53,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/203160/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2021-09-06T19:32:16.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_208140": {
+      "id": "steam_208140",
+      "title": "ENDLESS™ Space - Definitive Edition",
+      "appid": "208140",
+      "platform": "Steam",
+      "hoursPlayed": 0.13,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/208140/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-06-17T20:25:02.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_214730": {
+      "id": "steam_214730",
+      "title": "Space Rangers HD: A War Apart",
+      "appid": "214730",
+      "platform": "Steam",
+      "hoursPlayed": 185.05,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/214730/header.jpg",
+      "achievements": [
+        {
+          "apiname": "ACH_AGENT",
+          "achieved": 1,
+          "unlocktime": 1745161836,
+          "name": "Спецагент",
+          "description": "Выполнить 50 правительственных заданий"
+        },
+        {
+          "apiname": "ACH_ARCHEOLOGY",
+          "achieved": 1,
+          "unlocktime": 1720262137,
+          "name": "Археолог",
+          "description": "Исследовать 30 000 кв. км. незаселённых планет"
+        },
+        {
+          "apiname": "ACH_BLACKHEAD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чёрный Череп",
+          "description": "Уничтожить 200 мирных кораблей"
+        },
+        {
+          "apiname": "ACH_BREZHNEV",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Потомок Брежнева",
+          "description": "Получить все возможные медали"
+        },
+        {
+          "apiname": "ACH_BUMMER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Великий Нехочуха",
+          "description": "Пройти игру, не выполнив ни одного задания"
+        },
+        {
+          "apiname": "ACH_CHAMPION",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чемпион",
+          "description": "Завершить игру с результатом более 50000 очков"
+        },
+        {
+          "apiname": "ACH_DOLGOZHID",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Долгожитель",
+          "description": "Пройти игру более, чем за 100 лет, с результатом не менее 20000 очков"
+        },
+        {
+          "apiname": "ACH_HOLEMAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Потусторонний воин",
+          "description": "Сбить 500 кораблей в гиперпространстве"
+        },
+        {
+          "apiname": "ACH_ILL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Вечный пациент",
+          "description": "Переболеть всеми возможными болезнями"
+        },
+        {
+          "apiname": "ACH_KIBERMAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Киберманьяк",
+          "description": "Пройти игру ни разу не загрузившись"
+        },
+        {
+          "apiname": "ACH_MANYFACES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Многоликий",
+          "description": "Сменить расу 30 раз"
+        },
+        {
+          "apiname": "ACH_MONEY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Богатенький Буратино",
+          "description": "Накопить 10 000 000 кредитов"
+        },
+        {
+          "apiname": "ACH_NARKOMAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Раб анаболиков",
+          "description": "Примите все возможные стимуляторы"
+        },
+        {
+          "apiname": "ACH_OLDFAG",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ветеран",
+          "description": "Набрать 5 миллионов единиц опыта"
+        },
+        {
+          "apiname": "ACH_PEACELOVER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пацифист",
+          "description": "Пройти игру, не сбив ни единого корабля"
+        },
+        {
+          "apiname": "ACH_PIECECREATOR",
+          "achieved": 1,
+          "unlocktime": 1746465654,
+          "name": "Миротворец",
+          "description": "Освободить систему Гралгар"
+        },
+        {
+          "apiname": "ACH_PRISON",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пахан",
+          "description": "Отсидеть в тюрьме 10 раз"
+        },
+        {
+          "apiname": "ACH_SHIELD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Страж порядка",
+          "description": "Сбить 500 пиратов"
+        },
+        {
+          "apiname": "ACH_SPEED",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Гонщик болида",
+          "description": "Развить скорость выше 2300 единиц"
+        },
+        {
+          "apiname": "ACH_SPRINTER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Спринтер",
+          "description": "Пройти игру меньше, чем за 7 игровых лет"
+        },
+        {
+          "apiname": "ACH_TERMINATOR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Терминатор",
+          "description": "Уничтожить Блазера в честном бою в открытом космосе"
+        },
+        {
+          "apiname": "ACH_MASTER",
+          "achieved": 1,
+          "unlocktime": 1745849795,
+          "name": "Вождь",
+          "description": "Нанять 6 кораблей одновременно"
+        },
+        {
+          "apiname": "ACH_POSTMAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Почта Карагона",
+          "description": "Провалить 10 заданий на доставку"
+        },
+        {
+          "apiname": "ACH_HULL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мир и порядок!",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_PIRATE",
+          "achieved": 1,
+          "unlocktime": 1745515832,
+          "name": "Йо-хо-хо",
+          "description": "Захватить 10 систем для пиратского клана"
+        },
+        {
+          "apiname": "ACH_FRY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Жареные факты",
+          "description": "Уничтожить 10 кораблей с помощью звезды"
+        },
+        {
+          "apiname": "ACH_COALLITION",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "За коалицию!",
+          "description": "Успешно избавить галактику от пиратской угрозы"
+        },
+        {
+          "apiname": "ACH_DEALER",
+          "achieved": 1,
+          "unlocktime": 1745251722,
+          "name": "Магнат",
+          "description": "Продать товаров на общую сумму более 5 млн. кредитов"
+        },
+        {
+          "apiname": "ACH_JUMPER",
+          "achieved": 1,
+          "unlocktime": 1720282392,
+          "name": "Гиперактивность",
+          "description": "Совершить более 500 гиперпрыжков"
+        },
+        {
+          "apiname": "ACH_DEFENDER",
+          "achieved": 1,
+          "unlocktime": 1744990728,
+          "name": "Врагу не сдается…",
+          "description": "Отбить 20 систем от нападения доминаторов или пиратов"
+        },
+        {
+          "apiname": "ACH_NEGOCIANT",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Переговорщик",
+          "description": "Убедить 15 пиратов оставить в покое свою жертву без применения оружия"
+        },
+        {
+          "apiname": "ACH_HATER",
+          "achieved": 1,
+          "unlocktime": 1746096351,
+          "name": "Изгой",
+          "description": "Получить враждебное отношение всех рас коалиции одновременно"
+        },
+        {
+          "apiname": "ACH_CREDITOR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Злостный неплательщик",
+          "description": "Просрочить оплату 3 кредитов в бизнес-центре"
+        },
+        {
+          "apiname": "ACH_HOLEPEACE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Таранов",
+          "description": "Победить врагов в черной дыре, не используя оружия"
+        },
+        {
+          "apiname": "ACH_SKILL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Отличник боевой и политической",
+          "description": "Прокачать все навыки до максимального уровня"
+        },
+        {
+          "apiname": "ACH_GUARD",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "На страже",
+          "description": "Выполнить 30 заданий на охрану систем"
+        },
+        {
+          "apiname": "ACH_SCIENCE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Двигатель прогресса",
+          "description": "Исследовать все антидоминаторские технологии на научной базе"
+        },
+        {
+          "apiname": "ACH_IRONMAN",
+          "achieved": 1,
+          "unlocktime": 1745075499,
+          "name": "Полководец",
+          "description": "Победить в 40 планетарных битвах"
+        },
+        {
+          "apiname": "ACH_BOMBER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Взрывотехник",
+          "description": "Уничтожить 5 кораблей за ход с помощью кварковых бомб"
+        },
+        {
+          "apiname": "ACH_ROCKET",
+          "achieved": 1,
+          "unlocktime": 1745108180,
+          "name": "Зато мы делаем ракеты",
+          "description": "Уничтожить 150 кораблей с помощью ракетного оружия"
+        },
+        {
+          "apiname": "ACH_CONTRABAND",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Эль контрабандисто",
+          "description": "Продать более 200 партий нелегальных товаров не менее 50 единиц каждая"
+        },
+        {
+          "apiname": "ACH_ASTEROID",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мусоросборщик",
+          "description": "Разрушить 100 астероидов"
+        },
+        {
+          "apiname": "ACH_QUEST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чтение - залог здоровья!",
+          "description": "Выполнить 30 текстовых квестов"
+        },
+        {
+          "apiname": "ACH_KELLERRESEARCH",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "К прогрессу!",
+          "description": "Отправить Келлера исследовать галактику"
+        },
+        {
+          "apiname": "ACH_KELLERDESTROY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Аста ла виста",
+          "description": "Уничтожить Келлера в гиперпространстве"
+        },
+        {
+          "apiname": "ACH_BLAZERPROGRAM",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Блаззард",
+          "description": "Уничтожить Блазера с помощью научной программы"
+        },
+        {
+          "apiname": "ACH_BLAZERPIECE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Спаси и сохрани",
+          "description": "Принудить Блазера к посадке на планету коалиции"
+        },
+        {
+          "apiname": "ACH_TERRONSTAR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Трансформируй это!",
+          "description": "Отправить Террона преобразовывать звезду"
+        },
+        {
+          "apiname": "ACH_TERRONBATTLE",
+          "achieved": 1,
+          "unlocktime": 1746461522,
+          "name": "За ВДВ!",
+          "description": "Уничтожить Террона с помощью высадки на него в планетарном бою"
+        },
+        {
+          "apiname": "ACH_PIRATESYSTEMS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мистер Хаос",
+          "description": "Помочь пиратам захватить все системы галактики"
+        },
+        {
+          "apiname": "ACH_NODES",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Нода бене",
+          "description": "Накопить на нод-счете более 25 000 нод"
+        },
+        {
+          "apiname": "ACH_RATING",
+          "achieved": 1,
+          "unlocktime": 1719750165,
+          "name": "Поул-позишн",
+          "description": "Возглавить рейтинг рейджеров"
+        },
+        {
+          "apiname": "ACH_RUINS",
+          "achieved": 1,
+          "unlocktime": 1745775650,
+          "name": "Меценат",
+          "description": "Профинансировать постройку 20 баз коалиции"
+        },
+        {
+          "apiname": "ACH_PIRATEWIN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Рачехан и все-все-все",
+          "description": "Привести пиратский клан к победе над коалицией"
+        },
+        {
+          "apiname": "ACH_BEST",
+          "achieved": 1,
+          "unlocktime": 1720283257,
+          "name": "Более лучше",
+          "description": "Полностью укомплектовать корабль оборудованием с улучшенными на научной базе характеристиками"
+        },
+        {
+          "apiname": "ACH_COMMANDOR",
+          "achieved": 1,
+          "unlocktime": 1745918906,
+          "name": "Настоящий полковник",
+          "description": "Получить воинское звание \"Адмирал\""
+        },
+        {
+          "apiname": "ACH_BARON",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Убивальников начальник",
+          "description": "Получить пиратское звание \"Барон\""
+        },
+        {
+          "apiname": "ACH_GIRLSQUEST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Подкаблучник",
+          "description": "Выполнить все задания девушек-спецагентов"
+        },
+        {
+          "apiname": "ACH_GIRLSHIRE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Если б я был султан…",
+          "description": "Нанять трех девушек-спецагентов"
+        },
+        {
+          "apiname": "ACH_SHU",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Клонобоец",
+          "description": "Уничтожить оригинального мистера Шу"
+        },
+        {
+          "apiname": "ACH_SIDECHANGER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Принцип неопределенности",
+          "description": "Перейти со стороны коалиции к пиратам (или наоборот) не менее 15 раз"
+        },
+        {
+          "apiname": "ACH_ENERGY",
+          "achieved": 1,
+          "unlocktime": 1720256612,
+          "name": "Высокие энергии",
+          "description": "Уничтожить 250 кораблей с помощью энергетического оружия"
+        },
+        {
+          "apiname": "ACH_SCRATCHDAMAGE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Не пробил!",
+          "description": "При атаке нанести кораблю повреждения в 1 единицу за выстрел не менее 20 раз"
+        },
+        {
+          "apiname": "ACH_SPLINTER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Осколки империи",
+          "description": "Уничтожить 200 кораблей с помощью осколочного оружия"
+        },
+        {
+          "apiname": "ACH_EXPLORER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "На пыльных тропинках далеких планет",
+          "description": "Совершить посадку на 100 различных необитаемых планет"
+        },
+        {
+          "apiname": "ACH_TRANCLUCATORS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Слава роботам!",
+          "description": "Активировать в космосе не менее 10 транклюкаторов одновременно"
+        },
+        {
+          "apiname": "ACH_SUNFUEL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Термоядерная бензоколонка",
+          "description": "Заправить бак от звезды на 40 единиц топлива"
+        },
+        {
+          "apiname": "ACH_TERRORIST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Подрывник-затейник",
+          "description": "Уничтожить 30 баз Коалиции в космосе"
+        },
+        {
+          "apiname": "ACH_COUNTERTERRORIST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Правообладатель",
+          "description": "Уничтожить 30 пиратских баз в космосе"
+        },
+        {
+          "apiname": "ACH_BLUEKILLS",
+          "achieved": 1,
+          "unlocktime": 1745772850,
+          "name": "Антинаучный",
+          "description": "Уничтожить 500 доминаторов серии \"Келлер\""
+        },
+        {
+          "apiname": "ACH_GREENKILLS",
+          "achieved": 1,
+          "unlocktime": 1745519411,
+          "name": "И трава зеленее",
+          "description": "Уничтожить 500 доминаторов серии \"Террон\""
+        },
+        {
+          "apiname": "ACH_REDKILLS",
+          "achieved": 1,
+          "unlocktime": 1745676385,
+          "name": "Война-войной",
+          "description": "Уничтожить 500 доминаторов серии \"Блазер\""
+        },
+        {
+          "apiname": "ACH_BERTORSLAYER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Монстр мания",
+          "description": "Уничтожить 50 кораблей типа \"Бертор\""
+        },
+        {
+          "apiname": "ACH_MAPBUILDER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Географ карту купил",
+          "description": "Полностью открыть звездную карту к 1 января 3304 года"
+        },
+        {
+          "apiname": "ACH_HACKER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хактивист",
+          "description": "Использовать антидоминаторские программы (кроме Интеркома) 100 раз"
+        },
+        {
+          "apiname": "ACH_DELIVERY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Почтальон Печкин",
+          "description": "Выполнить 50 заданий на доставку"
+        },
+        {
+          "apiname": "ACH_INVESTOR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Почётный инвестор",
+          "description": "Получить с одного депозита доход в 300 000 cr."
+        },
+        {
+          "apiname": "ACH_INSURANCE",
+          "achieved": 1,
+          "unlocktime": 1719866298,
+          "name": "Застрахуй братуху",
+          "description": "Ваши родственники должны получить страховое возмещение 20 000 cr. за вашу гибель"
+        },
+        {
+          "apiname": "ACH_PRISONBAIL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Своих не бросаем!",
+          "description": "Выкупить из тюрьмы 30 заключенных"
+        },
+        {
+          "apiname": "ACH_ROBBER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Это наша корова",
+          "description": "Ограбить корабли 100 раз"
+        },
+        {
+          "apiname": "ACH_WARRIORKILLS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Глоток свободы",
+          "description": "Уничтожить 100 военных кораблей Коалиции"
+        },
+        {
+          "apiname": "ACH_DRAIN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Механический вампир",
+          "description": "Высосать из противников в себя 10 000 единиц прочности"
+        }
+      ],
+      "achievementsUnlocked": 21,
+      "achievementsTotal": 82,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-05-24T07:52:16.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_217980": {
+      "id": "steam_217980",
+      "title": "Dishonored RHCP",
+      "appid": "217980",
+      "platform": "Steam",
+      "hoursPlayed": 17.15,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/217980/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-08-09T06:32:14.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_218620": {
+      "id": "steam_218620",
+      "title": "PAYDAY 2",
+      "appid": "218620",
+      "platform": "Steam",
+      "hoursPlayed": 0.67,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/218620/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-07-04T16:32:32.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_242700": {
+      "id": "steam_242700",
+      "title": "Injustice: Gods Among Us Ultimate Edition",
+      "appid": "242700",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/242700/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_286690": {
+      "id": "steam_286690",
+      "title": "Metro 2033 Redux",
+      "appid": "286690",
+      "platform": "Steam",
+      "hoursPlayed": 3.47,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/286690/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2021-02-11T16:08:47.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_289070": {
+      "id": "steam_289070",
+      "title": "Sid Meier's Civilization VI",
+      "appid": "289070",
+      "platform": "Steam",
+      "hoursPlayed": 7.93,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/289070/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-01-01T17:33:19.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_291550": {
+      "id": "steam_291550",
+      "title": "Brawlhalla",
+      "appid": "291550",
+      "platform": "Steam",
+      "hoursPlayed": 95.25,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/291550/header.jpg",
+      "achievements": [
+        {
+          "apiname": "ACH_1_GoldEarnedBronze",
+          "achieved": 1,
+          "unlocktime": 1582158328,
+          "name": "Наличные",
+          "description": "Заработай в общей сложности 25 000 золота."
+        },
+        {
+          "apiname": "ACH_2_GoldEarnedSilver",
+          "achieved": 1,
+          "unlocktime": 1601743428,
+          "name": "Глубокие карманы",
+          "description": "Заработай в общей сложности 50 000 золота."
+        },
+        {
+          "apiname": "ACH_3_GoldEarnedGold",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Прикосновение Мидаса",
+          "description": "Заработай в общей сложности 100 000 золота."
+        },
+        {
+          "apiname": "ACH_4_AccountLevelBronze",
+          "achieved": 1,
+          "unlocktime": 1578490848,
+          "name": "Еще одна игра!",
+          "description": "Достигни уровня аккаунта 10."
+        },
+        {
+          "apiname": "ACH_5_AccountLevelBronze2",
+          "achieved": 1,
+          "unlocktime": 1578850210,
+          "name": "Большие 2-0",
+          "description": "Достигни уровня аккаунта 20."
+        },
+        {
+          "apiname": "ACH_6_AccountLevelSilver",
+          "achieved": 1,
+          "unlocktime": 1583000587,
+          "name": "Когда ты веселишься, время летит незаметно",
+          "description": "Достигни уровня аккаунта 30."
+        },
+        {
+          "apiname": "ACH_7_AccountLevelGold",
+          "achieved": 1,
+          "unlocktime": 1614963214,
+          "name": "Как будто в первый раз",
+          "description": "Достигни уровня аккаунта 40."
+        },
+        {
+          "apiname": "ACH_8_HammerHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пришло время молотка",
+          "description": "Достигни уровня 10 с легендарным грейферным молотком."
+        },
+        {
+          "apiname": "ACH_9_SwordHeroLevel10",
+          "achieved": 1,
+          "unlocktime": 1578578274,
+          "name": "Режущая кромка",
+          "description": "Достигни уровня 10 с легендарным мечом."
+        },
+        {
+          "apiname": "ACH_10_PistolHeroLevel10",
+          "achieved": 1,
+          "unlocktime": 1601039384,
+          "name": "Пиу-пиу-пиу-пиу",
+          "description": "Достигни уровня 10 с легендарным бластером."
+        },
+        {
+          "apiname": "ACH_11_LanceHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сэр Копьелот",
+          "description": "Достигни уровня 10 с легендарным ракетным копьем."
+        },
+        {
+          "apiname": "ACH_12_SpearHeroLevel10",
+          "achieved": 1,
+          "unlocktime": 1578578274,
+          "name": "Переходим к делу",
+          "description": "Достигни уровня 10 с легендарной пикой."
+        },
+        {
+          "apiname": "ACH_13_KatarsHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Она режет дольками и кубиками",
+          "description": "Достигни уровня 10 с легендарными катарами."
+        },
+        {
+          "apiname": "ACH_14_AxeHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Топор не случаен",
+          "description": "Достигни уровня 10 с легендарным топором."
+        },
+        {
+          "apiname": "ACH_15_BowHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Заставь врагов трепетать",
+          "description": "Достигни уровня 10 с легендарным луком."
+        },
+        {
+          "apiname": "ACH_16_FistsHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сэндвич с костяшками",
+          "description": "Достигни уровня 10 с легендарными перчатками."
+        },
+        {
+          "apiname": "ACH_17_ScytheHeroLevel10",
+          "achieved": 1,
+          "unlocktime": 1587404843,
+          "name": "Садоводство руками-крюками",
+          "description": "Достигни уровня 10 с легендарной косой."
+        },
+        {
+          "apiname": "ACH_21_PlayMatchmakingBronze",
+          "achieved": 1,
+          "unlocktime": 1578562757,
+          "name": "Добро пожаловать в Brawlhalla!",
+          "description": "Сыграй в игру с подбором игроков."
+        },
+        {
+          "apiname": "ACH_19_PlayMatchmakingSilver",
+          "achieved": 1,
+          "unlocktime": 1578850421,
+          "name": "Сваха, подбери мне пару",
+          "description": "Сыграй 30 игр с подбором игроков."
+        },
+        {
+          "apiname": "ACH_18_PlayFFA",
+          "achieved": 1,
+          "unlocktime": 1578564134,
+          "name": "Четверо — это вечеринка",
+          "description": "Сыграй 3 игры «бесплатно для всех» в очереди на подбор игроков."
+        },
+        {
+          "apiname": "ACH_20_PlayRanked",
+          "achieved": 1,
+          "unlocktime": 1579449014,
+          "name": "Затишье перед бурей",
+          "description": "Сыграй 3 игры в очереди подбора игроков для рейтинговых игры 1 на 1."
+        },
+        {
+          "apiname": "ACH_22_Play2v2Unranked",
+          "achieved": 1,
+          "unlocktime": 1578823131,
+          "name": "Наши силы объединены",
+          "description": "Сыграй 3 игры в очереди подбора игроков товарищеских игр 2 на 2."
+        },
+        {
+          "apiname": "ACH_23_Play2v2Ranked",
+          "achieved": 1,
+          "unlocktime": 1578576858,
+          "name": "Пока нокаут не разлучит нас",
+          "description": "Сыграй 3 игры в очереди рейтинговых матчей 2 на 2."
+        },
+        {
+          "apiname": "ACH_24_PlayBotW",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Давайте сделаем это снова на следующей неделе",
+          "description": "Сыграй 3 игры в очереди подбора игроков «Потасовка недели»."
+        },
+        {
+          "apiname": "ACH_25_KillBronze",
+          "achieved": 1,
+          "unlocktime": 1578578827,
+          "name": "Увидимся",
+          "description": "Нокаутируй 25 противников в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_26_KillSilver",
+          "achieved": 1,
+          "unlocktime": 1603458375,
+          "name": "Король хоум-рана",
+          "description": "Нокаутируй 500 противников в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_27_KillGold",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Я верю, что ты умеешь летать",
+          "description": "Нокаутируй 1000 противников в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_28_Wins1",
+          "achieved": 1,
+          "unlocktime": 1578580165,
+          "name": "Только начинаем",
+          "description": "Выиграй 10 игр с подбором игроков."
+        },
+        {
+          "apiname": "ACH_29_Wins2",
+          "achieved": 1,
+          "unlocktime": 1582480719,
+          "name": "Смотри, как я могу!",
+          "description": "Выиграй 100 игр с подбором игроков."
+        },
+        {
+          "apiname": "ACH_30_Wins3",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Все, что я делаю, — это выигрываю",
+          "description": "Выиграй 250 игр с подбором игроков"
+        },
+        {
+          "apiname": "ACH_31_2HeroesLevel5",
+          "achieved": 1,
+          "unlocktime": 1578825020,
+          "name": "Практика ведет к совершенству",
+          "description": "Достигни уровня 5 с 2 легендами."
+        },
+        {
+          "apiname": "ACH_32_5HeroesLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Они так быстро растут",
+          "description": "Достигни уровня 10 с 5 легендами."
+        },
+        {
+          "apiname": "ACH_33_10HeroesLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Выкладываясь по полной",
+          "description": "Достигни уровня 10 с 10 легендами."
+        },
+        {
+          "apiname": "ACH_34_DoubleKill25",
+          "achieved": 1,
+          "unlocktime": 1579190570,
+          "name": "Вдвойне приятнее",
+          "description": "Выполни 10 двойных нокаутов в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_35_KillThrowsBronze",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Двигайся вперёд!",
+          "description": "Нокаутируй противника брошенным предметом 30 раз в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_36_3Stock",
+          "achieved": 1,
+          "unlocktime": 1579506057,
+          "name": "Не могу дотронуться до этого",
+          "description": "Выиграй рейтинговую игру 1 на 1, не потеряв ни одной жизни, 3 раза."
+        },
+        {
+          "apiname": "ACH_37_GavityCancelSigKillsBronze",
+          "achieved": 1,
+          "unlocktime": 1634150610,
+          "name": "Сюрприз — Исаак Ньютон",
+          "description": "10 раз нокаутируй противника тяжёлой атакой с отменой гравитации в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_38_SayGGBronze",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Убей их по-доброму",
+          "description": "Нажми кнопку «Скажи: отличная игра!»  после 66 различных игр с подбором игроков."
+        },
+        {
+          "apiname": "ACH_39_RedLastStockKillsBronze",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "И толпа сходит с ума!",
+          "description": "5 раз выиграй рейтинговую игру 1 на 1, нанеся красный урон на последнем стоке (выигрыши на тай-брейке не учитываются)."
+        },
+        {
+          "apiname": "ACH_40_CannonHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пушечное мясо",
+          "description": "Уровень 10 достигнут с легендарной пушкой"
+        },
+        {
+          "apiname": "ACH_41_OrbHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Запущено на орбиту",
+          "description": "Достигни уровня 10 с легендарным шаром"
+        },
+        {
+          "apiname": "ACH_42_GreatswordHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Большой кусок металла",
+          "description": "Достигни уровня 10 с легендарным длинным мечом"
+        },
+        {
+          "apiname": "ACH_43_3HeroesLevel25",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Теперь я могу использовать черный цвет в вычеркивании",
+          "description": "Достигни уровня 25, используя 3 легенды"
+        },
+        {
+          "apiname": "ACH_44_5HeroesLevel50",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мастер на все руки",
+          "description": "Достигни уровня 5 с 50 легендами"
+        },
+        {
+          "apiname": "ACH_45_SlideChargeSigKillsBronze",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Стильное падение",
+          "description": "Нокаутируй 10 противников с помощью мощных фирменных атак со скольжением в играх с подбором игроков"
+        },
+        {
+          "apiname": "ACH_46_BouncyBombMultiHit",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "БОМБАЛЛА!!",
+          "description": "Порази нескольких противников одной надувной бомбой в игре с подбором игроков"
+        },
+        {
+          "apiname": "ACH_47_SixKOsInTeamGame",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Вытяни на себе всю команду",
+          "description": "Выполни 6 нокаутов в одной рейтинговой игре 2 на 2 или в товарищеской игре 2 на 2"
+        },
+        {
+          "apiname": "ACH_48_DashJumpGroundPoundKO",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Очиститель стен",
+          "description": "Нокаутируй 25 противников, бросившись в атаку с ударом о землю в играх по подбору игроков"
+        },
+        {
+          "apiname": "ACH_49_HordeSilver",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "В ад и обратно",
+          "description": "Достигни 26-й волны в режиме «Орда» с уроном, равным 100% или меньше"
+        },
+        {
+          "apiname": "ACH_50_BootsHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Посмотри мои новые удары ногами",
+          "description": "Достигни уровня 10 с легендарными боевыми сапогами."
+        },
+        {
+          "apiname": "ACH_51_SpikeBallQuadHit",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Стекает с твоего лица",
+          "description": "Порази противников одним и тем же шипастым шаром 4 раза в игре с подбором игроков."
+        },
+        {
+          "apiname": "ACH_52_CatchBombsBronze",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Опасный горячий картофель",
+          "description": "Поймай 15 прыгающих бомб подряд в режиме тренировки «Поймай бомбы» без покадрового перемещения."
+        },
+        {
+          "apiname": "ACH_53_SixSigsSingleMatch",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Выполни цикл ударов",
+          "description": "Порази противников всеми 6 фирменными атаками легенды в 10 различных играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_54_BuySkyforged",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Вы говорите мне, что это выковано небом?",
+          "description": "Купи в магазине выкованный небом предмет."
+        },
+        {
+          "apiname": "ACH_55_BuyGoldforged",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Мне хотелось бы быть ШИНАЙ",
+          "description": "Купи в магазине выкованный из золото предмет."
+        },
+        {
+          "apiname": "ACH_56_1HeroLevel40",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Основа заложена",
+          "description": "Достигните уровня 40 с помощью легенды."
+        },
+        {
+          "apiname": "ACH_57_AccountLevelExpansion2",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "На полпути! Верно!?",
+          "description": "Достигни уровня 50 аккаунта."
+        },
+        {
+          "apiname": "ACH_58_ChakramHeroLevel10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Разделить разницу",
+          "description": "Достигни уровня 10 с легендарным чакрамом."
+        },
+        {
+          "apiname": "ACH_59_LoseRematchSwitchWin",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Прикинься слабаком",
+          "description": "Проиграй рейтинговый матч 1 на 1, выбери реванш, смени легенду и выиграй реванш."
+        },
+        {
+          "apiname": "ACH_60_WinRematchSeries10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Загрузка завершена",
+          "description": "Выиграй 10 серий «Лучший из трех» в играх с подбором игроков."
+        },
+        {
+          "apiname": "ACH_61_GavityCancelLightKillsSilver",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Легче воздуха",
+          "description": "Нокаутируй 50 противников с помощью легких атак с отменой гравитации"
+        },
+        {
+          "apiname": "ACH_62_Ranked1v1LightOnlyKO10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Зона без спама",
+          "description": "Нокаутируй 10 противников в рейтинговых матчах 1 на 1, используя только легкие атаки"
+        },
+        {
+          "apiname": "ACH_63_TripleKill5",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Втройне приятнее",
+          "description": "Выполни 5 тройных нокаутов."
+        },
+        {
+          "apiname": "ACH_64_TripleHitSig5",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сбей ВСЕХ с ног",
+          "description": "Порази трех противников одной фирменной атакой 10 раз."
+        },
+        {
+          "apiname": "ACH_65_Level25Weapons8",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Потасовка 25/8",
+          "description": "Достигни уровня 25 в игре с легендами, использующими 8 различных видов оружия."
+        }
+      ],
+      "achievementsUnlocked": 24,
+      "achievementsTotal": 65,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2023-02-22T19:42:50.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_292030": {
+      "id": "steam_292030",
+      "title": "The Witcher 3: Wild Hunt",
+      "appid": "292030",
+      "platform": "Steam",
+      "hoursPlayed": 172.3,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg",
+      "achievements": [
+        {
+          "apiname": "LILAC",
+          "achieved": 1,
+          "unlocktime": 1598965075,
+          "name": "Сирень и крыжовник",
+          "description": ""
+        },
+        {
+          "apiname": "FRIEND_IN_NEED",
+          "achieved": 1,
+          "unlocktime": 1600352602,
+          "name": "Друг в беде",
+          "description": ""
+        },
+        {
+          "apiname": "NECROMANCER",
+          "achieved": 1,
+          "unlocktime": 1601114835,
+          "name": "Некромантия",
+          "description": ""
+        },
+        {
+          "apiname": "FAMILY_COUNSELOR",
+          "achieved": 1,
+          "unlocktime": 1599817559,
+          "name": "Друг семьи",
+          "description": ""
+        },
+        {
+          "apiname": "SOMETHING_MORE",
+          "achieved": 1,
+          "unlocktime": 1601223061,
+          "name": "Нечто большее",
+          "description": ""
+        },
+        {
+          "apiname": "XENONAUT",
+          "achieved": 1,
+          "unlocktime": 1607713971,
+          "name": "Ксенонавт",
+          "description": ""
+        },
+        {
+          "apiname": "THE_KING",
+          "achieved": 1,
+          "unlocktime": 1607797077,
+          "name": "Король мертв",
+          "description": ""
+        },
+        {
+          "apiname": "PASSED_THE_TRIAL",
+          "achieved": 1,
+          "unlocktime": 1607798569,
+          "name": "Дитя-Неожиданность",
+          "description": "Пройти игру на любом уровне сложности."
+        },
+        {
+          "apiname": "RAN_THE_GAUNTLET",
+          "achieved": 1,
+          "unlocktime": 1607798569,
+          "name": "Мучильня",
+          "description": "Пройти игру на уровне сложности \"Боль и страдания!\" или \"На смерть!\"."
+        },
+        {
+          "apiname": "WALKED_THE_PATH",
+          "achieved": 1,
+          "unlocktime": 1607798569,
+          "name": "Ведьмак на тракте",
+          "description": "Пройти игру на уровне сложности \"На смерть!\"."
+        },
+        {
+          "apiname": "THE_PROFESSIONAL",
+          "achieved": 1,
+          "unlocktime": 1644522386,
+          "name": "Мастер ведьмак",
+          "description": ""
+        },
+        {
+          "apiname": "MAKER",
+          "achieved": 1,
+          "unlocktime": 1601198677,
+          "name": "Творец королей",
+          "description": ""
+        },
+        {
+          "apiname": "ASSASSIN",
+          "achieved": 1,
+          "unlocktime": 1601399839,
+          "name": "Убийца королей",
+          "description": ""
+        },
+        {
+          "apiname": "FRIENDS_WITH_BENEFITS",
+          "achieved": 1,
+          "unlocktime": 1601141880,
+          "name": "Мор, колдунья и старая башня",
+          "description": ""
+        },
+        {
+          "apiname": "FULL_CREW",
+          "achieved": 1,
+          "unlocktime": 1601198801,
+          "name": "В полном составе",
+          "description": ""
+        },
+        {
+          "apiname": "DENDROLOGIST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дендролог",
+          "description": "Получить все умения одной ветви."
+        },
+        {
+          "apiname": "ENEMY_OF_MY_ENEMY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Враг моего врага",
+          "description": "С помощью Аксия заставить одного противника убить другого. И так 20 раз."
+        },
+        {
+          "apiname": "HUMPTY_DUMPTY",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Шалтай-Болтай",
+          "description": "Убить 10 противников, сбросив их с высоты Знаком Аард."
+        },
+        {
+          "apiname": "ENVIRONMENTALLY_UNFRIENDLY",
+          "achieved": 1,
+          "unlocktime": 1601133093,
+          "name": "Неблагоприятная среда",
+          "description": "Убить 50 противников, используя окружающую среду (например болотный газ, насекомых, предметы)."
+        },
+        {
+          "apiname": "KAER_MORHEN_TRAINED",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Контратака",
+          "description": "Провести 10 успешных контратак подряд, не получив ранения и не блокируя ударов."
+        },
+        {
+          "apiname": "CANT_TOUCH_THIS",
+          "achieved": 1,
+          "unlocktime": 1599332138,
+          "name": "Сноровка",
+          "description": "В одном бою убить 5 врагов, не понеся урона (не считая урона от интоксикации) и не используя Квен."
+        },
+        {
+          "apiname": "THE_EVILEST_THING",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Живой запал",
+          "description": "10 раз поджечь газ из бомбы Сон Дракона с помощью горящего противника."
+        },
+        {
+          "apiname": "MUTANT",
+          "achieved": 1,
+          "unlocktime": 1607844006,
+          "name": "Мутант",
+          "description": "Заполнить все ячейки мутагенов."
+        },
+        {
+          "apiname": "BUTCHER_OF_BLAVIKEN",
+          "achieved": 1,
+          "unlocktime": 1598964858,
+          "name": "Мясник из Блавикена",
+          "description": "Убить не менее 5 противников быстрее, чем за 10 секунд."
+        },
+        {
+          "apiname": "TRIPLE_THREAT",
+          "achieved": 1,
+          "unlocktime": 1641658420,
+          "name": "Диверсификация",
+          "description": ""
+        },
+        {
+          "apiname": "BRAWLER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Драчун",
+          "description": "Победить Олафа, чемпиона Скеллиге по кулачному бою."
+        },
+        {
+          "apiname": "OVERKILL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Загадка для коронера",
+          "description": "Вызвать у противника кровотечение, отравление и горение одновременно. И так 10 раз."
+        },
+        {
+          "apiname": "MASTER_MARKSMAN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Меткий стрелок",
+          "description": "Убить 50 противников-гуманоидов выстрелом в голову из арбалета."
+        },
+        {
+          "apiname": "WHAT_WAS_THAT",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Что это было?",
+          "description": ""
+        },
+        {
+          "apiname": "EVEN_ODDS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Равные шансы",
+          "description": "Убить 2 чудовищ, на которых получен заказ, не используя Знаки, зелья, мутагены, масла и бомбы."
+        },
+        {
+          "apiname": "GLOBETROTTER",
+          "achieved": 1,
+          "unlocktime": 1607975114,
+          "name": "Путешественник",
+          "description": "Найти 100 точек быстрого перехода."
+        },
+        {
+          "apiname": "PEST_CONTROL",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Крысолов",
+          "description": "Уничтожить все гнезда чудовищ или в землях Велена и Новиграда или на Скеллиге."
+        },
+        {
+          "apiname": "CARD_COLLECTOR",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Собиратель карт",
+          "description": "Собрать все карты для гвинта, доступные в базовой версии игры."
+        },
+        {
+          "apiname": "GWENT_MASTER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чемпион по гвинту",
+          "description": "Победить Тибальта и выиграть турнир по гвинту в \"Пассифлоре\"."
+        },
+        {
+          "apiname": "LETS_COOK",
+          "achieved": 1,
+          "unlocktime": 1599224495,
+          "name": "Во все тяжкие",
+          "description": "Выучить 12 рецептов эликсиров."
+        },
+        {
+          "apiname": "BOMBARDIER",
+          "achieved": 1,
+          "unlocktime": 1600100428,
+          "name": "Бомбардир",
+          "description": "Собрать рецепты для бомб шести разных типов."
+        },
+        {
+          "apiname": "BOOKWORM",
+          "achieved": 1,
+          "unlocktime": 1600423430,
+          "name": "Книжный червь",
+          "description": "Прочитать 30 книг, дневников или других документов."
+        },
+        {
+          "apiname": "ARMED_AND_DANGEROUS",
+          "achieved": 1,
+          "unlocktime": 1608489947,
+          "name": "Вооружен и опасен",
+          "description": "Найти все элементы одного комплекта ведьмачьего снаряжения и воспользоваться ими."
+        },
+        {
+          "apiname": "POWER_OVERWHELMING",
+          "achieved": 1,
+          "unlocktime": 1608271143,
+          "name": "Великая Сила",
+          "description": "Оказаться одновременно под действием всех бонусов, которые только можно получить в Местах Силы."
+        },
+        {
+          "apiname": "BRAWL_MASTER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Абсолютный чемпион",
+          "description": "Победить во всех кулачных боях, связанных с заданиями в Велене, на Скеллиге и в Новиграде."
+        },
+        {
+          "apiname": "FAST_AND_FURIOUS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Форсаж",
+          "description": "Выиграть все скачки в игре."
+        },
+        {
+          "apiname": "MUNCHKIN",
+          "achieved": 1,
+          "unlocktime": 1608109653,
+          "name": "Манчкин",
+          "description": "Развить персонажа до 35 уровня."
+        },
+        {
+          "apiname": "FIRE_IN_THE_HOLE",
+          "achieved": 1,
+          "unlocktime": 1608272436,
+          "name": "Взрывотехник",
+          "description": "Уничтожить бомбами 10 гнезд чудовищ."
+        },
+        {
+          "apiname": "FIST_OF_THE_SOUTH_STAR",
+          "achieved": 1,
+          "unlocktime": 1600419061,
+          "name": "Неуязвимый",
+          "description": "Победить противника в кулачном бою, не понеся урона."
+        },
+        {
+          "apiname": "GERALT_AND_FRIENDS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Геральт и его друзья",
+          "description": "В гвинте выиграть раунд, используя лишь нейтральные карты."
+        },
+        {
+          "apiname": "ALL_IN",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хет-трик",
+          "description": "Сыграть картами трех героев в одном раунде и выиграть партию в гвинт."
+        },
+        {
+          "apiname": "SHRIEKER",
+          "achieved": 1,
+          "unlocktime": 1644522386,
+          "name": "Клекотун",
+          "description": "Выполнить заказ на клекотуна."
+        },
+        {
+          "apiname": "FEARLESS_VAMPIRE_SLAYER",
+          "achieved": 1,
+          "unlocktime": 1608101152,
+          "name": "Неустрашимый охотник на вампиров",
+          "description": "Выполнить заказ на Сарасти."
+        },
+        {
+          "apiname": "WOODLAND_SPIRIT",
+          "achieved": 1,
+          "unlocktime": 1643663261,
+          "name": "Дух Леса",
+          "description": "Выполнить заказ на Духа Леса."
+        },
+        {
+          "apiname": "FIEND_OR_FOE",
+          "achieved": 1,
+          "unlocktime": 1607975456,
+          "name": "Друг или враг?",
+          "description": "Выполнить заказ на Морвудда."
+        },
+        {
+          "apiname": "ASHES_TO_ASHES",
+          "achieved": 1,
+          "unlocktime": 1608105129,
+          "name": "В прах обратишься",
+          "description": "Выполнить заказ на Феразина."
+        },
+        {
+          "apiname": "THE_DOPPLER_EFFECT",
+          "achieved": 1,
+          "unlocktime": 1644094874,
+          "name": "Эффект допплера",
+          "description": "Решить проблему с допплером в Новиграде."
+        },
+        {
+          "apiname": "EP1_1",
+          "achieved": 1,
+          "unlocktime": 1608014940,
+          "name": "Надо было поцеловать",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_2",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Гуляй, душа!",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_3",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Шопоголик",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_4",
+          "achieved": 1,
+          "unlocktime": 1608110013,
+          "name": "Воплотившийся кошмар",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_5",
+          "achieved": 1,
+          "unlocktime": 1608123815,
+          "name": "Сгинь, исчезни!",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_6",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Коли врагов пропасть…",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_7",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Как аукнется, так и откликнется",
+          "description": "Убить троих противников их же собственными стрелами."
+        },
+        {
+          "apiname": "EP1_8",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "От семи недуг",
+          "description": "Находиться под действием семи эликсиров или отваров одновременно."
+        },
+        {
+          "apiname": "EP1_9",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Бич божий",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_10",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Новая мода",
+          "description": "Собрать все элементы офирских доспехов, снаряжение для лошади и хотя бы один меч."
+        },
+        {
+          "apiname": "EP1_11",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Истребитель коров",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_12",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Экстремальный спорт",
+          "description": ""
+        },
+        {
+          "apiname": "EP1_13",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Тотальная война",
+          "description": "Выиграть партию в гвинт, набрав минимум 187 очков."
+        },
+        {
+          "apiname": "EP2_1",
+          "achieved": 1,
+          "unlocktime": 1608147980,
+          "name": "Добро пожаловать в Туссент!",
+          "description": "Приехать в княжество Туссент."
+        },
+        {
+          "apiname": "EP2_2",
+          "achieved": 1,
+          "unlocktime": 1608843781,
+          "name": "Туссентский герой",
+          "description": "Получить медаль Vitis Vinifera."
+        },
+        {
+          "apiname": "EP2_3",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Туссентский заключенный",
+          "description": "Отсидеть в туссентской тюрьме."
+        },
+        {
+          "apiname": "EP2_4",
+          "achieved": 1,
+          "unlocktime": 1608481568,
+          "name": "Истинный рыцарь",
+          "description": "Одержать безупречную победу над всеми противниками на рыцарском турнире."
+        },
+        {
+          "apiname": "EP2_5",
+          "achieved": 1,
+          "unlocktime": 1641340575,
+          "name": "Воплощение Пяти Добродетелей",
+          "description": "Получить Арондит из рук Леди Озера."
+        },
+        {
+          "apiname": "EP2_6",
+          "achieved": 1,
+          "unlocktime": 1608279233,
+          "name": "А дома лучше",
+          "description": "Улучшить Корво Бьянко всеми возможными способами."
+        },
+        {
+          "apiname": "EP2_7",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Охотник за барахлом",
+          "description": "Найти все гроссмейстерские чертежи для всех ведьмачьих Школ."
+        },
+        {
+          "apiname": "EP2_8",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Воспоминание о Скеллиге",
+          "description": "Собрать все карты колоды Скеллиге."
+        },
+        {
+          "apiname": "EP2_9",
+          "achieved": 1,
+          "unlocktime": 1643496246,
+          "name": "Вино из гроздьев ярости",
+          "description": ""
+        },
+        {
+          "apiname": "EP2_10",
+          "achieved": 1,
+          "unlocktime": 1608922218,
+          "name": "Полная синергия",
+          "description": "Получить бонус, объединив все элементы ведьмачьего снаряжения одной Школы."
+        },
+        {
+          "apiname": "EP2_11",
+          "achieved": 1,
+          "unlocktime": 1608291174,
+          "name": "Оружие \"В\"",
+          "description": "Пройти мутацию."
+        },
+        {
+          "apiname": "EP2_12",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Hasta la Vista",
+          "description": ""
+        },
+        {
+          "apiname": "EP2_13",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Давид и Голиаф",
+          "description": ""
+        }
+      ],
+      "achievementsUnlocked": 46,
+      "achievementsTotal": 78,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2022-12-14T19:18:29.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_304930": {
+      "id": "steam_304930",
+      "title": "Unturned",
+      "appid": "304930",
+      "platform": "Steam",
+      "hoursPlayed": 1.58,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/304930/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2021-07-06T11:33:34.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_349040": {
+      "id": "steam_349040",
+      "title": "NARUTO SHIPPUDEN: Ultimate Ninja STORM 4",
+      "appid": "349040",
+      "platform": "Steam",
+      "hoursPlayed": 8.5,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/349040/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2023-04-12T20:36:21.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_371140": {
+      "id": "steam_371140",
+      "title": "Aegis Defenders",
+      "appid": "371140",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/371140/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_377160": {
+      "id": "steam_377160",
+      "title": "Fallout 4",
+      "appid": "377160",
+      "platform": "Steam",
+      "hoursPlayed": 339.22,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/377160/header.jpg",
+      "achievements": [
+        {
+          "apiname": "NEW_ACHIEVEMENT_1_0",
+          "achieved": 1,
+          "unlocktime": 1597248500,
+          "name": "Война никогда не меняется",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_2_0",
+          "achieved": 1,
+          "unlocktime": 1597348810,
+          "name": "Зов свободы",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_3_0",
+          "achieved": 1,
+          "unlocktime": 1598350563,
+          "name": "Валентайнов день",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_4_0",
+          "achieved": 1,
+          "unlocktime": 1598465514,
+          "name": "Воссоединение",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_5_0",
+          "achieved": 1,
+          "unlocktime": 1598470928,
+          "name": "Опасные мысли",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_6_0",
+          "achieved": 1,
+          "unlocktime": 1598517063,
+          "name": "Охотник/жертва",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_7_0",
+          "achieved": 1,
+          "unlocktime": 1598523776,
+          "name": "Молекулярный уровень",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_8_0",
+          "achieved": 1,
+          "unlocktime": 1610748117,
+          "name": "Критическая масса",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_9_0",
+          "achieved": 1,
+          "unlocktime": 1598531009,
+          "name": "Учреждение закрытого типа",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_10_0",
+          "achieved": 1,
+          "unlocktime": 1610743723,
+          "name": "Новый облик человечества",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_11_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Запуск",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_12_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Расщепление семьи",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_13_0",
+          "achieved": 1,
+          "unlocktime": 1597666654,
+          "name": "Первый шаг",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_14_0",
+          "achieved": 1,
+          "unlocktime": 1598125664,
+          "name": "Штурм Форт-Индепенденс",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_15_0",
+          "achieved": 1,
+          "unlocktime": 1602750056,
+          "name": "Старые пушки",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_16_0",
+          "achieved": 1,
+          "unlocktime": 1597734684,
+          "name": "Semper Invicta",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_17_0",
+          "achieved": 1,
+          "unlocktime": 1598825810,
+          "name": "Слепое предательство",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_18_0",
+          "achieved": 1,
+          "unlocktime": 1610747017,
+          "name": "Ad Victoriam",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_19_0",
+          "achieved": 1,
+          "unlocktime": 1610866122,
+          "name": "Агентурная работа",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_20_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Под землей и под прикрытием",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_21_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Красный сполох ракет",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_22_0",
+          "achieved": 1,
+          "unlocktime": 1597761857,
+          "name": "Сэнкчуари",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_23_0",
+          "achieved": 1,
+          "unlocktime": 1597677428,
+          "name": "Местный лидер",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_24_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Великодушный правитель",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_25_0",
+          "achieved": 1,
+          "unlocktime": 1598800104,
+          "name": "Вольный стрелок",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_26_0",
+          "achieved": 1,
+          "unlocktime": 1598825580,
+          "name": "Наемник",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_27_0",
+          "achieved": 1,
+          "unlocktime": 1597852990,
+          "name": "Мусорщик",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_28_0",
+          "achieved": 1,
+          "unlocktime": 1598354480,
+          "name": "Было твое - стало мое",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_29_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Кошмар \"РобКо\"",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_30_0",
+          "achieved": 1,
+          "unlocktime": 1612467988,
+          "name": "Вооружен и очень опасен",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_31_0",
+          "achieved": 1,
+          "unlocktime": 1612024011,
+          "name": "Выживание в Пустошах",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_32_0",
+          "achieved": 1,
+          "unlocktime": 1597784701,
+          "name": "Один в поле не воин",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_33_0",
+          "achieved": 1,
+          "unlocktime": 1610899499,
+          "name": "Сексапильность",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_34_0",
+          "achieved": 1,
+          "unlocktime": 1597778642,
+          "name": "Мастер на все руки",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_35_0",
+          "achieved": 1,
+          "unlocktime": 1597247681,
+          "name": "Ретрофутуризм",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_36_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "...Тем больнее падать",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_37_0",
+          "achieved": 1,
+          "unlocktime": 1598511092,
+          "name": "Рейнджер",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_38_0",
+          "achieved": 1,
+          "unlocktime": 1598805906,
+          "name": "Пресса - хой!",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_39_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Возвращение шутника",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_40_0",
+          "achieved": 1,
+          "unlocktime": 1599246758,
+          "name": "Геноцид",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_41_0",
+          "achieved": 1,
+          "unlocktime": 1598520141,
+          "name": "Ликвидатор",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_42_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хоум-ран!",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_43_0",
+          "achieved": 1,
+          "unlocktime": 1597679135,
+          "name": "Тачдаун!",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_44_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Это не куклы...",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_45_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "...Это пластиковые фигурки",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_46_0",
+          "achieved": 1,
+          "unlocktime": 1597348810,
+          "name": "Эксперт по выживанию",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_47_0",
+          "achieved": 1,
+          "unlocktime": 1597664039,
+          "name": "Гражданин Содружества",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_48_0",
+          "achieved": 1,
+          "unlocktime": 1598385763,
+          "name": "Непобедимый странник",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_49_0",
+          "achieved": 1,
+          "unlocktime": 1610745880,
+          "name": "Легенда Пустошей",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_50_0",
+          "achieved": 1,
+          "unlocktime": 1610748117,
+          "name": "Готовы к будущему",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_51_0",
+          "achieved": 1,
+          "unlocktime": 1597738409,
+          "name": "Механический враг",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_52_0",
+          "achieved": 1,
+          "unlocktime": 1612251873,
+          "name": "Охотник за головами",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_53_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Наведение порядка",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_54_0",
+          "achieved": 1,
+          "unlocktime": 1612248326,
+          "name": "Истребитель роботов",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_55_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Больше всех игрушек",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_56_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Одомашнивание",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_57_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Разжигание",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_58_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Охотник",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_59_0",
+          "achieved": 1,
+          "unlocktime": 1598294502,
+          "name": "Вдали от дома",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_60_0",
+          "achieved": 1,
+          "unlocktime": 1610738462,
+          "name": "Найти свое место",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_61_0",
+          "achieved": 1,
+          "unlocktime": 1611480655,
+          "name": "Какой должна быть жизнь",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_62_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Очищение земли",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_63_0",
+          "achieved": 1,
+          "unlocktime": 1611489585,
+          "name": "Семейное дело",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_64_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Альманах островитянина",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_65_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "На крючке",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_66_0",
+          "achieved": 1,
+          "unlocktime": 1611477421,
+          "name": "Отпуск в Новой Англии",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_67_0",
+          "achieved": 1,
+          "unlocktime": 1611477062,
+          "name": "Борьба с туманом",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_68_0",
+          "achieved": 1,
+          "unlocktime": 1611490554,
+          "name": "Просто добавь соленой воды",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_69_0",
+          "achieved": 1,
+          "unlocktime": 1611233703,
+          "name": "Пустить пыль в глаза",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_70_0",
+          "achieved": 1,
+          "unlocktime": 1611234042,
+          "name": "Время вышло",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_71_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Массовое производство",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_72_0",
+          "achieved": 1,
+          "unlocktime": 1612683897,
+          "name": "Под присмотром",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_73_0",
+          "achieved": 1,
+          "unlocktime": 1609604836,
+          "name": "Лучшая жизнь под землей",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_74_0",
+          "achieved": 1,
+          "unlocktime": 1612082915,
+          "name": "Житель убежища",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_75_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Рейдерская жизнь",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_76_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Библиоманьяк",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_77_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дизайнер напитков",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_78_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Принудительное поглощение",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_79_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Быстрые углеводы",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_80_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Полезные призы",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_81_0",
+          "achieved": 1,
+          "unlocktime": 1612295047,
+          "name": "Вот так вот прокатили",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_82_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Большой тур",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_83_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дом, милый дом",
+          "description": ""
+        },
+        {
+          "apiname": "NEW_ACHIEVEMENT_84_0",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Демонстрация силы",
+          "description": ""
+        }
+      ],
+      "achievementsUnlocked": 55,
+      "achievementsTotal": 84,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2024-05-12T18:35:47.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_391220": {
+      "id": "steam_391220",
+      "title": "Rise of the Tomb Raider",
+      "appid": "391220",
+      "platform": "Steam",
+      "hoursPlayed": 15.58,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/391220/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2021-09-05T21:57:12.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_392110": {
+      "id": "steam_392110",
+      "title": "ENDLESS™ Space 2",
+      "appid": "392110",
+      "platform": "Steam",
+      "hoursPlayed": 1.33,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/392110/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2022-08-08T16:11:27.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_397900": {
+      "id": "steam_397900",
+      "title": "Business Tour - Online Multiplayer Board Game",
+      "appid": "397900",
+      "platform": "Steam",
+      "hoursPlayed": 4.12,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/397900/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-09-04T17:14:15.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_403640": {
+      "id": "steam_403640",
+      "title": "Dishonored 2",
+      "appid": "403640",
+      "platform": "Steam",
+      "hoursPlayed": 22.23,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/403640/header.jpg",
+      "achievements": [
+        {
+          "apiname": "ACH_1",
+          "achieved": 1,
+          "unlocktime": 1606745414,
+          "name": "Императорская печать",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_2",
+          "achieved": 1,
+          "unlocktime": 1607013603,
+          "name": "Жемчужина юга",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_3",
+          "achieved": 1,
+          "unlocktime": 1746178358,
+          "name": "Зверь внутри",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_4",
+          "achieved": 1,
+          "unlocktime": 1746197417,
+          "name": "Лабиринт разума",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_5",
+          "achieved": 1,
+          "unlocktime": 1746360893,
+          "name": "Ночь 1849-го",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_6",
+          "achieved": 1,
+          "unlocktime": 1746367568,
+          "name": "Душелов",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_7",
+          "achieved": 1,
+          "unlocktime": 1746367568,
+          "name": "Долой герцога!",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_8",
+          "achieved": 1,
+          "unlocktime": 1746371591,
+          "name": "Величайший дар",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_9",
+          "achieved": 1,
+          "unlocktime": 1606762355,
+          "name": "Свобода речи",
+          "description": "Спасите газетчика “Вестника Дануолла”"
+        },
+        {
+          "apiname": "ACH_10",
+          "achieved": 1,
+          "unlocktime": 1745779747,
+          "name": "Патологический вор",
+          "description": "Украдите труп для Минди Бланшар"
+        },
+        {
+          "apiname": "ACH_11",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Казнь отменяется",
+          "description": "Не дайте гвардейцу толкнуть человека в световую стену"
+        },
+        {
+          "apiname": "ACH_12",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Смелый прыжок",
+          "description": "Спрыгните с высочайшей точки Аддермира, убив врага в падении"
+        },
+        {
+          "apiname": "ACH_13",
+          "achieved": 1,
+          "unlocktime": 1746181383,
+          "name": "Противоядие",
+          "description": "Поговорите с Гипатией на “Падшем доме”"
+        },
+        {
+          "apiname": "ACH_14",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Троекратная смерть",
+          "description": "Убейте Паоло три раза"
+        },
+        {
+          "apiname": "ACH_15",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Тишина",
+          "description": "Устраните Джиндоша так, чтобы он даже не узнал о вашем присутствии"
+        },
+        {
+          "apiname": "ACH_16",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Голоса Оракулов",
+          "description": "Послушайте голоса сестер ордена Оракулов"
+        },
+        {
+          "apiname": "ACH_17",
+          "achieved": 1,
+          "unlocktime": 1746359920,
+          "name": "Стенатели навсегда",
+          "description": "Примите сторону стенателей в Пыльном квартале"
+        },
+        {
+          "apiname": "ACH_18",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Верность Аббатству",
+          "description": "Примите сторону смотрителей в Пыльном квартале"
+        },
+        {
+          "apiname": "ACH_19",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Эврика!",
+          "description": "Вскройте замок Джиндоша не находя нигде разгадку"
+        },
+        {
+          "apiname": "ACH_20",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Под столом",
+          "description": "Раздобудьте универсальный ключ Арамиса Стилтона под столом, так, чтобы гвардейцы не заметили вас"
+        },
+        {
+          "apiname": "ACH_21",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Затопленный подвал",
+          "description": "Спустите воду, чтобы забрать руну"
+        },
+        {
+          "apiname": "ACH_22",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Камень на камне",
+          "description": "Найдите скрытый проход по балкону"
+        },
+        {
+          "apiname": "ACH_23",
+          "achieved": 1,
+          "unlocktime": 1746368880,
+          "name": "Не в этой жизни",
+          "description": ""
+        },
+        {
+          "apiname": "ACH_24",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Беседка",
+          "description": "Отдайте последнюю дань уважения Джессамине"
+        },
+        {
+          "apiname": "ACH_25",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Никаких авторитетов",
+          "description": "Ограбьте Гальвани несколько раз"
+        },
+        {
+          "apiname": "ACH_46",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Влюбленные",
+          "description": "Свяжите 2 персонажей с помощью Домино незадолго до того, как один из них убил другого"
+        },
+        {
+          "apiname": "ACH_48",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Скользящий снайпер",
+          "description": "В подкате попадите врагу выстрелом в голову"
+        },
+        {
+          "apiname": "ACH_26",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Резчик-оккультист",
+          "description": "Изготовьте 10 амулетов"
+        },
+        {
+          "apiname": "ACH_27",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Быстрый жнец",
+          "description": "Устраните 6 врагов меньше чем за 1,5 секунды"
+        },
+        {
+          "apiname": "ACH_28",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Смертельная траектория",
+          "description": "Убейте врага его же пулей"
+        },
+        {
+          "apiname": "ACH_29",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Круговорот",
+          "description": "Используя “Вселение”, вы за раз перейдите в человека, собаку, крысу, рыбу и трупную осу"
+        },
+        {
+          "apiname": "ACH_30",
+          "achieved": 1,
+          "unlocktime": 1606841472,
+          "name": "Призрак",
+          "description": "Выполните целое задание так, чтобы вас ни разу не заметили"
+        },
+        {
+          "apiname": "ACH_31",
+          "achieved": 1,
+          "unlocktime": 1606841472,
+          "name": "Альтернативный подход",
+          "description": "Выполните задание без жертв"
+        },
+        {
+          "apiname": "ACH_32",
+          "achieved": 1,
+          "unlocktime": 1746193284,
+          "name": "Борьба с черным рынком",
+          "description": "Ограбьте черный рынок"
+        },
+        {
+          "apiname": "ACH_34",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Хорошее финансирование",
+          "description": "Найдите 60% всех доступных трофеев"
+        },
+        {
+          "apiname": "ACH_33",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сувениры",
+          "description": "Соберите все украшения для “Падшего дома”"
+        },
+        {
+          "apiname": "ACH_35",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Сердце подскажет",
+          "description": "Узнайте с помощью Сердца секреты 40 разных людей"
+        },
+        {
+          "apiname": "ACH_37",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Коллекция шестеренок",
+          "description": "Соберите таблички с номерами 3 часовых солдат"
+        },
+        {
+          "apiname": "ACH_36",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Коллекция картин",
+          "description": "Добудьте все собираемые картины"
+        },
+        {
+          "apiname": "ACH_49",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Глава тайной службы",
+          "description": "Прочитайте все дневники и прослушайте все аудиограммы Меган Фостер и Соколова на “Падшем доме”"
+        },
+        {
+          "apiname": "ACH_47",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Песни Серконоса",
+          "description": "Найдите и послушайте в Карнаке 3 музыкальных дуэта"
+        },
+        {
+          "apiname": "ACH_38",
+          "achieved": 1,
+          "unlocktime": 1607014115,
+          "name": "Злодей",
+          "description": "Устраните 20 ничего не подозревающих врагов"
+        },
+        {
+          "apiname": "ACH_39",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Акробат",
+          "description": "Убейте в падении 10 врагов"
+        },
+        {
+          "apiname": "ACH_40",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Тень",
+          "description": "Пройдите всю игру так, чтобы вас не заметили"
+        },
+        {
+          "apiname": "ACH_41",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Плоть и сталь",
+          "description": "Пройдите игру, не пользуясь сверхъестественными силами"
+        },
+        {
+          "apiname": "ACH_42",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Защитник короны",
+          "description": "Закончите игру за Корво Аттано"
+        },
+        {
+          "apiname": "ACH_43",
+          "achieved": 1,
+          "unlocktime": 1746371591,
+          "name": "Императрица",
+          "description": "Закончите игру за Эмили Колдуин"
+        },
+        {
+          "apiname": "ACH_44",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чистая совесть",
+          "description": "Пройдите игру с низким уровнем хаоса"
+        },
+        {
+          "apiname": "ACH_45",
+          "achieved": 1,
+          "unlocktime": 1746371591,
+          "name": "Империя в хаосе",
+          "description": "Пройдите игру с высоким уровнем хаоса"
+        },
+        {
+          "apiname": "ACH_50",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Чистые руки",
+          "description": "Пройдите игру, никого не убив"
+        }
+      ],
+      "achievementsUnlocked": 19,
+      "achievementsTotal": 50,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-05-04T15:15:59.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_406970": {
+      "id": "steam_406970",
+      "title": "The Uncertain: Last Quiet Day",
+      "appid": "406970",
+      "platform": "Steam",
+      "hoursPlayed": 0.08,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/406970/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-06-06T21:02:18.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_424840": {
+      "id": "steam_424840",
+      "title": "Little Nightmares",
+      "appid": "424840",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/424840/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_431960": {
+      "id": "steam_431960",
+      "title": "Wallpaper Engine",
+      "appid": "431960",
+      "platform": "Steam",
+      "hoursPlayed": 95.92,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/431960/header.jpg",
+      "achievements": [
+        {
+          "apiname": "POST_SCENE_WALLPAPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "High aspirations",
+          "description": "Post a scene wallpaper to the Workshop."
+        },
+        {
+          "apiname": "POST_VIDEO_WALLPAPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Video makers",
+          "description": "Post a video wallpaper to the Workshop."
+        },
+        {
+          "apiname": "POST_WEB_WALLPAPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "The internet on a disk",
+          "description": "Post a web wallpaper to the Workshop."
+        },
+        {
+          "apiname": "POST_APP_WALLPAPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Press any key",
+          "description": "Post an app wallpaper to the Workshop."
+        },
+        {
+          "apiname": "USE_TEMPLATE_2D",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Creativity according to instructions",
+          "description": "Use a 2D scene template."
+        },
+        {
+          "apiname": "USE_TEMPLATE_3D",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Working with 3D models",
+          "description": "Use a 3D scene template."
+        },
+        {
+          "apiname": "SCREENSHOT_WITH_WORKSHOP_WALLPAPER",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Sharing is caring",
+          "description": "Post a Steam screenshot with a Workshop wallpaper open."
+        },
+        {
+          "apiname": "SUBSCRIBE_10_WALLPAPERS",
+          "achieved": 1,
+          "unlocktime": 1598961753,
+          "name": "Trying something new",
+          "description": "Use 10 different wallpapers from the Workshop."
+        },
+        {
+          "apiname": "FAVORITE_10_WALLPAPERS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Keeping an eye on this one",
+          "description": "Favorite 10 different wallpapers from the Workshop."
+        },
+        {
+          "apiname": "PEST",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Pest",
+          "description": "Cause 1 fatal error or trigger 128 warnings in the editor."
+        },
+        {
+          "apiname": "KON_CODE",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "k0n4m1",
+          "description": "30 lives"
+        },
+        {
+          "apiname": "SUBSCRIBE_25_WALLPAPERS",
+          "achieved": 1,
+          "unlocktime": 1599944077,
+          "name": "Getting the hang of it",
+          "description": "Use 25 different wallpapers from the Workshop."
+        },
+        {
+          "apiname": "SUBSCRIBE_50_WALLPAPERS",
+          "achieved": 1,
+          "unlocktime": 1600531507,
+          "name": "Hard to pick just one",
+          "description": "Use 50 different wallpapers from the Workshop."
+        },
+        {
+          "apiname": "SUBSCRIBE_100_WALLPAPERS",
+          "achieved": 1,
+          "unlocktime": 1612695197,
+          "name": "Out of disk space",
+          "description": "Use 100 different wallpapers from the Workshop."
+        },
+        {
+          "apiname": "FAVORITE_25_WALLPAPERS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Found some good ones",
+          "description": "Favorite 20 different Workshop wallpapers."
+        },
+        {
+          "apiname": "FAVORITE_50_WALLPAPERS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Fair collection",
+          "description": "Favorite 30 different Workshop wallpapers."
+        },
+        {
+          "apiname": "FAVORITE_100_WALLPAPERS",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Wallpaper Connoisseur",
+          "description": "Favorite 50 different Workshop wallpapers."
+        }
+      ],
+      "achievementsUnlocked": 4,
+      "achievementsTotal": 17,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-12-01T21:45:01.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_435790": {
+      "id": "steam_435790",
+      "title": "10 Second Ninja X",
+      "appid": "435790",
+      "platform": "Steam",
+      "hoursPlayed": 0.02,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/435790/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-05-24T07:19:38.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_441380": {
+      "id": "steam_441380",
+      "title": "PAC-MAN™ CHAMPIONSHIP EDITION 2",
+      "appid": "441380",
+      "platform": "Steam",
+      "hoursPlayed": 0.05,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/441380/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-05-24T07:16:41.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_489630": {
+      "id": "steam_489630",
+      "title": "Warhammer 40,000: Gladius - Relics of War",
+      "appid": "489630",
+      "platform": "Steam",
+      "hoursPlayed": 0.02,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/489630/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-05-24T19:27:25.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_552500": {
+      "id": "steam_552500",
+      "title": "Warhammer: Vermintide 2",
+      "appid": "552500",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/552500/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_578080": {
+      "id": "steam_578080",
+      "title": "PUBG: BATTLEGROUNDS",
+      "appid": "578080",
+      "platform": "Steam",
+      "hoursPlayed": 449.85,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg",
+      "achievements": [
+        {
+          "apiname": "ACHIVE000",
+          "achieved": 1,
+          "unlocktime": 1738075939,
+          "name": "Последний герой",
+          "description": "Победить 10 раз."
+        },
+        {
+          "apiname": "ACHIVE001",
+          "achieved": 1,
+          "unlocktime": 1774086221,
+          "name": "Победа-победа вместо обеда!",
+          "description": "Победить соло."
+        },
+        {
+          "apiname": "ACHIVE002",
+          "achieved": 1,
+          "unlocktime": 1741362364,
+          "name": "Можешь на меня расcчитывать",
+          "description": "Победить в паре."
+        },
+        {
+          "apiname": "ACHIVE003",
+          "achieved": 1,
+          "unlocktime": 1735922534,
+          "name": "Фантастическая четвёрка",
+          "description": "Победить в отряде."
+        },
+        {
+          "apiname": "ACHIVE004",
+          "achieved": 1,
+          "unlocktime": 1736015890,
+          "name": "В шаге от победы",
+          "description": "Войти в десятку лучших 10 раз."
+        },
+        {
+          "apiname": "ACHIVE005",
+          "achieved": 1,
+          "unlocktime": 1735920872,
+          "name": "Давайте жить дружно",
+          "description": "Войти в десятку лучших, никого не убив."
+        },
+        {
+          "apiname": "ACHIVE006",
+          "achieved": 1,
+          "unlocktime": 1756405037,
+          "name": "Стрельба на короткие дистанции – мастер",
+          "description": "Убить 200 игроков из дробовика, пистолета и/или пистолета-пулемёта."
+        },
+        {
+          "apiname": "ACHIVE007",
+          "achieved": 1,
+          "unlocktime": 1737667569,
+          "name": "Стрельба на короткие дистанции – эксперт",
+          "description": "Убить 50 игроков из дробовика, пистолета и/или пистолета-пулемёта."
+        },
+        {
+          "apiname": "ACHIVE008",
+          "achieved": 1,
+          "unlocktime": 1736355118,
+          "name": "Стрельба на короткие дистанции – новичок",
+          "description": "Убить 10 игроков из дробовика, пистолета и/или пистолета-пулемёта."
+        },
+        {
+          "apiname": "ACHIVE009",
+          "achieved": 1,
+          "unlocktime": 1744747824,
+          "name": "Стрельба на дальние дистанции – мастер",
+          "description": "Убить 100 игроков из штурмовой и/или снайперской винтовки со 100 метров."
+        },
+        {
+          "apiname": "ACHIVE010",
+          "achieved": 1,
+          "unlocktime": 1737824106,
+          "name": "Стрельба на дальние дистанции – эксперт",
+          "description": "Убить 30 игроков из штурмовой и/или снайперской винтовки со 100 метров."
+        },
+        {
+          "apiname": "ACHIVE011",
+          "achieved": 1,
+          "unlocktime": 1736450364,
+          "name": "Стрельба на дальние дистанции – новичок",
+          "description": "Убить 10 игроков из штурмовой и/или снайперской винтовки со 100 метров."
+        },
+        {
+          "apiname": "ACHIVE012",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Подрывник – мастер",
+          "description": "Убить 50 игроков гранатами."
+        },
+        {
+          "apiname": "ACHIVE013",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Подрывник – эксперт",
+          "description": "Убить 30 игроков гранатами."
+        },
+        {
+          "apiname": "ACHIVE014",
+          "achieved": 1,
+          "unlocktime": 1760469781,
+          "name": "Подрывник – новичок",
+          "description": "Убить 10 игроков гранатами."
+        },
+        {
+          "apiname": "ACHIVE015",
+          "achieved": 1,
+          "unlocktime": 1770753186,
+          "name": "Длинный и тернистый путь",
+          "description": "Убить 1000 игроков."
+        },
+        {
+          "apiname": "ACHIVE016",
+          "achieved": 1,
+          "unlocktime": 1737668267,
+          "name": "Сопутствующий ущерб",
+          "description": "Убить 100 игроков."
+        },
+        {
+          "apiname": "ACHIVE017",
+          "achieved": 1,
+          "unlocktime": 1735919950,
+          "name": "Одержимость",
+          "description": "Убить 10 игроков."
+        },
+        {
+          "apiname": "ACHIVE018",
+          "achieved": 1,
+          "unlocktime": 1735849256,
+          "name": "Рыльце в пушку",
+          "description": "Убить игрока."
+        },
+        {
+          "apiname": "ACHIVE019",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Первое правило бойцовского клуба",
+          "description": "Убить 20 противников голыми руками."
+        },
+        {
+          "apiname": "ACHIVE020",
+          "achieved": 1,
+          "unlocktime": 1735849560,
+          "name": "Череда убийств",
+          "description": "Убить 4 и более противников в одном матче."
+        },
+        {
+          "apiname": "ACHIVE021",
+          "achieved": 1,
+          "unlocktime": 1745694526,
+          "name": "Знаток тригонометрии",
+          "description": "Убить 10 противников выстрелом в голову из снайперской винтовки."
+        },
+        {
+          "apiname": "ACHIVE022",
+          "achieved": 1,
+          "unlocktime": 1758907858,
+          "name": "Теперь-то я готов воевать!",
+          "description": "Экипировать шлем 3-го уровня, военный жилет и рюкзак 3-го уровня в 10 матчах."
+        },
+        {
+          "apiname": "ACHIVE023",
+          "achieved": 1,
+          "unlocktime": 1736432250,
+          "name": "Первая кровь",
+          "description": "Совершить первое убийство в матче."
+        },
+        {
+          "apiname": "ACHIVE024",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Когда-то и их вела дорога приключений",
+          "description": "Убить 10 игроков из арбалета."
+        },
+        {
+          "apiname": "ACHIVE025",
+          "achieved": 1,
+          "unlocktime": 1763856121,
+          "name": "Всё в дом",
+          "description": "Забрать 50 предметов из дропа."
+        },
+        {
+          "apiname": "ACHIVE026",
+          "achieved": 1,
+          "unlocktime": 1744828882,
+          "name": "Агент 48",
+          "description": "Убить 50 игроков из бесшумного оружия."
+        },
+        {
+          "apiname": "ACHIVE027",
+          "achieved": 1,
+          "unlocktime": 1740919160,
+          "name": "Видишь меня? А теперь?",
+          "description": "Надеть маскхалат."
+        },
+        {
+          "apiname": "ACHIVE028",
+          "achieved": 1,
+          "unlocktime": 1737668636,
+          "name": "За ВДВ!",
+          "description": "Выпрыгнуть из самолёта 101 раз."
+        },
+        {
+          "apiname": "ACHIVE029",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Дорога ярости",
+          "description": "Застрелить 10 игроков, находясь в транспорте."
+        },
+        {
+          "apiname": "ACHIVE030",
+          "achieved": 1,
+          "unlocktime": 1735919976,
+          "name": "Ангел-хранитель",
+          "description": "Оживить тяжелораненного союзника."
+        },
+        {
+          "apiname": "ACHIVE031",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Призрак",
+          "description": "Поместить оружие с глушителем в каждый слот оружия. Посмотрим, какое оружие бесшумное!"
+        },
+        {
+          "apiname": "ACHIVE032",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Пригорело",
+          "description": "Убить игрока сковородой."
+        },
+        {
+          "apiname": "ACHIVE033",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Форсаж",
+          "description": "Задавить транспортом 10 игроков."
+        },
+        {
+          "apiname": "ACHIVE034",
+          "achieved": 1,
+          "unlocktime": 1735849080,
+          "name": "Мне нужна твоя одежда",
+          "description": "Надеть одежду убитого игрока."
+        },
+        {
+          "apiname": "ACHIVE035",
+          "achieved": 1,
+          "unlocktime": 1745000076,
+          "name": "Свой среди чужих",
+          "description": "Сесть в транспорт, в котором уже находится противник."
+        },
+        {
+          "apiname": "ACHIVE036",
+          "achieved": 1,
+          "unlocktime": 1736014160,
+          "name": "Под кайфом",
+          "description": "Заполнить шкалу энергии до конца из-за передозировки энергетиком или болеутоляющим."
+        }
+      ],
+      "achievementsUnlocked": 29,
+      "achievementsTotal": 37,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2026-04-12T21:25:57.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_579110": {
+      "id": "steam_579110",
+      "title": "Interkosmos",
+      "appid": "579110",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/579110/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_619700": {
+      "id": "steam_619700",
+      "title": "Steel Rats",
+      "appid": "619700",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/619700/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_632470": {
+      "id": "steam_632470",
+      "title": "Disco Elysium",
+      "appid": "632470",
+      "platform": "Steam",
+      "hoursPlayed": 0.45,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/632470/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2023-03-18T23:35:35.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_640590": {
+      "id": "steam_640590",
+      "title": "The LEGO® NINJAGO® Movie Video Game",
+      "appid": "640590",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/640590/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_727020": {
+      "id": "steam_727020",
+      "title": "Arcade Moonlander",
+      "appid": "727020",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/727020/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_758980": {
+      "id": "steam_758980",
+      "title": "Poker Legends: Tournaments",
+      "appid": "758980",
+      "platform": "Steam",
+      "hoursPlayed": 2.25,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/758980/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-07-26T12:35:56.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1046930": {
+      "id": "steam_1046930",
+      "title": "Dota Underlords",
+      "appid": "1046930",
+      "platform": "Steam",
+      "hoursPlayed": 0.97,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1046930/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2020-04-05T21:10:21.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1070330": {
+      "id": "steam_1070330",
+      "title": "Russian Life Simulator",
+      "appid": "1070330",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1070330/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1076280": {
+      "id": "steam_1076280",
+      "title": "Showdown Bandit",
+      "appid": "1076280",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1076280/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1172470": {
+      "id": "steam_1172470",
+      "title": "Apex Legends",
+      "appid": "1172470",
+      "platform": "Steam",
+      "hoursPlayed": 9.02,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2023-02-04T01:00:34.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1237950": {
+      "id": "steam_1237950",
+      "title": "STAR WARS™ Battlefront™ II",
+      "appid": "1237950",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1237950/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1238840": {
+      "id": "steam_1238840",
+      "title": "Battlefield™ 1",
+      "appid": "1238840",
+      "platform": "Steam",
+      "hoursPlayed": 5.23,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1238840/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-02-07T18:38:36.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1284410": {
+      "id": "steam_1284410",
+      "title": "GWENT: The Witcher Card Game",
+      "appid": "1284410",
+      "platform": "Steam",
+      "hoursPlayed": 63.33,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1284410/header.jpg",
+      "achievements": [
+        {
+          "apiname": "Agressor",
+          "achieved": 1,
+          "unlocktime": 1602751006,
+          "name": "Агрессор",
+          "description": "Нанести отрядам 30 ед. урона за один сетевой матч."
+        },
+        {
+          "apiname": "Alchemist",
+          "achieved": 1,
+          "unlocktime": 1619379101,
+          "name": "Алхимик",
+          "description": "Преобразовать карту."
+        },
+        {
+          "apiname": "Artifanatic",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Артефанатик",
+          "description": "Собрать на поле 4 артефакта."
+        },
+        {
+          "apiname": "ArtOfWar",
+          "achieved": 1,
+          "unlocktime": 1601808919,
+          "name": "Искусство войны",
+          "description": "Отдать приказ 3 отрядам за ход."
+        },
+        {
+          "apiname": "BaptizedWithFire",
+          "achieved": 1,
+          "unlocktime": 1656798370,
+          "name": "Крещение огнем",
+          "description": "Сыграть за матч по карте из 5 разных фракций."
+        },
+        {
+          "apiname": "BasicsMastered",
+          "achieved": 1,
+          "unlocktime": 1601808386,
+          "name": "В целом ясно",
+          "description": "Пройти обучение."
+        },
+        {
+          "apiname": "Blacksmith",
+          "achieved": 1,
+          "unlocktime": 1601808513,
+          "name": "Кузнец",
+          "description": "Сыграть бронзовую и золотую карты в сетевой игре."
+        },
+        {
+          "apiname": "Blitz",
+          "achieved": 1,
+          "unlocktime": 1656845872,
+          "name": "Блиц",
+          "description": "Сыграть 5 карт за ход."
+        },
+        {
+          "apiname": "CatchEmAll",
+          "achieved": 1,
+          "unlocktime": 1602751058,
+          "name": "Собери их всех",
+          "description": "Собрать 50 уникальных карт одной из фракций."
+        },
+        {
+          "apiname": "CommonDenominator",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ничего необычного",
+          "description": "Выиграть сетевой матч без золотых карт в колоде."
+        },
+        {
+          "apiname": "Destroyer",
+          "achieved": 1,
+          "unlocktime": 1620823058,
+          "name": "Разрушитель",
+          "description": "Уничтожить 3 отряда одной картой."
+        },
+        {
+          "apiname": "FantasticFive",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Фантастическая пятёрка",
+          "description": "Получить по одному лидеру из каждой фракции."
+        },
+        {
+          "apiname": "GlovesOff",
+          "achieved": 1,
+          "unlocktime": 1619378275,
+          "name": "Шутки кончились",
+          "description": "Сыграть 3 сетевых матча."
+        },
+        {
+          "apiname": "GoAllIn",
+          "achieved": 1,
+          "unlocktime": 1656800432,
+          "name": "Пан или пропал",
+          "description": "Остаться без карт в колоде."
+        },
+        {
+          "apiname": "GreatestAdmirer",
+          "achieved": 1,
+          "unlocktime": 1656960417,
+          "name": "Большой фанат",
+          "description": "Отправить противнику благодарность 50 раз."
+        },
+        {
+          "apiname": "HadEnoughYet",
+          "achieved": 1,
+          "unlocktime": 1619378275,
+          "name": "Хватит с тебя",
+          "description": "Выиграть с 2 картами в руке."
+        },
+        {
+          "apiname": "HallOfHeroes",
+          "achieved": 1,
+          "unlocktime": 1601809157,
+          "name": "Зал славы",
+          "description": "Достичь 1-го уровня престижа."
+        },
+        {
+          "apiname": "HeadStart",
+          "achieved": 1,
+          "unlocktime": 1620824079,
+          "name": "С места в карьер",
+          "description": "Начать раунд с 10 ед. силы на поле."
+        },
+        {
+          "apiname": "HeadToHead",
+          "achieved": 1,
+          "unlocktime": 1656844645,
+          "name": "Ноздря в ноздрю",
+          "description": "Сыграть сетевой матч вничью."
+        },
+        {
+          "apiname": "HeartOfGold",
+          "achieved": 1,
+          "unlocktime": 1620382026,
+          "name": "Милосердие",
+          "description": "Выиграть бой, не уничтожив ни одного отряда противника."
+        },
+        {
+          "apiname": "HurricaneSeason",
+          "achieved": 1,
+          "unlocktime": 1657092238,
+          "name": "Сезон дождей",
+          "description": "Заполнить всю сторону противника эффектами ряда."
+        },
+        {
+          "apiname": "IronFist",
+          "achieved": 1,
+          "unlocktime": 1601808692,
+          "name": "Железная рука",
+          "description": "Выиграть раунд при помощи одних только отрядов с приказом."
+        },
+        {
+          "apiname": "KickinUpDust",
+          "achieved": 1,
+          "unlocktime": 1601809161,
+          "name": "Азарт",
+          "description": "Сыграть рейтинговый матч."
+        },
+        {
+          "apiname": "Leviathan",
+          "achieved": 1,
+          "unlocktime": 1675866332,
+          "name": "Левиафан",
+          "description": "Усилить отряд более чем на 30 ед. за один сетевой матч."
+        },
+        {
+          "apiname": "MasterTactician",
+          "achieved": 1,
+          "unlocktime": 1657092638,
+          "name": "Гений тактики",
+          "description": "Получить преимущество в 3 карты."
+        },
+        {
+          "apiname": "Milestone",
+          "achieved": 1,
+          "unlocktime": 1602751020,
+          "name": "Веха",
+          "description": "Достичь 15-го уровня."
+        },
+        {
+          "apiname": "MissionImpossible",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Миссия невыполнима",
+          "description": "Уничтожить неуязвимый отряд."
+        },
+        {
+          "apiname": "Munchkin",
+          "achieved": 1,
+          "unlocktime": 1602751020,
+          "name": "Манчкин",
+          "description": "Достичь 40-го уровня."
+        },
+        {
+          "apiname": "NapoleonComplex",
+          "achieved": 1,
+          "unlocktime": 1620824369,
+          "name": "Комплекс Наполеона",
+          "description": "Уничтожить легендарный вражеский отряд с помощью обычного дружественного отряда."
+        },
+        {
+          "apiname": "Next",
+          "achieved": 1,
+          "unlocktime": 1619378275,
+          "name": "Следующий!",
+          "description": "Выиграть 3 сетевых матча подряд в любом режиме."
+        },
+        {
+          "apiname": "NoManLeftBehind",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Своих не бросаем",
+          "description": "Воскресить 5 отрядов за матч."
+        },
+        {
+          "apiname": "NothingWasted",
+          "achieved": 1,
+          "unlocktime": 1602868713,
+          "name": "Не напрасно было",
+          "description": "Перемолоть 50 карт."
+        },
+        {
+          "apiname": "Overkill",
+          "achieved": 1,
+          "unlocktime": 1620824611,
+          "name": "Перегиб",
+          "description": "Выиграть финальный раунд сетевого матча с преимуществом 50 или более очков."
+        },
+        {
+          "apiname": "QuickBefore",
+          "achieved": 1,
+          "unlocktime": 1656975749,
+          "name": "Скорее, не дайте им…",
+          "description": "Уничтожить отряд с рвением, до того как оно активируется."
+        },
+        {
+          "apiname": "Quintuplets",
+          "achieved": 1,
+          "unlocktime": 1620824379,
+          "name": "Квинтет",
+          "description": "Собрать на поле 5 отрядов с одинаковой силой."
+        },
+        {
+          "apiname": "ReadyForBattle",
+          "achieved": 1,
+          "unlocktime": 1601809355,
+          "name": "К бою готов",
+          "description": "Выбрать облик лидера, аватар, рамку и титул."
+        },
+        {
+          "apiname": "RomeoAndJuliet",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Ромео и Джульетта",
+          "description": "Уничтожить обреченный вражеский отряд с помощью обреченного дружественного отряда."
+        },
+        {
+          "apiname": "Shiny",
+          "achieved": 1,
+          "unlocktime": 1676120039,
+          "name": "Блестелка!",
+          "description": "Собрать не менее 150 премиальных карт."
+        },
+        {
+          "apiname": "Smashsmash",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Надо бах-бах?",
+          "description": "Открыть 100 бочек."
+        },
+        {
+          "apiname": "Specialist",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Особая тактика",
+          "description": "Выиграть с помощью 15 особых карт."
+        },
+        {
+          "apiname": "TablesTurned",
+          "achieved": 1,
+          "unlocktime": 1633972969,
+          "name": "Неожиданный поворот",
+          "description": "Выиграть раунд и игру, поначалу отставая на 20 очков."
+        },
+        {
+          "apiname": "ThanksButNoThanks",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Спасибо, не надо",
+          "description": "Выиграть обычную битву без замены карт."
+        },
+        {
+          "apiname": "TheMoreTheMerrier",
+          "achieved": 1,
+          "unlocktime": 1620824179,
+          "name": "Вместе веселее",
+          "description": "Полностью заполнить отрядами один ряд."
+        },
+        {
+          "apiname": "Trouper",
+          "achieved": 0,
+          "unlocktime": 0,
+          "name": "Трудяга",
+          "description": "Достичь 20-го ранга."
+        },
+        {
+          "apiname": "WeAreLegion",
+          "achieved": 1,
+          "unlocktime": 1657112142,
+          "name": "Имя нам легион",
+          "description": "Создать 5 дружественных отрядов за ход."
+        },
+        {
+          "apiname": "YourWishIsOurCommand",
+          "achieved": 1,
+          "unlocktime": 1602750690,
+          "name": "Так точно!",
+          "description": "Отдать 10 приказов за ход."
+        }
+      ],
+      "achievementsUnlocked": 36,
+      "achievementsTotal": 46,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-07-22T06:26:09.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1307090": {
+      "id": "steam_1307090",
+      "title": "Barro Racing",
+      "appid": "1307090",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1307090/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1422450": {
+      "id": "steam_1422450",
+      "title": "Deadlock",
+      "appid": "1422450",
+      "platform": "Steam",
+      "hoursPlayed": 31.75,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1422450/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2024-10-24T19:28:20.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_1938090": {
+      "id": "steam_1938090",
+      "title": "Call of Duty®",
+      "appid": "1938090",
+      "platform": "Steam",
+      "hoursPlayed": 0.27,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/1938090/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-01-10T16:17:33.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2073620": {
+      "id": "steam_2073620",
+      "title": "Arena Breakout: Infinite",
+      "appid": "2073620",
+      "platform": "Steam",
+      "hoursPlayed": 2.23,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2073620/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-10-26T10:36:53.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2149010": {
+      "id": "steam_2149010",
+      "title": "Little Nightmares Enhanced Edition",
+      "appid": "2149010",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2149010/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2427410": {
+      "id": "steam_2427410",
+      "title": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
+      "appid": "2427410",
+      "platform": "Steam",
+      "hoursPlayed": 0.02,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2427410/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-05-22T07:15:44.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2807960": {
+      "id": "steam_2807960",
+      "title": "Battlefield™ 6",
+      "appid": "2807960",
+      "platform": "Steam",
+      "hoursPlayed": 0.78,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2807960/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": "2025-10-28T19:08:17.000Z",
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    },
+    "steam_2881650": {
+      "id": "steam_2881650",
+      "title": "Content Warning",
+      "appid": "2881650",
+      "platform": "Steam",
+      "hoursPlayed": 0,
+      "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2881650/header.jpg",
+      "achievements": [],
+      "achievementsUnlocked": 0,
+      "achievementsTotal": 0,
+      "sessions": [],
+      "source": "steam",
+      "lastPlayedAt": null,
+      "importedAt": "2026-04-12T22:10:07.272Z"
+    }
+  },
+  "settings": {
+    "steamApiKey": "F6255C685D73F359E9DD79CD280AAE01",
+    "steamId": "76561198969367436"
+  },
+  "lastBackup": null,
+  "exportedAt": "2026-04-12T22:15:21.505Z",
+  "version": 1
+}
