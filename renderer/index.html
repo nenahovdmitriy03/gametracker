@@ -945,68 +945,79 @@
 
     <!-- СТАТИСТИКА -->
     <section id="view-stats" class="view stats-view">
-      <div class="view-header stats-view-header">
-        <div>
-          <h2>Статистика</h2>
+
+      <!-- Hero-шапка -->
+      <div class="sv-hero">
+        <div class="sv-hero-bg"></div>
+        <div class="sv-hero-content">
+          <div class="sv-hero-left">
+            <h2 class="sv-hero-title">Статистика</h2>
+            <div class="sv-hero-sub" id="sv-hero-sub">Обзор твоей библиотеки</div>
+          </div>
+          <div class="sv-hero-metrics">
+            <div class="sv-metric sv-metric--primary">
+              <span class="sv-metric-val" id="ssc-hours">0</span>
+              <span class="sv-metric-label">часов сыграно</span>
+            </div>
+            <div class="sv-metric-divider"></div>
+            <div class="sv-metric">
+              <span class="sv-metric-val" id="ssc-games">0</span>
+              <span class="sv-metric-label" id="ssc-games-note">игр</span>
+            </div>
+            <div class="sv-metric-divider"></div>
+            <div class="sv-metric">
+              <span class="sv-metric-val" id="ssc-ach">0</span>
+              <span class="sv-metric-label" id="ssc-ach-note">достижений</span>
+            </div>
+            <div class="sv-metric-divider"></div>
+            <div class="sv-metric">
+              <span class="sv-metric-val" id="ssc-completed">0</span>
+              <span class="sv-metric-label" id="ssc-completed-note">пройдено</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Последняя активность -->
-      <div class="stats-activity-section">
-        <div class="stats-panel-head">
-          <h4>Последняя активность</h4>
-          <span>Недавние сессии</span>
-        </div>
-        <div class="stats-activity-list" id="stats-activity-list">
-          <!-- Карточки активности будут тут -->
-        </div>
-      </div>
+      <div class="sv-body">
 
-      <div class="stats-summary-row">
-        <div class="stat-summary-card">
-          <div class="ssc-value" id="ssc-games">0</div>
-          <div class="ssc-label">Игры</div>
-          <div class="ssc-note" id="ssc-games-note">в библиотеке</div>
+        <!-- Последняя активность -->
+        <div class="sv-section">
+          <div class="sv-section-head">
+            <div class="sv-section-icon">🕹️</div>
+            <h3 class="sv-section-title">Последняя активность</h3>
+            <span class="sv-section-badge" id="sv-activity-badge"></span>
+          </div>
+          <div class="stats-activity-list" id="stats-activity-list"></div>
         </div>
-        <div class="stat-summary-card">
-          <div class="ssc-value" id="ssc-hours">0</div>
-          <div class="ssc-label">Часы</div>
-          <div class="ssc-note">сыграно всего</div>
-        </div>
-        <div class="stat-summary-card">
-          <div class="ssc-value" id="ssc-ach">0</div>
-          <div class="ssc-label">Достижения</div>
-          <div class="ssc-note" id="ssc-ach-note">получено</div>
-        </div>
-        <div class="stat-summary-card">
-          <div class="ssc-value" id="ssc-completed">0</div>
-          <div class="ssc-label">Пройдено</div>
-          <div class="ssc-note" id="ssc-completed-note">из всей библиотеки</div>
-        </div>
-      </div>
 
-      <div class="stats-detail-grid">
-        <div class="chart-card stats-panel stats-panel-large">
-          <div class="stats-panel-head">
-            <h4>Больше всего времени</h4>
-            <span id="stats-top-note"></span>
+        <!-- Детали -->
+        <div class="sv-grid">
+          <div class="sv-panel sv-panel--tall">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">🏆</div>
+              <h3 class="sv-section-title">Топ по времени</h3>
+              <span class="sv-section-badge" id="stats-top-note"></span>
+            </div>
+            <div class="stats-game-list" id="stats-top-games"></div>
           </div>
-          <div class="stats-game-list" id="stats-top-games"></div>
-        </div>
-        <div class="chart-card stats-panel">
-          <div class="stats-panel-head">
-            <h4>Статусы</h4>
-            <span id="stats-status-note"></span>
+          <div class="sv-panel">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">📊</div>
+              <h3 class="sv-section-title">Статусы</h3>
+              <span class="sv-section-badge" id="stats-status-note"></span>
+            </div>
+            <div class="stats-status-list" id="stats-status-list"></div>
           </div>
-          <div class="stats-status-list" id="stats-status-list"></div>
-        </div>
-        <div class="chart-card stats-panel">
-          <div class="stats-panel-head">
-            <h4>Достижения</h4>
-            <span id="stats-ach-note"></span>
+          <div class="sv-panel">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">⭐</div>
+              <h3 class="sv-section-title">Достижения</h3>
+              <span class="sv-section-badge" id="stats-ach-note"></span>
+            </div>
+            <div class="stats-game-list" id="stats-achievements-list"></div>
           </div>
-          <div class="stats-game-list" id="stats-achievements-list"></div>
         </div>
+
       </div>
     </section>
 

@@ -4538,9 +4538,16 @@ function drawStatsCards() {
   const gamesNote = document.getElementById('ssc-games-note');
   const achNote = document.getElementById('ssc-ach-note');
   const completedNote = document.getElementById('ssc-completed-note');
-  if (gamesNote) gamesNote.textContent = list.length === 1 ? 'игра в библиотеке' : 'игр в библиотеке';
-  if (achNote) achNote.textContent = totalAchievements ? `из ${totalAchievements} всего` : 'пока без данных';
+  const heroSub = document.getElementById('sv-hero-sub');
+  if (gamesNote) gamesNote.textContent = list.length === 1 ? 'игра' : 'игр';
+  if (achNote) achNote.textContent = totalAchievements ? `из ${totalAchievements}` : 'достижений';
   if (completedNote) completedNote.textContent = `${completedPct}% библиотеки`;
+  if (heroSub) {
+    const recentAll = list.reduce((s, g) => s + getRecentHours(g), 0);
+    heroSub.textContent = recentAll > 0
+      ? `${fmtH(recentAll)} ч за последние 2 недели`
+      : `${list.length} игр в библиотеке`;
+  }
 
   renderStatsTopGames(list);
   renderStatsStatusBreakdown(list);
@@ -4577,8 +4584,8 @@ function renderStatsActivity(list) {
   }
 
   const totalRecent = recent.reduce((s, g) => s + getRecentHours(g), 0);
-  const headerNote = document.querySelector('.stats-activity-section .stats-panel-head span');
-  if (headerNote) headerNote.textContent = totalRecent > 0 ? `${fmtH(totalRecent)} ч за последние 2 недели` : 'Недавние сессии';
+  const badge = document.getElementById('sv-activity-badge');
+  if (badge) badge.textContent = totalRecent > 0 ? `${fmtH(totalRecent)} ч за 2 нед.` : `${recent.length} игр`;
 
   root.innerHTML = recent.map(game => {
     const cover = statsGameArt(game);
@@ -4588,31 +4595,32 @@ function renderStatsActivity(list) {
     const total = game.achievementsTotal || 0;
     const achPct = total > 0 ? Math.round(unlocked / total * 100) : 0;
     const lastDate = game.lastPlayedAt
-      ? new Date(game.lastPlayedAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
+      ? new Date(game.lastPlayedAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
       : '';
+    const statusLabel = game.status ? (STATUS_LABELS[game.status] || '') : '';
+    const statusColor = statusAccentColor(game.status || '');
 
     return `
       <div class="sa-entry" onclick="openStatsGame('${esc(game.id)}')">
         <div class="sa-capsule-wrap">
           <img class="sa-capsule" src="${esc(cover)}" alt=""
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="sa-capsule-fallback" style="display:none">
-            <span>🎮</span>
-          </div>
+          <div class="sa-capsule-fallback" style="display:none">🎮</div>
         </div>
         <div class="sa-info">
-          <div class="sa-title">${esc(game.title)}</div>
+          <div class="sa-row-top">
+            <span class="sa-title">${esc(game.title)}</span>
+            ${statusLabel ? `<span class="sa-status" style="--sc:${statusColor}">${esc(statusLabel)}</span>` : ''}
+          </div>
           <div class="sa-hours">
             <span class="sa-hours-total">${fmtH(totalH)} ч всего</span>
-            ${recentH > 0 ? `<span class="sa-hours-recent">последние 2 недели: ${fmtH(recentH)} ч</span>` : ''}
-            ${lastDate ? `<span class="sa-last-played">Последний запуск: ${lastDate}</span>` : ''}
+            ${recentH > 0 ? `<span class="sa-hours-sep">·</span><span class="sa-hours-recent">${fmtH(recentH)} ч за 2 нед.</span>` : ''}
+            ${lastDate ? `<span class="sa-hours-sep">·</span><span class="sa-last-played">${lastDate}</span>` : ''}
           </div>
           ${total > 0 ? `
             <div class="sa-ach">
-              <div class="sa-ach-track">
-                <div class="sa-ach-fill" style="width:${achPct}%"></div>
-              </div>
-              <span class="sa-ach-text">Достижения: ${unlocked} из ${total}</span>
+              <div class="sa-ach-track"><div class="sa-ach-fill" style="width:${achPct}%"></div></div>
+              <span class="sa-ach-text">${unlocked} / ${total}</span>
             </div>
           ` : ''}
         </div>
