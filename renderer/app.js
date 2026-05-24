@@ -4872,7 +4872,7 @@ function makeGameCard(game) {
   card.innerHTML = `
     <div class="gc-art">
       ${cover
-        ? `<img class="gc-cover" src="${esc(cover)}" alt="${esc(game.title)}" loading="lazy" decoding="async"
+        ? `<img class="gc-cover" src="${esc(cover)}" alt="${esc(game.title)}" decoding="async"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
            <div class="gc-no-cover" style="display:none">🎮</div>`
         : `<div class="gc-no-cover">🎮</div>`}

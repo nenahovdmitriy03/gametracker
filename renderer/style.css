@@ -758,9 +758,6 @@ html, body {
   cursor: pointer;
   position: relative;
   display: flex; flex-direction: column;
-  content-visibility: auto;
-  contain: layout paint style;
-  contain-intrinsic-size: 312px 360px;
   transition: border-color .3s, box-shadow .3s; /* Removed transform transition for JS 3D tilt */
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
   transform-style: preserve-3d;
