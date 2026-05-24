@@ -7568,78 +7568,122 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
   cursor: pointer;
 }
 
-/* --- Stats Activity Section --- */
+/* --- Stats Activity Section (Steam-style) --- */
 .stats-activity-section {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
-
 .stats-activity-list {
   display: flex;
-  gap: 15px;
-  overflow-x: auto;
-  padding: 5px 0 15px 0;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.1) transparent;
-}
-
-.stats-activity-list::-webkit-scrollbar {
-  height: 6px;
-}
-.stats-activity-list::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-}
-
-.activity-card {
-  flex: 0 0 220px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  flex-direction: column;
+  gap: 0;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.2s, background 0.2s;
+  border: 1px solid rgba(148,163,184,.10);
+  background: rgba(15,23,42,.46);
+}
+.sa-entry {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
   cursor: pointer;
+  transition: background .15s ease;
+  border-bottom: 1px solid rgba(148,163,184,.07);
 }
-
-.activity-card:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
+.sa-entry:last-child { border-bottom: none; }
+.sa-entry:hover {
+  background: rgba(255,255,255,.04);
 }
-
-.activity-card-cover {
+.sa-capsule-wrap {
+  flex: 0 0 184px;
+  min-height: 86px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(30,41,59,.9), rgba(15,23,42,.95));
+}
+.sa-capsule {
   width: 100%;
-  height: 120px;
+  height: 100%;
   object-fit: cover;
-  background: #222;
+  display: block;
+  transition: transform .2s ease;
 }
-
-.activity-card-body {
-  padding: 12px;
+.sa-entry:hover .sa-capsule { transform: scale(1.04); }
+.sa-capsule-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: rgba(148,163,184,.4);
 }
-
-.activity-card-title {
-  font-size: 14px;
-  font-weight: 600;
+.sa-info {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.sa-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #c7d5e0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-bottom: 4px;
-  color: #fff;
+  transition: color .15s ease;
 }
-
-.activity-card-time {
+.sa-entry:hover .sa-title { color: #fff; }
+.sa-hours {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 12px;
+}
+.sa-hours-total {
   font-size: 12px;
-  color: #999;
+  font-weight: 600;
+  color: rgba(148,163,184,.72);
+}
+.sa-hours-recent {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(96,165,250,.88);
+}
+.sa-last-played {
+  font-size: 11px;
+  color: rgba(148,163,184,.5);
+  width: 100%;
+}
+.sa-ach {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
+  margin-top: 4px;
 }
-
-.activity-card-date {
+.sa-ach-track {
+  flex: 0 0 120px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(148,163,184,.14);
+  overflow: hidden;
+}
+.sa-ach-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(74,222,128,.82), rgba(52,211,153,.9));
+  transition: width .4s ease;
+}
+.sa-ach-text {
   font-size: 11px;
-  color: var(--accent);
-  margin-top: 8px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: rgba(148,163,184,.56);
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .sa-capsule-wrap { flex: 0 0 120px; min-height: 68px; }
+  .sa-info { padding: 10px 12px; }
+  .sa-title { font-size: 13px; }
+  .sa-ach-track { flex: 0 0 80px; }
 }

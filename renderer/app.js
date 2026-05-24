@@ -4548,44 +4548,73 @@ function drawStatsCards() {
   renderStatsActivity(list);
 }
 
+function getRecentHours(game, days = 14) {
+  const cutoff = Date.now() - days * 86400000;
+  return (game.sessions || []).reduce((sum, s) => {
+    const t = new Date(s.date).getTime();
+    return t >= cutoff ? sum + (s.minutes || 0) / 60 : sum;
+  }, 0);
+}
+
 function renderStatsActivity(list) {
   const root = document.getElementById('stats-activity-list');
   if (!root) return;
 
-  // Сначала пытаемся найти недавно запущенные
   let recent = [...list]
     .filter(g => g.lastPlayedAt)
-    .sort((a, b) => b.lastPlayedAt - a.lastPlayedAt);
+    .sort((a, b) => new Date(b.lastPlayedAt).getTime() - new Date(a.lastPlayedAt).getTime());
 
-  // Если таких нет, показываем просто последние добавленные (чтобы блок не был пустым)
   if (!recent.length) {
     recent = [...list]
       .sort((a, b) => (b.addedAt || 0) - (a.addedAt || 0));
   }
 
-  recent = recent.slice(0, 10);
+  recent = recent.slice(0, 8);
 
   if (!recent.length) {
     root.innerHTML = statsEmpty('В библиотеке пока нет игр');
     return;
   }
 
+  const totalRecent = recent.reduce((s, g) => s + getRecentHours(g), 0);
+  const headerNote = document.querySelector('.stats-activity-section .stats-panel-head span');
+  if (headerNote) headerNote.textContent = totalRecent > 0 ? `${fmtH(totalRecent)} ч за последние 2 недели` : 'Недавние сессии';
+
   root.innerHTML = recent.map(game => {
     const cover = statsGameArt(game);
-    const date = game.lastPlayedAt ? new Date(game.lastPlayedAt) : (game.addedAt ? new Date(game.addedAt) : null);
-    const dateStr = date ? date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }) : '—';
-    const label = game.lastPlayedAt ? 'Играл' : 'Добавлена';
-    
+    const totalH = game.hoursPlayed || 0;
+    const recentH = getRecentHours(game);
+    const unlocked = game.achievementsUnlocked || 0;
+    const total = game.achievementsTotal || 0;
+    const achPct = total > 0 ? Math.round(unlocked / total * 100) : 0;
+    const lastDate = game.lastPlayedAt
+      ? new Date(game.lastPlayedAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
+      : '';
+
     return `
-      <div class="activity-card" onclick="openStatsGame('${esc(game.id)}')">
-        <img class="activity-card-cover" src="${esc(cover)}" alt="" onerror="this.src='https://via.placeholder.com/220x120?text=No+Cover'">
-        <div class="activity-card-body">
-          <div class="activity-card-title">${esc(game.title)}</div>
-          <div class="activity-card-time">
-            <span>🕐</span>
-            <span>${fmtH(game.hoursPlayed || 0)} ч</span>
+      <div class="sa-entry" onclick="openStatsGame('${esc(game.id)}')">
+        <div class="sa-capsule-wrap">
+          <img class="sa-capsule" src="${esc(cover)}" alt=""
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sa-capsule-fallback" style="display:none">
+            <span>🎮</span>
           </div>
-          <div class="activity-card-date">${label}: ${dateStr}</div>
+        </div>
+        <div class="sa-info">
+          <div class="sa-title">${esc(game.title)}</div>
+          <div class="sa-hours">
+            <span class="sa-hours-total">${fmtH(totalH)} ч всего</span>
+            ${recentH > 0 ? `<span class="sa-hours-recent">последние 2 недели: ${fmtH(recentH)} ч</span>` : ''}
+            ${lastDate ? `<span class="sa-last-played">Последний запуск: ${lastDate}</span>` : ''}
+          </div>
+          ${total > 0 ? `
+            <div class="sa-ach">
+              <div class="sa-ach-track">
+                <div class="sa-ach-fill" style="width:${achPct}%"></div>
+              </div>
+              <span class="sa-ach-text">Достижения: ${unlocked} из ${total}</span>
+            </div>
+          ` : ''}
         </div>
       </div>
     `;
