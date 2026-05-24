@@ -3360,9 +3360,7 @@ function loadSLOverviewArtwork(card) {
   };
   const finishLoading = () => card.classList.remove('is-loading');
 
-  posterEl.loading = 'lazy';
   posterEl.decoding = 'async';
-  posterEl.fetchPriority = 'low';
 
   posterEl.onload = () => {
     posterEl.classList.remove('hidden');
