@@ -40,15 +40,6 @@
 </head>
 <body>
 
-<!-- ══ ФОН (Ambient Background) ══════════════════════ -->
-<div id="ambient-bg-container" class="ambient-bg-container">
-  <div class="ambient-orb orb-1"></div>
-  <div class="ambient-orb orb-2"></div>
-  <div class="ambient-orb orb-3"></div>
-  <img id="ambient-bg" src="" alt="" class="ambient-bg" />
-  <div class="ambient-bg-overlay"></div>
-</div>
-
 <!-- ══ ЗАГОЛОВОК ════════════════════════════════════ -->
 <div class="titlebar">
   <div class="titlebar-drag">
@@ -438,50 +429,6 @@
               <div class="sl-settings-section">
                 <div class="sl-settings-section-head">
                   <div>
-                    <div class="sl-settings-section-title">Постер</div>
-                    <div class="sl-settings-section-copy">Картинка для карточек в библиотеке</div>
-                  </div>
-                </div>
-                <div class="sl-poster-editor">
-                  <div class="sl-poster-preview">
-                    <img class="sl-poster-preview-img hidden" id="sl-poster-preview-img" alt="" />
-                    <div class="sl-poster-preview-ph" id="sl-poster-preview-ph">🎮</div>
-                  </div>
-                  <div class="sl-poster-fields">
-                    <div class="sl-settings-actions">
-                      <button class="sl-gear-item" id="sl-btn-pick-poster" type="button">Выбрать файл</button>
-                      <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-poster" type="button">Сбросить</button>
-                    </div>
-                    <input class="sl-settings-input" id="sl-poster-url" type="url" placeholder="https://..." autocomplete="off" />
-                    <div class="sl-settings-note">Лучше всего смотрится вертикальный постер 2:3: 600x900 px или 1200x1800 px. Подойдут JPG, PNG или WebP.</div>
-                  </div>
-                </div>
-              </div>
-              <div class="sl-settings-section">
-                <div class="sl-settings-section-head">
-                  <div>
-                    <div class="sl-settings-section-title">Фон игры</div>
-                    <div class="sl-settings-section-copy">Широкая картинка внутри страницы игры</div>
-                  </div>
-                </div>
-                <div class="sl-hero-editor">
-                  <div class="sl-hero-preview">
-                    <img class="sl-hero-preview-img hidden" id="sl-hero-preview-img" alt="" />
-                    <div class="sl-hero-preview-ph" id="sl-hero-preview-ph">🎮</div>
-                  </div>
-                  <div class="sl-poster-fields">
-                    <div class="sl-settings-actions">
-                      <button class="sl-gear-item" id="sl-btn-pick-hero" type="button">Выбрать файл</button>
-                      <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-hero" type="button">Сбросить</button>
-                    </div>
-                    <input class="sl-settings-input" id="sl-hero-url" type="url" placeholder="https://..." autocomplete="off" />
-                    <div class="sl-settings-note">Для фона лучше широкая картинка 16:9: 1920x1080 px или 2560x1440 px. Важные детали держи ближе к центру.</div>
-                  </div>
-                </div>
-              </div>
-              <div class="sl-settings-section">
-                <div class="sl-settings-section-head">
-                  <div>
                     <div class="sl-settings-section-title">Запуск и синхронизация</div>
                     <div class="sl-settings-section-copy">Для локальной версии укажи .exe и отключи Steam-обновления</div>
                   </div>
@@ -797,16 +744,6 @@
           <div class="gd2-cover-wrap">
             <img class="gd2-cover-img" id="gd2-cover" src="" alt="" />
             <div class="gd2-cover-ph hidden" id="gd2-cover-ph">🎮</div>
-          </div>
-
-          <div class="gd2-poster-tools">
-            <div class="gd2-section-label">Постер</div>
-            <div class="gd2-poster-actions">
-              <button class="btn-sm btn-ghost" id="gd2-poster-pick" type="button">Выбрать файл</button>
-              <button class="btn-sm btn-ghost" id="gd2-poster-reset" type="button">Сбросить</button>
-            </div>
-            <input class="gd2-poster-url" id="gd2-poster-url" type="url" placeholder="https://..." autocomplete="off" />
-            <div class="gd2-poster-hint">Лучше всего смотрится вертикальный постер 2:3: 600x900 px или 1200x1800 px. Подойдут JPG, PNG или WebP.</div>
           </div>
 
           <div class="gd2-meta-block">

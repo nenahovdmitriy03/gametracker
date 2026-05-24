@@ -28,7 +28,6 @@ let notificationPermissionRequested = false;
 const ACHIEVEMENT_POLL_DELAY_MS = 2000;
 const ACHIEVEMENT_POLL_INTERVAL_MS = 3000;
 const ACHIEVEMENT_NOTICE_TTL_MS = 6500;
-const ACTIVE_SESSION_STORAGE_KEY = 'gt.activeSession';
 const LIBRARY_SIDEBAR_AUTO_COLLAPSE_WIDTH = 1280;
 const LIBRARY_SIDEBAR_STORAGE_KEY = 'gt.librarySidebarCollapsed';
 let openedGameId     = null;   // id игры в открытой модалке
@@ -5794,124 +5793,6 @@ function refreshAchievementCounterViews(game) {
   });
 }
 
-function buildSessionOverlayData() {
-  const session = activeSession || readStoredOverlaySession();
-  if (!session) return { active: false };
-
-  const game = store.games[session.gameId];
-  if (!game) return { active: false };
-
-  const sessionStartSec = Math.floor((session.startTime || Date.now()) / 1000);
-  const achievements = (game.achievements || []).map(normalizeAchievement);
-  const unlockedThisSession = achievements
-    .filter(achievement => achievement.achieved && Number(achievement.unlocktime || 0) >= sessionStartSec - 5)
-    .sort((a, b) => Number(b.unlocktime || 0) - Number(a.unlocktime || 0))
-    .slice(0, 8);
-  const nextAchievements = achievements
-    .filter(achievement => !achievement.achieved)
-    .sort(sortAchievementsByRarity)
-    .slice(0, 5);
-
-  return {
-    active: true,
-    game: {
-      title: game.title || game.name || 'Игра',
-      cover: gameCover(game) || gamePoster(game) || '',
-      platform: syncSourceName(game),
-      hoursPlayed: Number(game.hoursPlayed || 0),
-    },
-    session: {
-      startedAt: session.startTime,
-      elapsedMs: Date.now() - session.startTime,
-    },
-    achievements: {
-      unlocked: game.achievementsUnlocked || achievements.filter(a => a.achieved).length,
-      total: game.achievementsTotal || achievements.length,
-      unlockedThisSession,
-      next: nextAchievements,
-    },
-  };
-}
-
-function pushOverlayData() {
-  ensureOverlaySession();
-  api.sendOverlayData(buildSessionOverlayData());
-}
-
-function storeOverlaySession(gameId, startTime) {
-  try {
-    sessionStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, JSON.stringify({ gameId, startTime }));
-  } catch {}
-}
-
-function clearStoredOverlaySession() {
-  try {
-    sessionStorage.removeItem(ACTIVE_SESSION_STORAGE_KEY);
-  } catch {}
-}
-
-function readStoredOverlaySession() {
-  try {
-    const parsed = JSON.parse(sessionStorage.getItem(ACTIVE_SESSION_STORAGE_KEY) || 'null');
-    if (!parsed?.gameId || !store.games?.[parsed.gameId]) return null;
-    const startTime = Number(parsed.startTime || 0);
-    if (!Number.isFinite(startTime) || startTime <= 0) return null;
-    return { gameId: parsed.gameId, startTime };
-  } catch {
-    return null;
-  }
-}
-
-if (api.onOverlayRequest) {
-  api.onOverlayRequest(pushOverlayData);
-}
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'F8' || (event.shiftKey && event.key === 'Tab')) {
-    event.preventDefault();
-    pushOverlayData();
-    api.toggleOverlay?.();
-  }
-});
-
-function inferOverlayGameId() {
-  if (activeSession?.gameId) return activeSession.gameId;
-  if (selectedLibGameId && store.games[selectedLibGameId]) return selectedLibGameId;
-  if (openedGameId && store.games[openedGameId]) return openedGameId;
-  return '';
-}
-
-function ensureOverlaySession() {
-  if (activeSession) return;
-  const stored = readStoredOverlaySession();
-  if (stored) {
-    const game = store.games[stored.gameId];
-    if (!game) return;
-    const interval = setInterval(() => {
-      const timerEl = document.getElementById('np-timer');
-      if (timerEl) timerEl.textContent = fmtSeconds(Math.floor((Date.now() - stored.startTime) / 1000));
-    }, 1000);
-    activeSession = {
-      gameId: stored.gameId,
-      startTime: stored.startTime,
-      timerInterval: interval,
-      achievementBaseline: achievementStateMap(game.achievements || []),
-    };
-    document.getElementById('np-game').textContent = game.title;
-    document.getElementById('np-cover').src = gameCover(game) || '';
-    document.getElementById('now-playing').classList.remove('hidden');
-    return;
-  }
-
-  const gameId = inferOverlayGameId();
-  if (!gameId) return;
-  startSession(gameId);
-  const game = store.games[gameId];
-  if (game && store.settings.steamPath && canPollSteamAchievements(game)) {
-    startActiveAchievementPolling(gameId);
-  }
-}
-
 function showAchievementUnlockedPopup(game, achievement) {
   const feed = document.getElementById('achievement-feed');
   if (!feed) return false;
@@ -5973,7 +5854,6 @@ function notifyAchievementUnlocked(game, achievement) {
   
   // Вызываем внешнее уведомление (стиль Steam)
   api.showAchievementNotification({ game, achievement });
-  pushOverlayData();
 
   if (!shownInLauncher) {
     toast(`🏆 ${game.title}: ${achievementName}`, 'ok');
@@ -6428,17 +6308,9 @@ function startSession(gameId) {
   const interval = setInterval(() => {
     document.getElementById('np-timer').textContent =
       fmtSeconds(Math.floor((Date.now() - startTime) / 1000));
-    pushOverlayData();
   }, 1000);
 
-  activeSession = {
-    gameId,
-    startTime,
-    timerInterval: interval,
-    achievementBaseline: achievementStateMap(game.achievements || []),
-  };
-  storeOverlaySession(gameId, startTime);
-  pushOverlayData();
+  activeSession = { gameId, startTime, timerInterval: interval, achievementBaseline: null };
   toast(`▶ Трекинг: ${game.title}`, 'ok');
 }
 
@@ -6449,8 +6321,6 @@ function stopSession() {
   const minutes = (Date.now() - activeSession.startTime) / 1000 / 60;
   const gameId  = activeSession.gameId;
   activeSession = null;
-  clearStoredOverlaySession();
-  pushOverlayData();
   document.getElementById('now-playing').classList.add('hidden');
   document.getElementById('np-timer').textContent = '00:00:00';
 
@@ -6495,7 +6365,6 @@ api.onAppRequestClose(async () => {
       game.sessions     = [...(game.sessions || []), { date: new Date().toISOString(), minutes: Math.round(minutes) }].slice(-200);
     }
     activeSession = null;
-    clearStoredOverlaySession();
     store = normalizeStore(store);
     await api.saveData(store);
   }

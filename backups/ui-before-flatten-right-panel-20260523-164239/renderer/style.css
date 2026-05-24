@@ -5080,13 +5080,11 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 16px;
   overflow: visible;
-  padding: 22px 26px;
+  padding: 22px 24px;
   border-left: 1px solid rgba(255,255,255,.05);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,.006)),
-    linear-gradient(90deg, rgba(var(--sl-hero-accent), .045), transparent 34%);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
 }
 
 .sl-section { margin-bottom: 26px; }
@@ -5629,12 +5627,15 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 }
 
 .sl-notes-card {
-  padding: 2px 0 22px;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  background: transparent;
-  box-shadow: none;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+    linear-gradient(135deg, rgba(var(--sl-hero-accent), .08), transparent 56%);
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 .sl-notes-card-head {
   display: flex;
@@ -5645,25 +5646,25 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 }
 .sl-notes-textarea {
   width: 100%;
-  min-height: 116px;
+  min-height: 118px;
   resize: vertical;
-  padding: 13px 2px 14px;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(255,255,255,.10);
-  background: transparent;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(7,12,19,.42);
   color: #edf3fa;
   font: inherit;
   line-height: 1.6;
   outline: none;
-  transition: border-color .16s ease, background .16s ease;
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
 }
 .sl-notes-textarea::placeholder {
   color: rgba(221,230,239,.42);
 }
 .sl-notes-textarea:focus {
-  border-color: rgba(var(--sl-hero-accent), .42);
-  background: linear-gradient(180deg, transparent, rgba(var(--sl-hero-accent), .035));
+  border-color: rgba(var(--sl-hero-accent), .30);
+  background: rgba(10,16,24,.58);
+  box-shadow: 0 0 0 3px rgba(var(--sl-hero-accent), .10);
 }
 .sl-notes-meta {
   margin-top: 10px;
@@ -5673,11 +5674,13 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 
 /* Achievements side panel */
 .sl-ach-panel {
-  padding: 22px 0 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  padding: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .sl-ach-panel-header {
@@ -5685,12 +5688,12 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  padding: 0;
-  margin: 0 0 14px;
-  border-radius: 0;
+  padding: 6px 10px;
+  margin: -6px -10px 8px;
+  border-radius: var(--radius-sm);
   transition: background .12s;
 }
-.sl-ach-panel-header:hover { background: transparent; }
+.sl-ach-panel-header:hover { background: rgba(255,255,255,.05); }
 .sl-ach-open-hint {
   font-size: 10px; color: var(--text-dim);
   font-style: italic;
@@ -6306,7 +6309,7 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 .sl-ach-bar-wrap {
   height: 4px; border-radius: 2px;
   background: rgba(255,255,255,.07);
-  margin-bottom: 16px; overflow: hidden;
+  margin-bottom: 12px; overflow: hidden;
 }
 .sl-ach-bar-fill {
   height: 100%;
@@ -6316,15 +6319,14 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 }
 .sl-ach-icons-row {
   display: flex; flex-wrap: wrap; gap: 5px;
-  margin: 12px 0 16px;
+  margin-bottom: 16px;
 }
 .sl-rare-wrap {
-  margin: 16px 0 14px;
-  padding: 16px 0 0;
-  border: 0;
-  border-top: 1px solid rgba(251,191,36,.18);
-  border-radius: 0;
-  background: transparent;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(251,191,36,.18);
+  background: linear-gradient(135deg, rgba(251,191,36,.08), rgba(255,255,255,.02));
 }
 .sl-rare-head {
   display: flex;
@@ -6340,32 +6342,28 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 }
 .sl-rare-list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
 }
 .sl-rare-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   min-width: 0;
-  min-height: 76px;
-  padding: 12px 0;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(255,255,255,.055);
-  background: transparent;
-}
-.sl-rare-item:last-child {
-  border-bottom: 0;
+  min-height: 104px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(8,12,19,.22);
 }
 .sl-rare-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   object-fit: cover;
   border: 1px solid rgba(255,255,255,.12);
   flex-shrink: 0;
-  background: rgba(255,255,255,.035);
+  background: rgba(255,255,255,.05);
 }
 .sl-rare-icon.locked {
   filter: grayscale(1);

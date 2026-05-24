@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, dialog, globalShortcut, screen } = require('electron');
+﻿const { app, BrowserWindow, ipcMain, shell, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs').promises;
 const fetch = require('node-fetch');
@@ -6,84 +6,7 @@ const fsSync = require('fs');
 const { pathToFileURL } = require('url');
 
 let mainWindow;
-let overlayWindow = null;
-let overlayData = null;
-let overlayPendingShow = false;
-let overlayPendingTimer = null;
 const getDataPath = () => path.join(app.getPath('userData'), 'gametracker-data.json');
-
-function createOverlayWindow() {
-  if (overlayWindow && !overlayWindow.isDestroyed()) return overlayWindow;
-
-  const { bounds } = screen.getPrimaryDisplay();
-  overlayWindow = new BrowserWindow({
-    x: bounds.x,
-    y: bounds.y,
-    width: bounds.width,
-    height: bounds.height,
-    frame: false,
-    transparent: true,
-    backgroundColor: '#00000000',
-    alwaysOnTop: true,
-    skipTaskbar: true,
-    show: false,
-    resizable: false,
-    movable: false,
-    fullscreenable: false,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false,
-    },
-  });
-
-  overlayWindow.setAlwaysOnTop(true, 'screen-saver');
-  overlayWindow.loadFile(path.join(__dirname, 'renderer', 'overlay.html'));
-  overlayWindow.on('closed', () => { overlayWindow = null; });
-  overlayWindow.webContents.once('did-finish-load', () => {
-    overlayWindow?.webContents.send('overlay:data', overlayData || { active: false });
-  });
-  return overlayWindow;
-}
-
-function showOverlay() {
-  const win = createOverlayWindow();
-  win.webContents.send('overlay:data', overlayData || { active: false });
-  win.show();
-  win.focus();
-}
-
-function hideOverlay() {
-  if (overlayWindow && !overlayWindow.isDestroyed()) overlayWindow.hide();
-}
-
-function toggleOverlay() {
-  if (overlayWindow && !overlayWindow.isDestroyed() && overlayWindow.isVisible()) {
-    hideOverlay();
-    return;
-  }
-  overlayPendingShow = true;
-  clearTimeout(overlayPendingTimer);
-  overlayPendingTimer = setTimeout(() => {
-    if (!overlayPendingShow) return;
-    overlayPendingShow = false;
-    showOverlay();
-  }, 350);
-  if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send('overlay:request-data');
-  } else {
-    overlayPendingShow = false;
-    showOverlay();
-  }
-}
-
-function registerOverlayShortcut() {
-  const shortcuts = ['Shift+Tab', 'F8'];
-  shortcuts.forEach(accelerator => {
-    const ok = globalShortcut.register(accelerator, toggleOverlay);
-    if (!ok) console.warn(`Failed to register ${accelerator} overlay shortcut`);
-  });
-}
 
 // в”Ђв”Ђ РћРєРЅРѕ в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ
 function createWindow() {
@@ -116,11 +39,7 @@ function createWindow() {
   });
 }
 
-app.whenReady().then(() => {
-  createWindow();
-  registerOverlayShortcut();
-});
-app.on('will-quit', () => globalShortcut.unregisterAll());
+app.whenReady().then(createWindow);
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit(); });
 app.on('activate', () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
 
@@ -133,24 +52,6 @@ ipcMain.on('app:ready-to-close', () => {
   mainWindow.close();
 });
 ipcMain.on('open:external', (_e, url) => shell.openExternal(url));
-ipcMain.on('overlay:update-data', (_e, data) => {
-  overlayData = data || { active: false };
-  if (overlayWindow && !overlayWindow.isDestroyed()) {
-    overlayWindow.webContents.send('overlay:data', overlayData);
-  }
-  if (overlayPendingShow) {
-    clearTimeout(overlayPendingTimer);
-    overlayPendingShow = false;
-    showOverlay();
-  }
-});
-ipcMain.on('overlay:hide', hideOverlay);
-ipcMain.on('overlay:toggle', toggleOverlay);
-ipcMain.on('overlay:request-data-now', () => {
-  if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send('overlay:request-data');
-  }
-});
 
 // РЎРёРЅС…СЂРѕРЅРЅРѕРµ СЃРѕС…СЂР°РЅРµРЅРёРµ (РґР»СЏ beforeunload)
 ipcMain.on('data:save-sync', (e, data) => {

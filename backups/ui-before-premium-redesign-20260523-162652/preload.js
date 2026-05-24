@@ -49,10 +49,4 @@ contextBridge.exposeInMainWorld('api', {
   showAchievementNotification: (opts) => ipcRenderer.send('achievement:show-notification', opts),
   hideNotification:           ()     => ipcRenderer.send('achievement:hide-notification'),
   onAchievementData:          (cb)   => ipcRenderer.on('achievement:data', (e, data) => cb(data)),
-  sendOverlayData:            (data) => ipcRenderer.send('overlay:update-data', data),
-  requestOverlayData:         ()     => ipcRenderer.send('overlay:request-data-now'),
-  hideOverlay:                ()     => ipcRenderer.send('overlay:hide'),
-  toggleOverlay:              ()     => ipcRenderer.send('overlay:toggle'),
-  onOverlayRequest:           (cb)   => ipcRenderer.on('overlay:request-data', () => cb()),
-  onOverlayData:              (cb)   => ipcRenderer.on('overlay:data', (_e, data) => cb(data)),
 });

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: transparent;
+        }
+
+        .notification {
+            width: 340px;
+            height: 90px;
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transform: translateX(400px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notification.visible {
+            transform: translateX(0);
+        }
+
+        .notification::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #66c0f4; /* Steam Blue */
+        }
+
+        .icon-wrap {
+            width: 64px;
+            height: 64px;
+            background: #333;
+            margin-right: 15px;
+            flex-shrink: 0;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .header {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #66c0f4;
+            font-weight: bold;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .game-title {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .achievement-name {
+            font-size: 15px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Анимация полоски редкости если нужно */
+        .rare .notification::before {
+            background: #f6e05e; /* Gold for rare */
+        }
+        .rare .header {
+            color: #f6e05e;
+        }
+    </style>
+</head>
+<body>
+    <div id="notify" class="notification">
+        <div class="icon-wrap">
+            <img id="icon" class="icon" src="" alt="">
+            <div id="icon-ph" style="font-size: 32px; display: none;">🏆</div>
+        </div>
+        <div class="content">
+            <div id="header" class="header">Достижение получено!</div>
+            <div id="game" class="game-title">Игра</div>
+            <div id="name" class="achievement-name">Название достижения</div>
+        </div>
+    </div>
+
+    <script>
+        const notify = document.getElementById('notify');
+        const icon = document.getElementById('icon');
+        const iconPh = document.getElementById('icon-ph');
+        const header = document.getElementById('header');
+        const gameEl = document.getElementById('game');
+        const nameEl = document.getElementById('name');
+        let audioCtx = null;
+
+        function playAchievementSound() {
+            try {
+                audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const now = audioCtx.currentTime;
+                const master = audioCtx.createGain();
+                master.gain.setValueAtTime(0.0001, now);
+                master.gain.exponentialRampToValueAtTime(0.16, now + 0.015);
+                master.gain.exponentialRampToValueAtTime(0.0001, now + 1.05);
+                master.connect(audioCtx.destination);
+
+                const lowpass = audioCtx.createBiquadFilter();
+                lowpass.type = 'lowpass';
+                lowpass.frequency.setValueAtTime(3600, now);
+                lowpass.Q.setValueAtTime(0.7, now);
+                lowpass.connect(master);
+
+                [
+                    { freq: 523.25, start: 0.00, dur: 0.34, gain: 0.45 },
+                    { freq: 659.25, start: 0.08, dur: 0.42, gain: 0.36 },
+                    { freq: 783.99, start: 0.18, dur: 0.58, gain: 0.28 },
+                    { freq: 1046.50, start: 0.30, dur: 0.46, gain: 0.12 },
+                ].forEach(note => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(note.freq, now + note.start);
+                    gain.gain.setValueAtTime(0.0001, now + note.start);
+                    gain.gain.exponentialRampToValueAtTime(note.gain, now + note.start + 0.018);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + note.start + note.dur);
+                    osc.connect(gain);
+                    gain.connect(lowpass);
+                    osc.start(now + note.start);
+                    osc.stop(now + note.start + note.dur + 0.05);
+                });
+
+                const noiseBuffer = audioCtx.createBuffer(1, Math.floor(audioCtx.sampleRate * 0.18), audioCtx.sampleRate);
+                const data = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < data.length; i += 1) {
+                    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 2);
+                }
+                const noise = audioCtx.createBufferSource();
+                const noiseGain = audioCtx.createGain();
+                const noiseFilter = audioCtx.createBiquadFilter();
+                noise.buffer = noiseBuffer;
+                noiseFilter.type = 'highpass';
+                noiseFilter.frequency.setValueAtTime(2600, now);
+                noiseGain.gain.setValueAtTime(0.045, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+                noise.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(master);
+                noise.start(now);
+                noise.stop(now + 0.2);
+            } catch {}
+        }
+
+        window.api.onAchievementData((data) => {
+            const { game, achievement } = data;
+            playAchievementSound();
+            
+            gameEl.textContent = game.title || 'Игра';
+            nameEl.textContent = achievement.displayName || 'Достижение';
+            
+            const isRare = (achievement.globalPercent !== null && achievement.globalPercent < 10);
+            notify.classList.toggle('rare', isRare);
+            header.textContent = isRare ? 'Редкое достижение!' : 'Достижение получено!';
+
+            const iconSrc = achievement.icon || achievement.iconGray || '';
+            if (iconSrc) {
+                icon.src = iconSrc;
+                icon.style.display = 'block';
+                iconPh.style.display = 'none';
+            } else {
+                icon.style.display = 'none';
+                iconPh.style.display = 'block';
+            }
+
+            // Показываем
+            notify.classList.add('visible');
+
+            // Убираем через 5 секунд
+            setTimeout(() => {
+                notify.classList.remove('visible');
+                setTimeout(() => {
+                    window.api.hideNotification();
+                }, 400);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

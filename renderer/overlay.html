@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Tracker Overlay</title>
+  <style>
+    * { box-sizing: border-box; }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: transparent;
+      color: #f8fafc;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      user-select: none;
+    }
+    body {
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .overlay-shell {
+      width: 100%;
+      height: 100%;
+      padding: 44px;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(34, 197, 94, .22), transparent 28%),
+        radial-gradient(circle at 86% 8%, rgba(56, 189, 248, .20), transparent 30%),
+        linear-gradient(135deg, rgba(5, 10, 20, .92), rgba(9, 17, 31, .78) 54%, rgba(2, 6, 23, .94));
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      transform: scale(1.015);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .overlay-shell.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .topbar {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(226, 232, 240, .82);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #22c55e, #38bdf8);
+      box-shadow: 0 0 24px rgba(34, 197, 94, .34);
+    }
+    .hint {
+      color: rgba(148, 163, 184, .88);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .grid {
+      height: calc(100% - 46px);
+      display: grid;
+      grid-template-columns: minmax(330px, 440px) minmax(0, 1fr) minmax(300px, 420px);
+      gap: 24px;
+      align-items: stretch;
+      padding-top: 26px;
+    }
+    .panel {
+      min-height: 0;
+      border: 1px solid rgba(148, 163, 184, .16);
+      border-radius: 18px;
+      background: rgba(15, 23, 42, .54);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .34);
+      overflow: hidden;
+    }
+    .game-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-wrap {
+      position: relative;
+      height: min(48vh, 420px);
+      min-height: 260px;
+      background: rgba(2, 6, 23, .62);
+      overflow: hidden;
+    }
+    .cover-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cover-empty {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: rgba(148, 163, 184, .64);
+      font-size: 54px;
+      font-weight: 900;
+    }
+    .cover-wrap::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(15, 23, 42, .98), transparent);
+    }
+    .game-copy {
+      padding: 24px;
+    }
+    .game-platform {
+      margin-bottom: 8px;
+      color: #7dd3fc;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .game-title {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(30px, 3vw, 48px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .stat {
+      padding: 14px;
+      border: 1px solid rgba(148, 163, 184, .12);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .04);
+    }
+    .stat-value {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .stat-label {
+      margin-top: 6px;
+      color: rgba(203, 213, 225, .70);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .session-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .session-clock {
+      font-variant-numeric: tabular-nums;
+      color: #fff;
+      font-size: clamp(74px, 9vw, 148px);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: 0;
+      text-shadow: 0 0 38px rgba(56, 189, 248, .24);
+    }
+    .session-label {
+      margin-top: 14px;
+      color: rgba(203, 213, 225, .72);
+      font-size: 14px;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .progress-card {
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(2, 6, 23, .38);
+      border: 1px solid rgba(148, 163, 184, .13);
+    }
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+      color: rgba(226, 232, 240, .88);
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .progress-track {
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(148, 163, 184, .18);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #22c55e, #38bdf8);
+      box-shadow: 0 0 28px rgba(56, 189, 248, .32);
+      transition: width .24s ease;
+    }
+    .side-panel {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .section-title {
+      margin: 0 0 12px;
+      color: rgba(248, 250, 252, .94);
+      font-size: 14px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .achievement {
+      min-height: 64px;
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 9px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .045);
+      border: 1px solid rgba(148, 163, 184, .10);
+    }
+    .achievement img,
+    .achievement-icon-empty {
+      width: 46px;
+      height: 46px;
+      border-radius: 9px;
+      object-fit: cover;
+      background: rgba(15, 23, 42, .82);
+    }
+    .achievement-icon-empty {
+      display: grid;
+      place-items: center;
+      color: rgba(148, 163, 184, .70);
+      font-weight: 900;
+    }
+    .achievement-name {
+      overflow: hidden;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .achievement-meta {
+      margin-top: 4px;
+      overflow: hidden;
+      color: rgba(203, 213, 225, .68);
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .empty-state {
+      display: grid;
+      place-items: center;
+      min-height: 160px;
+      padding: 22px;
+      border: 1px dashed rgba(148, 163, 184, .18);
+      border-radius: 16px;
+      color: rgba(203, 213, 225, .68);
+      text-align: center;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .no-session {
+      height: calc(100% - 46px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+    .no-session h1 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 54px;
+      letter-spacing: 0;
+    }
+    .no-session p {
+      max-width: 540px;
+      margin: 0;
+      color: rgba(203, 213, 225, .72);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+    @media (max-width: 1100px) {
+      .overlay-shell { padding: 28px; }
+      .grid {
+        grid-template-columns: 330px minmax(0, 1fr);
+      }
+      .side-panel {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="overlay-shell" id="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark"></span><span>Game Tracker Overlay</span></div>
+      <div class="hint">Shift+Tab, F8 или Esc, чтобы закрыть</div>
+    </header>
+
+    <section class="no-session" id="no-session">
+      <div>
+        <h1>Нет активной сессии</h1>
+        <p>Запусти трекинг игры в Game Tracker, и здесь появятся таймер, прогресс достижений и последние открытия.</p>
+      </div>
+    </section>
+
+    <section class="grid" id="active-view" hidden>
+      <article class="panel game-panel">
+        <div class="cover-wrap" id="cover-wrap"></div>
+        <div class="game-copy">
+          <div class="game-platform" id="platform">Steam</div>
+          <h1 class="game-title" id="game-title">Игра</h1>
+          <div class="stat-row">
+            <div class="stat">
+              <div class="stat-value" id="played">0ч</div>
+              <div class="stat-label">Всего сыграно</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value" id="session-start">--:--</div>
+              <div class="stat-label">Старт сессии</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel session-panel">
+        <div>
+          <div class="session-clock" id="clock">00:00:00</div>
+          <div class="session-label">Текущая сессия</div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-head">
+            <span>Достижения</span>
+            <span id="achievement-count">0 / 0</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+      </article>
+
+      <aside class="panel side-panel">
+        <section>
+          <h2 class="section-title">Открыто за сессию</h2>
+          <div class="list" id="unlocked-list"></div>
+        </section>
+        <section>
+          <h2 class="section-title">Ближайшие цели</h2>
+          <div class="list" id="next-list"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const shell = document.getElementById('shell');
+    const activeView = document.getElementById('active-view');
+    const noSession = document.getElementById('no-session');
+    const coverWrap = document.getElementById('cover-wrap');
+    const clock = document.getElementById('clock');
+    const progressFill = document.getElementById('progress-fill');
+    let currentData = { active: false };
+    let sessionStartedAt = 0;
+
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+
+    function fmtDuration(ms) {
+      const total = Math.max(0, Math.floor(Number(ms || 0) / 1000));
+      const h = Math.floor(total / 3600);
+      const m = Math.floor((total % 3600) / 60);
+      const s = total % 60;
+      return [h, m, s].map(part => String(part).padStart(2, '0')).join(':');
+    }
+
+    function fmtHours(hours) {
+      const value = Number(hours || 0);
+      if (value >= 100) return `${Math.round(value)}ч`;
+      if (value >= 10) return `${value.toFixed(1)}ч`;
+      return `${value.toFixed(2)}ч`;
+    }
+
+    function fmtTime(timestamp) {
+      const date = new Date(Number(timestamp || 0));
+      if (!Number.isFinite(date.getTime())) return '--:--';
+      return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function achievementItem(achievement, fallbackMeta) {
+      const icon = achievement.icon || achievement.iconGray || '';
+      const name = achievement.displayName || achievement.apiname || 'Достижение';
+      const percent = Number(achievement.globalPercent);
+      const meta = Number.isFinite(percent)
+        ? `${percent.toFixed(percent < 10 ? 1 : 0)}% игроков`
+        : fallbackMeta;
+      return `
+        <article class="achievement">
+          ${icon ? `<img src="${esc(icon)}" alt="">` : '<div class="achievement-icon-empty">🏆</div>'}
+          <div>
+            <div class="achievement-name">${esc(name)}</div>
+            <div class="achievement-meta">${esc(meta || '')}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderList(id, items, emptyText, fallbackMeta) {
+      const el = document.getElementById(id);
+      const list = Array.isArray(items) ? items : [];
+      el.innerHTML = list.length
+        ? list.map(item => achievementItem(item, fallbackMeta)).join('')
+        : `<div class="empty-state">${esc(emptyText)}</div>`;
+    }
+
+    function render(data) {
+      currentData = data || { active: false };
+      const active = !!currentData.active;
+      activeView.hidden = !active;
+      noSession.hidden = active;
+
+      if (!active) {
+        sessionStartedAt = 0;
+        return;
+      }
+
+      const game = currentData.game || {};
+      const session = currentData.session || {};
+      const achievements = currentData.achievements || {};
+      sessionStartedAt = Number(session.startedAt || 0);
+
+      const cover = String(game.cover || '').trim();
+      coverWrap.innerHTML = cover
+        ? `<img src="${esc(cover)}" alt="">`
+        : `<div class="cover-empty">${esc((game.title || 'G').slice(0, 1).toUpperCase())}</div>`;
+
+      document.getElementById('platform').textContent = game.platform || 'Игра';
+      document.getElementById('game-title').textContent = game.title || 'Игра';
+      document.getElementById('played').textContent = fmtHours(game.hoursPlayed);
+      document.getElementById('session-start').textContent = fmtTime(sessionStartedAt);
+
+      const unlocked = Number(achievements.unlocked || 0);
+      const total = Number(achievements.total || 0);
+      document.getElementById('achievement-count').textContent = `${unlocked} / ${total}`;
+      progressFill.style.width = total ? `${Math.max(0, Math.min(100, unlocked / total * 100))}%` : '0%';
+
+      renderList('unlocked-list', achievements.unlockedThisSession, 'За эту сессию пока ничего не открыто.', 'Получено сейчас');
+      renderList('next-list', achievements.next, 'Нет доступных целей для показа.', 'Еще не получено');
+      updateClock();
+    }
+
+    function updateClock() {
+      if (!sessionStartedAt) {
+        clock.textContent = '00:00:00';
+        return;
+      }
+      clock.textContent = fmtDuration(Date.now() - sessionStartedAt);
+    }
+
+    window.api?.onOverlayData?.(render);
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' || (event.shiftKey && event.key === 'Tab')) {
+        event.preventDefault();
+        window.api?.hideOverlay?.();
+      }
+    });
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => shell.classList.add('visible'));
+      window.api?.requestOverlayData?.();
+      render(currentData);
+      setInterval(updateClock, 1000);
+    });
+  </script>
+</body>
+</html>

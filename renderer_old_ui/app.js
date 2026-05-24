@@ -28,7 +28,6 @@ let notificationPermissionRequested = false;
 const ACHIEVEMENT_POLL_DELAY_MS = 2000;
 const ACHIEVEMENT_POLL_INTERVAL_MS = 3000;
 const ACHIEVEMENT_NOTICE_TTL_MS = 6500;
-const ACTIVE_SESSION_STORAGE_KEY = 'gt.activeSession';
 const LIBRARY_SIDEBAR_AUTO_COLLAPSE_WIDTH = 1280;
 const LIBRARY_SIDEBAR_STORAGE_KEY = 'gt.librarySidebarCollapsed';
 let openedGameId     = null;   // id игры в открытой модалке
@@ -52,8 +51,6 @@ let tierSelectedGameId = '';
 let tierInsertMarker = null;
 let statusContextGameId = null;
 const scrollIdleTimers = new WeakMap();
-const SCROLL_IDLE_DELAY_MS = 180;
-const LIBRARY_SCROLL_KEYS = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
 let expandedLibraryOverviewSections = new Set();
 const steamArtworkCache = new Map();
 
@@ -395,8 +392,6 @@ const HERO_THEME_DEFAULTS = {
 
 let libraryHeroToken = 0;
 let slOverviewArtworkObserver = null;
-const slOverviewArtworkQueue = [];
-let slOverviewArtworkQueueScheduled = false;
 
 function clampChannel(value) {
   return Math.max(0, Math.min(255, Math.round(value)));
@@ -565,17 +560,8 @@ function markElementScrolling(el) {
   const timer = setTimeout(() => {
     el.classList.remove('is-scrolling');
     scrollIdleTimers.delete(el);
-  }, SCROLL_IDLE_DELAY_MS);
+  }, 140);
   scrollIdleTimers.set(el, timer);
-}
-
-function bindScrollPerformanceHints(el) {
-  if (!el) return;
-  el.addEventListener('wheel', () => markElementScrolling(el), { passive: true });
-  el.addEventListener('touchstart', () => markElementScrolling(el), { passive: true });
-  el.addEventListener('keydown', event => {
-    if (LIBRARY_SCROLL_KEYS.has(event.key)) markElementScrolling(el);
-  });
 }
 
 function handleLibraryOverviewScroll(event) {
@@ -685,10 +671,6 @@ function heroArtworkCandidates(game = {}) {
       framed: Boolean(options.framed),
     });
   };
-
-  if (game.heroUrl) {
-    push(game.heroUrl, 'custom-hero', { fit: 'cover', position: 'center center' });
-  }
 
   if (appId) {
     const base = `https://cdn.akamai.steamstatic.com/steam/apps/${appId}`;
@@ -2862,9 +2844,6 @@ document.querySelector('.content').addEventListener('scroll', scheduleAppHeaderC
 document.getElementById('sl-detail').addEventListener('scroll', handleLibraryDetailScroll, { passive: true });
 document.getElementById('sl-overview').addEventListener('scroll', handleLibraryOverviewScroll, { passive: true });
 document.getElementById('sl-game-list').addEventListener('scroll', e => markElementScrolling(e.currentTarget), { passive: true });
-bindScrollPerformanceHints(document.getElementById('sl-detail'));
-bindScrollPerformanceHints(document.getElementById('sl-overview'));
-bindScrollPerformanceHints(document.getElementById('sl-game-list'));
 document.getElementById('sl-overview-toggle-list').addEventListener('click', async e => {
   const btn = e.target.closest('.sl-overview-toggle');
   if (!btn) return;
@@ -3063,89 +3042,9 @@ function openSLSettingsModal() {
   document.getElementById('sl-gear-status').textContent = '';
   document.getElementById('sl-launch-path-val').textContent = getLaunchPath(game) || 'Исполняемый файл не задан';
   document.getElementById('sl-steam-appid').value = getAchievementAppId(game);
-  renderSLPosterEditor(game);
-  renderSLHeroEditor(game);
   const steamSyncDisabledEl = document.getElementById('sl-steam-sync-disabled');
   if (steamSyncDisabledEl) steamSyncDisabledEl.checked = !!game.steamSyncDisabled;
   openModal('modal-sl-settings');
-}
-
-function renderSLPosterEditor(game) {
-  const poster = gamePoster(game) || gameCover(game);
-  const urlInput = document.getElementById('sl-poster-url');
-  const img = document.getElementById('sl-poster-preview-img');
-  const ph = document.getElementById('sl-poster-preview-ph');
-  if (urlInput) urlInput.value = game.posterUrl || '';
-  if (!img || !ph) return;
-  img.onload = () => { img.classList.remove('hidden'); ph.classList.add('hidden'); };
-  img.onerror = () => { img.classList.add('hidden'); ph.classList.remove('hidden'); };
-  if (poster) {
-    img.src = poster;
-    if (img.complete) {
-      img.classList.remove('hidden');
-      ph.classList.add('hidden');
-    }
-  } else {
-    img.removeAttribute('src');
-    img.classList.add('hidden');
-    ph.classList.remove('hidden');
-  }
-}
-
-async function setSelectedGamePoster(posterUrl) {
-  if (!selectedLibGameId) return;
-  const game = store.games[selectedLibGameId];
-  if (!game) return;
-  game.posterUrl = String(posterUrl || '').trim();
-  await save();
-  renderSLPosterEditor(game);
-  openGameDetail(selectedLibGameId);
-  renderLibrary();
-  renderStats();
-  openSLSettingsModal();
-  toast(game.posterUrl ? 'Постер обновлён' : 'Постер сброшен', 'ok');
-}
-
-function currentHeroPreviewUrl(game) {
-  if (game.heroUrl) return game.heroUrl;
-  const appId = String(game.appid || game.steamAppId || '').trim();
-  if (appId) return `https://cdn.akamai.steamstatic.com/steam/apps/${appId}/library_hero.jpg`;
-  return game.coverUrl || game.posterUrl || '';
-}
-
-function renderSLHeroEditor(game) {
-  const hero = currentHeroPreviewUrl(game);
-  const urlInput = document.getElementById('sl-hero-url');
-  const img = document.getElementById('sl-hero-preview-img');
-  const ph = document.getElementById('sl-hero-preview-ph');
-  if (urlInput) urlInput.value = game.heroUrl || '';
-  if (!img || !ph) return;
-  img.onload = () => { img.classList.remove('hidden'); ph.classList.add('hidden'); };
-  img.onerror = () => { img.classList.add('hidden'); ph.classList.remove('hidden'); };
-  if (hero) {
-    img.src = hero;
-    if (img.complete) {
-      img.classList.remove('hidden');
-      ph.classList.add('hidden');
-    }
-  } else {
-    img.removeAttribute('src');
-    img.classList.add('hidden');
-    ph.classList.remove('hidden');
-  }
-}
-
-async function setSelectedGameHero(heroUrl) {
-  if (!selectedLibGameId) return;
-  const game = store.games[selectedLibGameId];
-  if (!game) return;
-  game.heroUrl = String(heroUrl || '').trim();
-  await save();
-  renderSLHeroEditor(game);
-  openGameDetail(selectedLibGameId);
-  renderLibrary();
-  openSLSettingsModal();
-  toast(game.heroUrl ? 'Фон игры обновлён' : 'Фон игры сброшен', 'ok');
 }
 
 function renderSLOverview(list) {
@@ -3160,7 +3059,6 @@ function renderSLOverview(list) {
   const currentQuery = String(document.getElementById('sl-search')?.value || '').trim();
   const sortLabel = librarySortLabel(document.getElementById('sl-sort')?.value || 'recent');
   const activeSectionIds = getLibraryOverviewSectionIds();
-  slOverviewArtworkQueue.length = 0;
 
   headingEl.textContent = currentCollection?.name || 'Мои игры';
   const summaryParts = [
@@ -3290,7 +3188,7 @@ function getSLOverviewArtworkObserver() {
   slOverviewArtworkObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      enqueueSLOverviewArtwork(entry.target);
+      loadSLOverviewArtwork(entry.target);
       slOverviewArtworkObserver?.unobserve(entry.target);
     });
   }, {
@@ -3300,39 +3198,6 @@ function getSLOverviewArtworkObserver() {
   });
 
   return slOverviewArtworkObserver;
-}
-
-function enqueueSLOverviewArtwork(card) {
-  if (!card || card.dataset.artLoaded === '1' || card.dataset.artQueued === '1') return;
-  card.dataset.artQueued = '1';
-  slOverviewArtworkQueue.push(card);
-  scheduleSLOverviewArtworkQueue();
-}
-
-function scheduleSLOverviewArtworkQueue() {
-  if (slOverviewArtworkQueueScheduled) return;
-  slOverviewArtworkQueueScheduled = true;
-  const schedule = window.requestIdleCallback
-    ? callback => window.requestIdleCallback(callback, { timeout: 180 })
-    : callback => requestAnimationFrame(() => callback({ timeRemaining: () => 8 }));
-  schedule(processSLOverviewArtworkQueue);
-}
-
-function processSLOverviewArtworkQueue(deadline) {
-  slOverviewArtworkQueueScheduled = false;
-  let loaded = 0;
-  while (
-    slOverviewArtworkQueue.length
-    && loaded < 3
-    && (!deadline?.timeRemaining || deadline.timeRemaining() > 2)
-  ) {
-    const card = slOverviewArtworkQueue.shift();
-    if (!card?.isConnected || card.dataset.artLoaded === '1') continue;
-    delete card.dataset.artQueued;
-    loadSLOverviewArtwork(card);
-    loaded++;
-  }
-  if (slOverviewArtworkQueue.length) scheduleSLOverviewArtworkQueue();
 }
 
 function loadSLOverviewArtwork(card) {
@@ -3454,23 +3319,12 @@ function makeSLOverviewCard(game) {
   const fallbackArt = gameCover(game);
   card.dataset.primaryArt = primaryArt || '';
   card.dataset.fallbackArt = fallbackArt || '';
-
-  // Ambient Background Events for Library
-  card.addEventListener('mouseenter', () => {
-    if (primaryArt || fallbackArt) {
-      setAmbientBackground(primaryArt || fallbackArt);
-    }
-  });
-  card.addEventListener('mouseleave', () => {
-    clearAmbientBackground();
-  });
-  card.dataset.fallbackArt = fallbackArt || '';
   posterEl.classList.add('hidden');
   placeholderEl.classList.remove('hidden');
 
   const observer = getSLOverviewArtworkObserver();
   if (observer) observer.observe(card);
-  else enqueueSLOverviewArtwork(card);
+  else loadSLOverviewArtwork(card);
 
   card.addEventListener('click', () => openGameDetail(game.id));
   card.addEventListener('contextmenu', e => openGameStatusMenu(e, game.id));
@@ -4089,64 +3943,6 @@ document.getElementById('sl-btn-ach-local').addEventListener('click', async () =
       toast('Достижения загружены из кеша', 'ok');
     } else toast(res?.error || 'Нет кеша', 'err');
   } catch { toast('Ошибка', 'err'); }
-});
-
-document.getElementById('sl-btn-pick-poster')?.addEventListener('click', async e => {
-  e.stopPropagation();
-  if (!selectedLibGameId) return;
-  const game = store.games[selectedLibGameId];
-  if (!game) return;
-  const btn = document.getElementById('sl-btn-pick-poster');
-  btn.disabled = true;
-  try {
-    const res = await api.pickPoster?.({ gameId: selectedLibGameId, gameTitle: game.title });
-    if (res?.canceled) return;
-    if (!res?.ok || !res.posterUrl) {
-      toast(res?.error || 'Не удалось выбрать постер', 'err');
-      return;
-    }
-    await setSelectedGamePoster(res.posterUrl);
-  } finally {
-    btn.disabled = false;
-  }
-});
-
-document.getElementById('sl-poster-url')?.addEventListener('change', async e => {
-  await setSelectedGamePoster(e.target.value);
-});
-
-document.getElementById('sl-btn-reset-poster')?.addEventListener('click', async e => {
-  e.stopPropagation();
-  await setSelectedGamePoster('');
-});
-
-document.getElementById('sl-btn-pick-hero')?.addEventListener('click', async e => {
-  e.stopPropagation();
-  if (!selectedLibGameId) return;
-  const game = store.games[selectedLibGameId];
-  if (!game) return;
-  const btn = document.getElementById('sl-btn-pick-hero');
-  btn.disabled = true;
-  try {
-    const res = await api.pickPoster?.({ gameId: selectedLibGameId, gameTitle: game.title });
-    if (res?.canceled) return;
-    if (!res?.ok || !res.posterUrl) {
-      toast(res?.error || 'Не удалось выбрать фон', 'err');
-      return;
-    }
-    await setSelectedGameHero(res.posterUrl);
-  } finally {
-    btn.disabled = false;
-  }
-});
-
-document.getElementById('sl-hero-url')?.addEventListener('change', async e => {
-  await setSelectedGameHero(e.target.value);
-});
-
-document.getElementById('sl-btn-reset-hero')?.addEventListener('click', async e => {
-  e.stopPropagation();
-  await setSelectedGameHero('');
 });
 
 document.getElementById('sl-btn-upload-save').addEventListener('click', async () => {
@@ -4808,31 +4604,6 @@ function drawCharts() {
   drawStatsCards();
 }
 
-let ambientBgTimeout;
-function setAmbientBackground(src) {
-  const bg = document.getElementById('ambient-bg');
-  if (!bg) return;
-  clearTimeout(ambientBgTimeout);
-  
-  if (bg.src !== src) {
-    bg.classList.remove('active');
-    setTimeout(() => {
-      bg.src = src;
-      bg.onload = () => { bg.classList.add('active'); };
-    }, 150);
-  } else {
-    bg.classList.add('active');
-  }
-}
-function clearAmbientBackground() {
-  const bg = document.getElementById('ambient-bg');
-  if (!bg) return;
-  clearTimeout(ambientBgTimeout);
-  ambientBgTimeout = setTimeout(() => {
-    bg.classList.remove('active');
-  }, 200);
-}
-
 // ══════════ КАРТОЧКА ИГРЫ ════════════════════════════════
 function makeGameCard(game) {
   const card  = document.createElement('div');
@@ -4841,15 +4612,6 @@ function makeGameCard(game) {
   card.draggable = true;
 
   const cover    = gameCover(game);
-  
-  // Ambient Background Events
-  card.addEventListener('mouseenter', () => {
-    if (cover) setAmbientBackground(cover);
-  });
-  card.addEventListener('mouseleave', () => {
-    clearAmbientBackground();
-  });
-
   const hoursStr = `${fmtH(game.hoursPlayed || 0)} ч`;
   const achPct   = game.achievementsTotal > 0
     ? Math.round((game.achievementsUnlocked || 0) / game.achievementsTotal * 100) : 0;
@@ -4936,23 +4698,6 @@ function makeGameCard(game) {
     const draggedId = e.dataTransfer.getData('text/plain');
     if (draggedId === game.id) return;
     reorderGames(draggedId, game.id);
-  });
-
-  // 3D Tilt Effect
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -10; // max rotation
-    const rotateY = ((x - centerX) / centerX) * 10;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-    card.style.zIndex = 10;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.zIndex = '';
   });
 
   return card;
@@ -5071,13 +4816,11 @@ function openGamePage(gameId) {
   buildCarousel(game);
 
   // Обложка
-  const cover = gamePoster(game) || gameCover(game);
+  const cover = gameCover(game);
   const img   = document.getElementById('gd2-cover');
   const ph    = document.getElementById('gd2-cover-ph');
   if (cover) { img.src = cover; img.classList.remove('hidden'); ph.classList.add('hidden'); }
   else       { img.classList.add('hidden'); ph.classList.remove('hidden'); }
-  const posterUrlInput = document.getElementById('gd2-poster-url');
-  if (posterUrlInput) posterUrlInput.value = game.posterUrl || '';
 
   // Статистика
   document.getElementById('gd2-hours').textContent    = `${fmtH(game.hoursPlayed || 0)} ч`;
@@ -5176,43 +4919,6 @@ document.getElementById('gd2-rating').addEventListener('click', async e => {
 });
 
 // Изменение времени
-async function setOpenedGamePoster(posterUrl) {
-  const game = store.games[openedGameId];
-  if (!game) return;
-  game.posterUrl = String(posterUrl || '').trim();
-  await save();
-  openGamePage(openedGameId);
-  renderLibrary();
-  renderStats();
-  toast(game.posterUrl ? 'Постер обновлён' : 'Постер сброшен', 'ok');
-}
-
-document.getElementById('gd2-poster-pick')?.addEventListener('click', async () => {
-  const game = store.games[openedGameId];
-  if (!game) return;
-  const btn = document.getElementById('gd2-poster-pick');
-  btn.disabled = true;
-  try {
-    const res = await window.api.pickPoster?.({ gameId: openedGameId, gameTitle: game.title });
-    if (res?.canceled) return;
-    if (!res?.ok || !res.posterUrl) {
-      toast(res?.error || 'Не удалось выбрать постер', 'err');
-      return;
-    }
-    await setOpenedGamePoster(res.posterUrl);
-  } finally {
-    btn.disabled = false;
-  }
-});
-
-document.getElementById('gd2-poster-url')?.addEventListener('change', async e => {
-  await setOpenedGamePoster(e.target.value);
-});
-
-document.getElementById('gd2-poster-reset')?.addEventListener('click', async () => {
-  await setOpenedGamePoster('');
-});
-
 document.getElementById('gd2-hours-edit-btn').addEventListener('click', () => {
   const game = store.games[openedGameId];
   if (!game) return;
@@ -5794,124 +5500,6 @@ function refreshAchievementCounterViews(game) {
   });
 }
 
-function buildSessionOverlayData() {
-  const session = activeSession || readStoredOverlaySession();
-  if (!session) return { active: false };
-
-  const game = store.games[session.gameId];
-  if (!game) return { active: false };
-
-  const sessionStartSec = Math.floor((session.startTime || Date.now()) / 1000);
-  const achievements = (game.achievements || []).map(normalizeAchievement);
-  const unlockedThisSession = achievements
-    .filter(achievement => achievement.achieved && Number(achievement.unlocktime || 0) >= sessionStartSec - 5)
-    .sort((a, b) => Number(b.unlocktime || 0) - Number(a.unlocktime || 0))
-    .slice(0, 8);
-  const nextAchievements = achievements
-    .filter(achievement => !achievement.achieved)
-    .sort(sortAchievementsByRarity)
-    .slice(0, 5);
-
-  return {
-    active: true,
-    game: {
-      title: game.title || game.name || 'Игра',
-      cover: gameCover(game) || gamePoster(game) || '',
-      platform: syncSourceName(game),
-      hoursPlayed: Number(game.hoursPlayed || 0),
-    },
-    session: {
-      startedAt: session.startTime,
-      elapsedMs: Date.now() - session.startTime,
-    },
-    achievements: {
-      unlocked: game.achievementsUnlocked || achievements.filter(a => a.achieved).length,
-      total: game.achievementsTotal || achievements.length,
-      unlockedThisSession,
-      next: nextAchievements,
-    },
-  };
-}
-
-function pushOverlayData() {
-  ensureOverlaySession();
-  api.sendOverlayData(buildSessionOverlayData());
-}
-
-function storeOverlaySession(gameId, startTime) {
-  try {
-    sessionStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, JSON.stringify({ gameId, startTime }));
-  } catch {}
-}
-
-function clearStoredOverlaySession() {
-  try {
-    sessionStorage.removeItem(ACTIVE_SESSION_STORAGE_KEY);
-  } catch {}
-}
-
-function readStoredOverlaySession() {
-  try {
-    const parsed = JSON.parse(sessionStorage.getItem(ACTIVE_SESSION_STORAGE_KEY) || 'null');
-    if (!parsed?.gameId || !store.games?.[parsed.gameId]) return null;
-    const startTime = Number(parsed.startTime || 0);
-    if (!Number.isFinite(startTime) || startTime <= 0) return null;
-    return { gameId: parsed.gameId, startTime };
-  } catch {
-    return null;
-  }
-}
-
-if (api.onOverlayRequest) {
-  api.onOverlayRequest(pushOverlayData);
-}
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'F8' || (event.shiftKey && event.key === 'Tab')) {
-    event.preventDefault();
-    pushOverlayData();
-    api.toggleOverlay?.();
-  }
-});
-
-function inferOverlayGameId() {
-  if (activeSession?.gameId) return activeSession.gameId;
-  if (selectedLibGameId && store.games[selectedLibGameId]) return selectedLibGameId;
-  if (openedGameId && store.games[openedGameId]) return openedGameId;
-  return '';
-}
-
-function ensureOverlaySession() {
-  if (activeSession) return;
-  const stored = readStoredOverlaySession();
-  if (stored) {
-    const game = store.games[stored.gameId];
-    if (!game) return;
-    const interval = setInterval(() => {
-      const timerEl = document.getElementById('np-timer');
-      if (timerEl) timerEl.textContent = fmtSeconds(Math.floor((Date.now() - stored.startTime) / 1000));
-    }, 1000);
-    activeSession = {
-      gameId: stored.gameId,
-      startTime: stored.startTime,
-      timerInterval: interval,
-      achievementBaseline: achievementStateMap(game.achievements || []),
-    };
-    document.getElementById('np-game').textContent = game.title;
-    document.getElementById('np-cover').src = gameCover(game) || '';
-    document.getElementById('now-playing').classList.remove('hidden');
-    return;
-  }
-
-  const gameId = inferOverlayGameId();
-  if (!gameId) return;
-  startSession(gameId);
-  const game = store.games[gameId];
-  if (game && store.settings.steamPath && canPollSteamAchievements(game)) {
-    startActiveAchievementPolling(gameId);
-  }
-}
-
 function showAchievementUnlockedPopup(game, achievement) {
   const feed = document.getElementById('achievement-feed');
   if (!feed) return false;
@@ -5973,7 +5561,6 @@ function notifyAchievementUnlocked(game, achievement) {
   
   // Вызываем внешнее уведомление (стиль Steam)
   api.showAchievementNotification({ game, achievement });
-  pushOverlayData();
 
   if (!shownInLauncher) {
     toast(`🏆 ${game.title}: ${achievementName}`, 'ok');
@@ -6428,17 +6015,9 @@ function startSession(gameId) {
   const interval = setInterval(() => {
     document.getElementById('np-timer').textContent =
       fmtSeconds(Math.floor((Date.now() - startTime) / 1000));
-    pushOverlayData();
   }, 1000);
 
-  activeSession = {
-    gameId,
-    startTime,
-    timerInterval: interval,
-    achievementBaseline: achievementStateMap(game.achievements || []),
-  };
-  storeOverlaySession(gameId, startTime);
-  pushOverlayData();
+  activeSession = { gameId, startTime, timerInterval: interval, achievementBaseline: null };
   toast(`▶ Трекинг: ${game.title}`, 'ok');
 }
 
@@ -6449,8 +6028,6 @@ function stopSession() {
   const minutes = (Date.now() - activeSession.startTime) / 1000 / 60;
   const gameId  = activeSession.gameId;
   activeSession = null;
-  clearStoredOverlaySession();
-  pushOverlayData();
   document.getElementById('now-playing').classList.add('hidden');
   document.getElementById('np-timer').textContent = '00:00:00';
 
@@ -6495,7 +6072,6 @@ api.onAppRequestClose(async () => {
       game.sessions     = [...(game.sessions || []), { date: new Date().toISOString(), minutes: Math.round(minutes) }].slice(-200);
     }
     activeSession = null;
-    clearStoredOverlaySession();
     store = normalizeStore(store);
     await api.saveData(store);
   }
