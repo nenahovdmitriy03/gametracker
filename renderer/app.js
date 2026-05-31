@@ -31,6 +31,9 @@ const ACHIEVEMENT_NOTICE_TTL_MS = 6500;
 const ACTIVE_SESSION_STORAGE_KEY = 'gt.activeSession';
 const LIBRARY_SIDEBAR_AUTO_COLLAPSE_WIDTH = 1280;
 const LIBRARY_SIDEBAR_STORAGE_KEY = 'gt.librarySidebarCollapsed';
+const LIBRARY_SEARCH_DEBOUNCE_MS = 120;
+const SL_GAME_LIST_ITEM_HEIGHT = 44;
+const SL_GAME_LIST_OVERSCAN = 10;
 let openedGameId     = null;   // id игры в открытой модалке
 let activeCollection = null;   // id выбранной коллекции (фильтр библиотеки) или null = все
 let editingCollId    = null;   // id редактируемой коллекции или null = создание новой
@@ -42,8 +45,10 @@ let prevView           = 'library';
 let selectedLibGameId  = null;   // выбранная игра в Steam-библиотеке
 let librarySidebarCollapsed = false;
 let librarySidebarResizeTimer = null;
+let librarySearchTimer = 0;
 let appHeaderScrollRaf = 0;
 let libraryDetailScrollRaf = 0;
+let slGameListScrollRaf = 0;
 let tierSearchQuery = '';
 let tierPendingDrag = null;
 let tierPointerDrag = null;
@@ -56,6 +61,9 @@ const SCROLL_IDLE_DELAY_MS = 180;
 const LIBRARY_SCROLL_KEYS = new Set(['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' ']);
 let expandedLibraryOverviewSections = new Set();
 const steamArtworkCache = new Map();
+let saveInFlight = null;
+let saveQueued = false;
+let slGameListVirtual = { list: [], start: 0, end: 0 };
 
 const STATUS_LABELS = {
   playing: '▶ Играю',
@@ -592,6 +600,15 @@ function handleLibraryDetailScroll(event) {
   });
 }
 
+function handleSLGameListScroll(event) {
+  markElementScrolling(event.currentTarget);
+  if (slGameListScrollRaf) return;
+  slGameListScrollRaf = requestAnimationFrame(() => {
+    slGameListScrollRaf = 0;
+    renderSLGameListWindow();
+  });
+}
+
 function librarySidebarCanCollapse() {
   return window.innerWidth > 640;
 }
@@ -633,6 +650,12 @@ function applyLibrarySidebarState() {
   if (toggleLabel) {
     toggleLabel.textContent = isCollapsed ? 'Библиотека' : 'Скрыть';
   }
+}
+
+function applyPerformanceMode() {
+  const settings = store?.settings || {};
+  const enabled = settings.performanceMode !== 'full';
+  document.body.classList.toggle('perf-lite', enabled);
 }
 
 function initializeLibrarySidebarState() {
@@ -1166,6 +1189,7 @@ function renderGameActivityTimeline(game) {
   }
   applyTheme(store.settings.theme || 'steam');
   applyDensity(store.settings.density || 'normal');
+  applyPerformanceMode();
   initializeLibrarySidebarState();
   renderAll();
   driveInit();
@@ -1174,8 +1198,21 @@ function renderGameActivityTimeline(game) {
 })();
 
 async function save() {
+  if (saveInFlight) {
+    saveQueued = true;
+    return saveInFlight;
+  }
+
   store = normalizeStore(store);
-  const result = await api.saveData(store);
+  let result;
+  try {
+    saveInFlight = api.saveData(store);
+    result = await saveInFlight;
+  } catch (err) {
+    result = { ok: false, error: err?.message || String(err) };
+  } finally {
+    saveInFlight = null;
+  }
   if (!result?.ok) toast('Ошибка сохранения данных: ' + (result?.error || 'неизвестно'), 'err');
   // Авто-синхронизация с Drive
   if (result?.ok && driveConnected && store.settings.drive?.autoSync) {
@@ -1183,6 +1220,12 @@ async function save() {
       if (r?.ok) { store.settings.drive.lastSync = r.time; renderDriveSettings(); }
     });
   }
+
+  if (saveQueued) {
+    saveQueued = false;
+    return save();
+  }
+
   return result;
 }
 
@@ -2856,12 +2899,15 @@ function reorderGames(draggedId, targetId) {
   filterAndSort();
 }
 
-document.getElementById('sl-search').addEventListener('input', filterAndSort);
+document.getElementById('sl-search').addEventListener('input', () => {
+  clearTimeout(librarySearchTimer);
+  librarySearchTimer = setTimeout(filterAndSort, LIBRARY_SEARCH_DEBOUNCE_MS);
+});
 document.getElementById('sl-sort').addEventListener('change', filterAndSort);
 document.querySelector('.content').addEventListener('scroll', scheduleAppHeaderCondensedState, { passive: true });
 document.getElementById('sl-detail').addEventListener('scroll', handleLibraryDetailScroll, { passive: true });
 document.getElementById('sl-overview').addEventListener('scroll', handleLibraryOverviewScroll, { passive: true });
-document.getElementById('sl-game-list').addEventListener('scroll', e => markElementScrolling(e.currentTarget), { passive: true });
+document.getElementById('sl-game-list').addEventListener('scroll', handleSLGameListScroll, { passive: true });
 bindScrollPerformanceHints(document.getElementById('sl-detail'));
 bindScrollPerformanceHints(document.getElementById('sl-overview'));
 bindScrollPerformanceHints(document.getElementById('sl-game-list'));
@@ -2911,13 +2957,40 @@ window.addEventListener('resize', () => {
 // ── Steam-style library list ───────────────────────────
 function renderSLGameList(list) {
   const container = document.getElementById('sl-game-list');
+  slGameListVirtual = { list, start: 0, end: 0 };
   container.innerHTML = '';
   if (!list.length) {
     container.innerHTML = '<div class="sl-list-empty">Игры не найдены</div>';
     return;
   }
+  const totalHeight = list.length * SL_GAME_LIST_ITEM_HEIGHT;
+  const maxScrollTop = Math.max(0, totalHeight - container.clientHeight);
+  if (container.scrollTop > maxScrollTop) container.scrollTop = maxScrollTop;
+  renderSLGameListWindow();
+}
+
+function renderSLGameListWindow() {
+  const container = document.getElementById('sl-game-list');
+  const list = slGameListVirtual.list || [];
+  if (!container || !list.length) return;
+
+  const viewportHeight = container.clientHeight || 640;
+  const scrollTop = container.scrollTop || 0;
+  const start = Math.max(0, Math.floor(scrollTop / SL_GAME_LIST_ITEM_HEIGHT) - SL_GAME_LIST_OVERSCAN);
+  const visibleCount = Math.ceil(viewportHeight / SL_GAME_LIST_ITEM_HEIGHT) + SL_GAME_LIST_OVERSCAN * 2;
+  const end = Math.min(list.length, start + visibleCount);
+
+  if (slGameListVirtual.start === start && slGameListVirtual.end === end && container.childElementCount) return;
+  slGameListVirtual.start = start;
+  slGameListVirtual.end = end;
+
   const fragment = document.createDocumentFragment();
-  list.forEach(g => {
+  const topSpacer = document.createElement('div');
+  topSpacer.className = 'sl-list-spacer';
+  topSpacer.style.height = `${start * SL_GAME_LIST_ITEM_HEIGHT}px`;
+  fragment.appendChild(topSpacer);
+
+  list.slice(start, end).forEach(g => {
     const item = document.createElement('div');
     item.className = 'sl-game-item' + (g.id === selectedLibGameId ? ' active' : '');
     item.dataset.id = g.id;
@@ -2938,6 +3011,13 @@ function renderSLGameList(list) {
     item.addEventListener('contextmenu', e => openGameStatusMenu(e, g.id));
     fragment.appendChild(item);
   });
+
+  const bottomSpacer = document.createElement('div');
+  bottomSpacer.className = 'sl-list-spacer';
+  bottomSpacer.style.height = `${(list.length - end) * SL_GAME_LIST_ITEM_HEIGHT}px`;
+  fragment.appendChild(bottomSpacer);
+
+  container.innerHTML = '';
   container.appendChild(fragment);
 }
 

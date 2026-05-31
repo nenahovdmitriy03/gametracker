@@ -606,13 +606,24 @@
     </section>
 
     <!-- НАСТРОЙКИ -->
-    <section id="view-settings" class="view">
-      <div class="view-header">
-        <div><h2>Настройки</h2></div>
+    <section id="view-settings" class="view settings-view">
+      <div class="settings-hero">
+        <div>
+          <div class="settings-kicker">Game Tracker</div>
+          <h2>Настройки</h2>
+          <p>Внешний вид, синхронизация и управление библиотекой в одном спокойном месте.</p>
+        </div>
+        <div class="settings-hero-badge">Локально и безопасно</div>
       </div>
 
-      <div class="settings-section">
-        <div class="settings-section-title">Тема интерфейса</div>
+      <div class="settings-grid-shell">
+      <div class="settings-section settings-section-wide settings-theme-section">
+        <div class="settings-section-headline">
+          <div>
+            <div class="settings-section-title">Тема интерфейса</div>
+            <div class="settings-section-copy">Выбери настроение приложения. Фон и акценты применятся сразу.</div>
+          </div>
+        </div>
         <div class="theme-grid" id="theme-grid">
 
           <div class="theme-card" data-theme-id="aurora">
@@ -720,8 +731,13 @@
         </div>
       </div>
 
-      <div class="settings-section">
-        <div class="settings-section-title">Плотность интерфейса</div>
+      <div class="settings-section settings-density-section">
+        <div class="settings-section-headline">
+          <div>
+            <div class="settings-section-title">Плотность</div>
+            <div class="settings-section-copy">Насколько плотно показывать карточки, списки и рабочие области.</div>
+          </div>
+        </div>
         <div class="density-grid" id="density-grid">
           <button class="density-card" data-density-id="compact" type="button">
             <div class="density-card-head">Compact</div>
@@ -739,8 +755,13 @@
       </div>
 
       <!-- Google Drive -->
-    <div class="settings-section">
-      <div class="settings-section-title">Google Drive — синхронизация</div>
+    <div class="settings-section settings-drive-section">
+      <div class="settings-section-headline">
+        <div>
+          <div class="settings-section-title">Google Drive</div>
+          <div class="settings-section-copy">Синхронизация данных, скриншотов и сохранений между устройствами.</div>
+        </div>
+      </div>
 
         <div id="drive-disconnected">
           <div class="drive-setup-hint">
@@ -793,8 +814,13 @@
       </div>
 
       <!-- Библиотека и резервные копии -->
-      <div class="settings-section">
-        <div class="settings-section-title">Библиотека и резервные копии</div>
+      <div class="settings-section settings-library-section">
+        <div class="settings-section-headline">
+          <div>
+            <div class="settings-section-title">Библиотека</div>
+            <div class="settings-section-copy">Добавление игр, импорт и резервные копии.</div>
+          </div>
+        </div>
         <div class="settings-actions-grid">
           <button class="btn-action" id="btn-open-search">
             <span class="btn-action-icon">🔍</span><span>Найти игру в Steam</span>
@@ -812,9 +838,14 @@
       </div>
 
       <!-- Удаление шуточных названий -->
-      <div class="settings-section">
-        <div class="settings-section-title">Управление данными</div>
-        <label class="toggle-label" style="gap:8px;margin-top:6px;display:flex;align-items:center;">
+      <div class="settings-section settings-data-section">
+        <div class="settings-section-headline">
+          <div>
+            <div class="settings-section-title">Данные</div>
+            <div class="settings-section-copy">Скрытые игры и фильтрация лишних названий.</div>
+          </div>
+        </div>
+        <label class="toggle-label settings-toggle-row">
           <input type="checkbox" id="hide-jokes-toggle" />
           <span>Скрывать шутки и незначимые названия в списке игр</span>
         </label>
@@ -825,6 +856,7 @@
           </div>
           <div class="hidden-games-list" id="hidden-games-list"></div>
         </div>
+    </div>
     </div>
     </section>
 
