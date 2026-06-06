@@ -1,0 +1,60 @@
+/* GameTracker — Dashboard Enhancements (PR #3) */
+.gt-heatmap{display:flex;flex-direction:column;gap:8px;padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px}
+.gt-heatmap__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.gt-heatmap__title{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.gt-heatmap__total{font-size:12px;color:rgba(255,255,255,.5)}
+.gt-heatmap__grid{display:grid;grid-template-columns:auto 1fr;gap:6px;align-items:start}
+.gt-heatmap__weekdays{display:flex;flex-direction:column;gap:3px;padding-top:18px;font-size:10px;color:rgba(255,255,255,.4)}
+.gt-heatmap__weekdays span{height:11px;line-height:11px}
+.gt-heatmap__cells{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none}
+.gt-heatmap__cells::-webkit-scrollbar{display:none}
+.gt-heatmap__col{display:flex;flex-direction:column;gap:3px}
+.gt-heatmap__month{font-size:10px;color:rgba(255,255,255,.4);height:14px;margin-bottom:4px}
+.gt-heatmap__cell{width:11px;height:11px;border-radius:2px;background:rgba(255,255,255,.04);transition:transform 80ms ease,box-shadow 80ms ease;cursor:pointer}
+.gt-heatmap__cell[data-lvl="1"]{background:rgba(124,127,207,.25)}
+.gt-heatmap__cell[data-lvl="2"]{background:rgba(124,127,207,.5)}
+.gt-heatmap__cell[data-lvl="3"]{background:rgba(124,127,207,.75)}
+.gt-heatmap__cell[data-lvl="4"]{background:rgba(124,127,207,1);box-shadow:0 0 8px rgba(124,127,207,.4)}
+.gt-heatmap__cell:hover{transform:scale(1.4);box-shadow:0 0 12px rgba(124,127,207,.6);z-index:1}
+.gt-heatmap__legend{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.4);justify-content:flex-end;margin-top:4px}
+.gt-heatmap__legend-cells{display:flex;gap:3px}
+.gt-heatmap-tooltip{position:fixed;background:rgba(18,19,28,.95);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:6px 10px;font-size:11px;color:#fff;pointer-events:none;z-index:9999;backdrop-filter:blur(8px);box-shadow:0 8px 24px -8px rgba(0,0,0,.5);white-space:nowrap;opacity:0;transition:opacity 120ms ease}
+.gt-heatmap-tooltip.is-visible{opacity:1}
+.gt-chart{padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;display:flex;flex-direction:column;gap:12px}
+.gt-chart__title{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.gt-chart__body{display:flex;align-items:center;gap:16px;min-height:140px}
+.gt-chart--donut svg{width:140px;height:140px;flex-shrink:0;transform:rotate(-90deg)}
+.gt-chart__svg-wrap{position:relative;display:flex;align-items:center;justify-content:center}
+.gt-chart__center-text{position:absolute;font-size:11px;color:rgba(255,255,255,.5);text-align:center;line-height:1.3}
+.gt-chart__legend{flex:1;display:flex;flex-direction:column;gap:6px}
+.gt-chart__legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.75)}
+.gt-chart__legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+.gt-chart__legend-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gt-chart__legend-value{color:rgba(255,255,255,.5);font-variant-numeric:tabular-nums;font-size:11px}
+.gt-chart__slice{transition:opacity 120ms ease}
+.gt-chart__slice:hover{opacity:.75}
+.gt-chart--bar{display:flex;flex-direction:column;gap:8px}
+.gt-chart__bar-row{display:grid;grid-template-columns:80px 1fr auto;gap:10px;align-items:center;font-size:12px}
+.gt-chart__bar-label{color:rgba(255,255,255,.75);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gt-chart__bar-track{position:relative;height:8px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden}
+.gt-chart__bar-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(124,127,207,.6),rgba(124,127,207,1));border-radius:4px;transition:width 400ms cubic-bezier(.34,1.56,.64,1)}
+.gt-chart__bar-value{color:rgba(255,255,255,.55);font-variant-numeric:tabular-nums;font-size:11px;min-width:48px;text-align:right}
+.gt-continue{padding:16px 0;display:flex;flex-direction:column;gap:12px}
+.gt-continue__title{font-size:14px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px}
+.gt-continue__hint{font-size:11px;color:rgba(255,255,255,.4);margin-left:auto}
+.gt-continue__row{display:flex;gap:12px;overflow-x:auto;scrollbar-width:thin;padding-bottom:8px;scroll-snap-type:x mandatory}
+.gt-continue__card{flex:0 0 220px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 180ms cubic-bezier(.34,1.56,.64,1),border-color 120ms ease,background 120ms ease;scroll-snap-align:start;position:relative}
+.gt-continue__card:hover{transform:translateY(-4px);border-color:rgba(124,127,207,.4);background:rgba(124,127,207,.05)}
+.gt-continue__cover{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,127,207,.2),rgba(78,82,180,.1));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:36px}
+.gt-continue__cover img{width:100%;height:100%;object-fit:cover}
+.gt-continue__play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5);opacity:0;transition:opacity 150ms ease}
+.gt-continue__card:hover .gt-continue__play-overlay{opacity:1}
+.gt-continue__play-icon{width:42px;height:42px;border-radius:50%;background:rgba(124,127,207,.95);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;box-shadow:0 8px 24px -4px rgba(124,127,207,.5)}
+.gt-continue__meta{padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.gt-continue__name{font-size:13px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gt-continue__last{font-size:11px;color:rgba(255,255,255,.5)}
+.gt-continue__progress{height:3px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
+.gt-continue__progress-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#7c7fcf,#a6a9f0);transition:width 400ms ease}
+.gt-continue__empty{padding:24px;text-align:center;color:rgba(255,255,255,.4);font-size:13px;border:1px dashed rgba(255,255,255,.08);border-radius:12px}
+.gt-dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:16px}
+.gt-dashboard-grid--wide{grid-column:1 / -1}

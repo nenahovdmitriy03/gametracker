@@ -11,6 +11,8 @@ let overlayData = null;
 let overlayPendingShow = false;
 let overlayPendingTimer = null;
 const getDataPath = () => path.join(app.getPath('userData'), 'gametracker-data.json');
+const appIconPath = path.join(__dirname, 'assets', 'icon.ico');
+const getWindowIcon = () => fsSync.existsSync(appIconPath) ? appIconPath : undefined;
 
 function createOverlayWindow() {
   if (overlayWindow && !overlayWindow.isDestroyed()) return overlayWindow;
@@ -92,6 +94,7 @@ function createWindow() {
     minWidth: 960, minHeight: 620,
     frame: false,
     backgroundColor: '#0a0f1a',
+    icon: getWindowIcon(),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
