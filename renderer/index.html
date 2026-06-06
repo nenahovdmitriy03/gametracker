@@ -474,8 +474,8 @@
           </div>
         </div>
 
-        <div id="modal-sl-settings" class="modal-overlay hidden">
-          <div class="modal sl-settings-modal">
+        <div id="modal-sl-settings" class="modal-overlay sl-settings-drawer-overlay hidden">
+          <div class="modal sl-settings-modal sl-settings-drawer">
             <div class="modal-header">
               <div>
                 <h3>Настройки игры</h3>
@@ -616,7 +616,15 @@
         <div class="settings-hero-badge">Локально и безопасно</div>
       </div>
 
+      <div class="settings-tabs" role="tablist" aria-label="Разделы настроек">
+        <button class="settings-tab active" type="button" data-settings-tab="appearance">Внешний вид</button>
+        <button class="settings-tab" type="button" data-settings-tab="sync">Синхронизация</button>
+        <button class="settings-tab" type="button" data-settings-tab="library">Библиотека</button>
+        <button class="settings-tab" type="button" data-settings-tab="data">Данные</button>
+      </div>
+
       <div class="settings-grid-shell">
+      <div class="settings-panel active" data-settings-panel="appearance">
       <div class="settings-section settings-section-wide settings-theme-section">
         <div class="settings-section-headline">
           <div>
@@ -753,8 +761,10 @@
           </button>
         </div>
       </div>
+      </div>
 
       <!-- Google Drive -->
+      <div class="settings-panel" data-settings-panel="sync">
     <div class="settings-section settings-drive-section">
       <div class="settings-section-headline">
         <div>
@@ -812,8 +822,10 @@
 
         <div id="drive-error" class="error-box hidden"></div>
       </div>
+      </div>
 
       <!-- Библиотека и резервные копии -->
+      <div class="settings-panel" data-settings-panel="library">
       <div class="settings-section settings-library-section">
         <div class="settings-section-headline">
           <div>
@@ -836,8 +848,10 @@
           </button>
         </div>
       </div>
+      </div>
 
       <!-- Удаление шуточных названий -->
+      <div class="settings-panel" data-settings-panel="data">
       <div class="settings-section settings-data-section">
         <div class="settings-section-headline">
           <div>
@@ -856,6 +870,7 @@
           </div>
           <div class="hidden-games-list" id="hidden-games-list"></div>
         </div>
+    </div>
     </div>
     </div>
     </section>
@@ -1044,8 +1059,14 @@
         <div class="sv-hero-bg"></div>
         <div class="sv-hero-content">
           <div class="sv-hero-left">
+            <div class="sv-hero-kicker">Аналитика библиотеки</div>
             <h2 class="sv-hero-title">Статистика</h2>
             <div class="sv-hero-sub" id="sv-hero-sub">Обзор твоей библиотеки</div>
+            <div class="sv-hero-tags" aria-label="Разделы статистики">
+              <span>Активность</span>
+              <span>Прогресс</span>
+              <span>История</span>
+            </div>
           </div>
           <div class="sv-hero-metrics">
             <div class="sv-metric sv-metric--primary">
@@ -1072,6 +1093,45 @@
       </div>
 
       <div class="sv-body">
+        <div class="stats-story-strip" id="stats-story-strip"></div>
+
+        <div class="stats-story-grid">
+          <div class="sv-panel stats-story-panel stats-story-panel--wide">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">📅</div>
+              <h3 class="sv-section-title">Неделя в играх</h3>
+              <span class="sv-section-badge" id="stats-week-note"></span>
+            </div>
+            <div class="stats-week-story" id="stats-week-story"></div>
+          </div>
+
+          <div class="sv-panel stats-story-panel">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">👑</div>
+              <h3 class="sv-section-title">Игра месяца</h3>
+              <span class="sv-section-badge" id="stats-month-note"></span>
+            </div>
+            <div class="stats-month-game" id="stats-month-game"></div>
+          </div>
+
+          <div class="sv-panel stats-story-panel">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">🕰️</div>
+              <h3 class="sv-section-title">Давно не запускал</h3>
+              <span class="sv-section-badge" id="stats-dormant-note"></span>
+            </div>
+            <div class="stats-dormant-list" id="stats-dormant-games"></div>
+          </div>
+
+          <div class="sv-panel stats-story-panel stats-story-panel--wide">
+            <div class="sv-section-head">
+              <div class="sv-section-icon">✨</div>
+              <h3 class="sv-section-title">Что можно сделать дальше</h3>
+              <span class="sv-section-badge" id="stats-recommendations-note"></span>
+            </div>
+            <div class="stats-recommendations" id="stats-recommendations"></div>
+          </div>
+        </div>
 
         <!-- Последняя активность -->
         <div class="sv-section">

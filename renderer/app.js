@@ -2395,6 +2395,7 @@ function applyDensity(mode) {
 }
 
 function renderSettingsView() {
+  setSettingsTab(document.querySelector('.settings-tab.active')?.dataset.settingsTab || 'appearance');
   const current = store.settings.theme || 'steam';
   document.querySelectorAll('.theme-card').forEach(card => {
     card.classList.toggle('active', card.dataset.themeId === current);
@@ -2409,6 +2410,28 @@ function renderSettingsView() {
   if (hideEl) hideEl.checked = !!store.settings.hideJokes;
   renderHiddenGamesSettings();
 }
+
+function setSettingsTab(tabId = 'appearance') {
+  const target = document.querySelector(`[data-settings-panel="${CSS.escape(tabId)}"]`)
+    ? tabId
+    : 'appearance';
+
+  document.querySelectorAll('[data-settings-tab]').forEach(btn => {
+    const active = btn.dataset.settingsTab === target;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', String(active));
+  });
+
+  document.querySelectorAll('[data-settings-panel]').forEach(panel => {
+    panel.classList.toggle('active', panel.dataset.settingsPanel === target);
+  });
+}
+
+document.querySelector('.settings-tabs')?.addEventListener('click', event => {
+  const tab = event.target.closest('[data-settings-tab]');
+  if (!tab) return;
+  setSettingsTab(tab.dataset.settingsTab);
+});
 
 function renderHiddenGamesSettings() {
   const listEl = document.getElementById('hidden-games-list');
@@ -4633,6 +4656,7 @@ function drawStatsCards() {
   renderStatsStatusBreakdown(list);
   renderStatsAchievements(list);
   renderStatsActivity(list);
+  renderStatsStory(list);
 }
 
 function getRecentHours(game, days = 14) {
@@ -4641,6 +4665,311 @@ function getRecentHours(game, days = 14) {
     const t = new Date(s.date).getTime();
     return t >= cutoff ? sum + (s.minutes || 0) / 60 : sum;
   }, 0);
+}
+
+function statsSessionEvents(list, days = 365) {
+  const cutoff = Date.now() - days * 86400000;
+  return list.flatMap(game => (game.sessions || []).map(session => {
+    const time = new Date(session.date).getTime();
+    const minutes = Number(session.minutes || 0);
+    return { game, time, minutes };
+  })).filter(event =>
+    Number.isFinite(event.time)
+    && event.time >= cutoff
+    && Number.isFinite(event.minutes)
+    && event.minutes > 0
+  );
+}
+
+function statsHoursForRange(list, startMs, endMs = Date.now()) {
+  return statsSessionEvents(list, 730).reduce((sum, event) => {
+    return event.time >= startMs && event.time < endMs ? sum + event.minutes / 60 : sum;
+  }, 0);
+}
+
+function statsHoursByGameForRange(list, startMs, endMs = Date.now()) {
+  const totals = new Map();
+  statsSessionEvents(list, 730).forEach(event => {
+    if (event.time < startMs || event.time >= endMs) return;
+    totals.set(event.game.id, (totals.get(event.game.id) || 0) + event.minutes / 60);
+  });
+  return totals;
+}
+
+function statsMonthStart(date = new Date()) {
+  return new Date(date.getFullYear(), date.getMonth(), 1).getTime();
+}
+
+function statsDaysSince(value) {
+  const time = new Date(value || 0).getTime();
+  if (!Number.isFinite(time) || time <= 0) return Infinity;
+  return Math.max(0, Math.floor((Date.now() - time) / 86400000));
+}
+
+function statsGameMiniCard(game, { value = '', sub = '', tag = '', accent = 'blue' } = {}) {
+  const art = statsGameArt(game);
+  return `
+    <button class="stats-story-game ${accent}" type="button" data-game-id="${esc(game.id)}">
+      <div class="stats-story-game-art">
+        ${art ? `<img src="${esc(art)}" alt="" loading="lazy" />` : '<span>🎮</span>'}
+      </div>
+      <div class="stats-story-game-copy">
+        <div class="stats-story-game-title">${esc(game.title || 'Игра')}</div>
+        ${sub ? `<div class="stats-story-game-sub">${esc(sub)}</div>` : ''}
+      </div>
+      <div class="stats-story-game-meta">
+        ${value ? `<strong>${esc(value)}</strong>` : ''}
+        ${tag ? `<span>${esc(tag)}</span>` : ''}
+      </div>
+    </button>`;
+}
+
+function renderStatsStory(list) {
+  renderStatsStoryStrip(list);
+  renderStatsWeekStory(list);
+  renderStatsMonthGame(list);
+  renderStatsDormantGames(list);
+  renderStatsRecommendations(list);
+}
+
+function renderStatsStoryStrip(list) {
+  const root = document.getElementById('stats-story-strip');
+  if (!root) return;
+
+  const now = Date.now();
+  const weekStart = now - 7 * 86400000;
+  const prevWeekStart = now - 14 * 86400000;
+  const weekHours = statsHoursForRange(list, weekStart, now);
+  const prevWeekHours = statsHoursForRange(list, prevWeekStart, weekStart);
+  const completed = list.filter(g => g.status === 'completed').length;
+  const dormant = list.filter(g => (g.hoursPlayed || 0) > 0 && statsDaysSince(g.lastPlayedAt) >= 90).length;
+  const monthTotals = statsHoursByGameForRange(list, statsMonthStart(), now);
+  const monthLeader = [...monthTotals.entries()]
+    .map(([gameId, hours]) => ({ game: store.games[gameId], hours }))
+    .filter(item => item.game)
+    .sort((a, b) => b.hours - a.hours)[0];
+
+  const delta = weekHours - prevWeekHours;
+  const deltaText = Math.abs(delta) >= 0.1
+    ? `${delta >= 0 ? '+' : '-'}${fmtH(Math.abs(delta))} ч к прошлой неделе`
+    : 'примерно как на прошлой неделе';
+
+  root.innerHTML = [
+    {
+      label: 'Эта неделя',
+      value: `${fmtH(weekHours)} ч`,
+      sub: weekHours > 0 ? deltaText : 'сессий пока не было',
+    },
+    {
+      label: 'Игра месяца',
+      value: monthLeader ? monthLeader.game.title : 'Пока нет',
+      sub: monthLeader ? `${fmtH(monthLeader.hours)} ч за месяц` : 'появится после сессий',
+    },
+    {
+      label: 'Прогресс',
+      value: `${completed}/${list.length || 0}`,
+      sub: list.length ? 'игр отмечено пройденными' : 'библиотека пуста',
+    },
+    {
+      label: 'Стоит вспомнить',
+      value: dormant,
+      sub: dormant ? 'игр не запускались 90+ дней' : 'хвостов почти нет',
+    },
+  ].map(item => `
+    <div class="stats-story-card">
+      <div class="stats-story-label">${esc(item.label)}</div>
+      <div class="stats-story-value" title="${esc(item.value)}">${esc(item.value)}</div>
+      <div class="stats-story-sub">${esc(item.sub)}</div>
+    </div>
+  `).join('');
+}
+
+function renderStatsWeekStory(list) {
+  const root = document.getElementById('stats-week-story');
+  const note = document.getElementById('stats-week-note');
+  if (!root) return;
+
+  const days = Array.from({ length: 7 }, (_, idx) => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() - (6 - idx));
+    return date;
+  });
+  const events = statsSessionEvents(list, 14);
+  const byDay = days.map(day => {
+    const start = day.getTime();
+    const end = start + 86400000;
+    const hours = events.reduce((sum, event) => (
+      event.time >= start && event.time < end ? sum + event.minutes / 60 : sum
+    ), 0);
+    return { day, hours };
+  });
+  const max = Math.max(...byDay.map(item => item.hours), 1);
+  const total = byDay.reduce((sum, item) => sum + item.hours, 0);
+  const activeDays = byDay.filter(item => item.hours > 0).length;
+
+  if (note) note.textContent = total > 0 ? `${activeDays}/7 дней` : '';
+  if (!list.length) {
+    root.innerHTML = statsEmpty('Добавь игры, и здесь появится недельная история');
+    return;
+  }
+
+  root.innerHTML = `
+    <div class="stats-week-bars">
+      ${byDay.map(item => {
+        const height = Math.max(8, Math.round((item.hours / max) * 100));
+        return `
+          <div class="stats-week-day" title="${esc(item.day.toLocaleDateString('ru-RU'))}: ${fmtH(item.hours)} ч">
+            <span class="stats-week-bar"><span style="height:${height}%"></span></span>
+            <strong>${esc(item.day.toLocaleDateString('ru-RU', { weekday: 'short' }))}</strong>
+            <em>${item.hours > 0 ? esc(fmtH(item.hours)) : '0'}</em>
+          </div>`;
+      }).join('')}
+    </div>
+    <div class="stats-week-caption">
+      ${total > 0
+        ? `За неделю вышло ${esc(fmtH(total))} ч. Самый активный день: ${esc(byDay.reduce((a, b) => b.hours > a.hours ? b : a).day.toLocaleDateString('ru-RU', { weekday: 'long' }))}.`
+        : 'На этой неделе ещё не было игровых сессий.'}
+    </div>`;
+}
+
+function renderStatsMonthGame(list) {
+  const root = document.getElementById('stats-month-game');
+  const note = document.getElementById('stats-month-note');
+  if (!root) return;
+
+  const totals = statsHoursByGameForRange(list, statsMonthStart(), Date.now());
+  let leader = [...totals.entries()]
+    .map(([gameId, hours]) => ({ game: store.games[gameId], hours }))
+    .filter(item => item.game && item.hours > 0)
+    .sort((a, b) => b.hours - a.hours)[0];
+
+  if (!leader) {
+    const fallback = [...list]
+      .filter(g => (g.hoursPlayed || 0) > 0)
+      .sort((a, b) => (b.hoursPlayed || 0) - (a.hoursPlayed || 0))[0];
+    if (fallback) leader = { game: fallback, hours: fallback.hoursPlayed || 0, fallback: true };
+  }
+
+  if (!leader) {
+    root.innerHTML = statsEmpty('Появится после первых игровых сессий');
+    if (note) note.textContent = '';
+    return;
+  }
+
+  if (note) note.textContent = leader.fallback ? 'за всё время' : 'этот месяц';
+  const unlocked = leader.game.achievementsUnlocked || 0;
+  const total = leader.game.achievementsTotal || 0;
+  root.innerHTML = statsGameMiniCard(leader.game, {
+    value: `${fmtH(leader.hours)} ч`,
+    sub: total ? `Достижения: ${unlocked}/${total}` : 'Главный фокус периода',
+    tag: leader.game.status ? (STATUS_LABELS[leader.game.status] || '') : '',
+    accent: 'gold',
+  });
+  bindStatsGameRows(root);
+}
+
+function renderStatsDormantGames(list) {
+  const root = document.getElementById('stats-dormant-games');
+  const note = document.getElementById('stats-dormant-note');
+  if (!root) return;
+
+  const dormant = [...list]
+    .filter(g => (g.hoursPlayed || 0) > 0 && statsDaysSince(g.lastPlayedAt) >= 60)
+    .sort((a, b) => statsDaysSince(b.lastPlayedAt) - statsDaysSince(a.lastPlayedAt))
+    .slice(0, 4);
+
+  if (note) note.textContent = dormant.length
+    ? `${dormant.length} ${dormant.length === 1 ? 'игра' : 'игры'}`
+    : '';
+  if (!dormant.length) {
+    root.innerHTML = statsEmpty('Нет старых хвостов: библиотека выглядит живой');
+    return;
+  }
+
+  root.innerHTML = dormant.map(game => {
+    const days = statsDaysSince(game.lastPlayedAt);
+    return statsGameMiniCard(game, {
+      value: `${days} дн.`,
+      sub: `${fmtH(game.hoursPlayed || 0)} ч всего`,
+      tag: 'не запускалась',
+      accent: 'muted',
+    });
+  }).join('');
+  bindStatsGameRows(root);
+}
+
+function renderStatsRecommendations(list) {
+  const root = document.getElementById('stats-recommendations');
+  const note = document.getElementById('stats-recommendations-note');
+  if (!root) return;
+
+  const picks = [];
+  const playing = [...list]
+    .filter(g => g.status === 'playing')
+    .sort((a, b) => getRecentHours(b, 30) - getRecentHours(a, 30))[0];
+  if (playing) picks.push({
+    title: 'Продолжить текущую игру',
+    text: `${playing.title}: ${fmtH(getRecentHours(playing, 30))} ч за месяц`,
+    game: playing,
+  });
+
+  const almostDone = [...list]
+    .filter(g => (g.achievementsTotal || 0) > 0)
+    .map(g => ({ game: g, pct: (g.achievementsUnlocked || 0) / Math.max(1, g.achievementsTotal || 0) }))
+    .filter(item => item.pct >= .65 && item.pct < 1)
+    .sort((a, b) => b.pct - a.pct)[0];
+  if (almostDone) picks.push({
+    title: 'Добить прогресс',
+    text: `${almostDone.game.title}: ${Math.round(almostDone.pct * 100)}% достижений`,
+    game: almostDone.game,
+  });
+
+  const dormantFavorite = [...list]
+    .filter(g => (g.hoursPlayed || 0) >= 5 && statsDaysSince(g.lastPlayedAt) >= 90)
+    .sort((a, b) => (b.hoursPlayed || 0) - (a.hoursPlayed || 0))[0];
+  if (dormantFavorite) picks.push({
+    title: 'Вернуться к старому фавориту',
+    text: `${dormantFavorite.title}: ${fmtH(dormantFavorite.hoursPlayed || 0)} ч накоплено`,
+    game: dormantFavorite,
+  });
+
+  const unrated = [...list]
+    .filter(g => (g.hoursPlayed || 0) >= 2 && !g.rating)
+    .sort((a, b) => (b.hoursPlayed || 0) - (a.hoursPlayed || 0))[0];
+  if (unrated) picks.push({
+    title: 'Поставить оценку',
+    text: `${unrated.title}: уже ${fmtH(unrated.hoursPlayed || 0)} ч`,
+    game: unrated,
+  });
+
+  const unique = [];
+  const seen = new Set();
+  picks.forEach(pick => {
+    const key = `${pick.title}:${pick.game?.id || ''}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    unique.push(pick);
+  });
+
+  if (note) note.textContent = unique.length
+    ? `${unique.length} ${unique.length === 1 ? 'идея' : 'идеи'}`
+    : '';
+  if (!unique.length) {
+    root.innerHTML = statsEmpty('Пока нечего советовать: добавь игры, сессии или достижения');
+    return;
+  }
+
+  root.innerHTML = unique.slice(0, 4).map(pick => `
+    <button class="stats-rec-card" type="button" data-game-id="${esc(pick.game.id)}">
+      <span class="stats-rec-dot"></span>
+      <span>
+        <strong>${esc(pick.title)}</strong>
+        <em>${esc(pick.text)}</em>
+      </span>
+    </button>
+  `).join('');
+  bindStatsGameRows(root);
 }
 
 function renderStatsActivity(list) {
