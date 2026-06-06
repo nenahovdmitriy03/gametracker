@@ -7506,6 +7506,44 @@ document.getElementById('btn-backup').addEventListener('click', () => {
   openModal('modal-backup');
 });
 
+document.getElementById('btn-sff-open')?.addEventListener('click', async () => {
+  if (!api.openSffApp) {
+    toast('Запуск SteaMidra недоступен в этой сборке', 'err');
+    return;
+  }
+
+  const result = await api.openSffApp();
+  if (result?.ok) {
+    toast('SteaMidra запускается', 'ok');
+  } else {
+    toast(result?.error || 'Не удалось открыть SteaMidra', 'err');
+  }
+});
+
+document.getElementById('btn-sff-install')?.addEventListener('click', async e => {
+  if (!api.installSffApp) {
+    toast('Установка SteaMidra недоступна в этой сборке', 'err');
+    return;
+  }
+
+  const btn = e.currentTarget;
+  const oldText = btn.querySelector('span:last-child')?.textContent || 'Установить / обновить SteaMidra';
+  btn.disabled = true;
+  const label = btn.querySelector('span:last-child');
+  if (label) label.textContent = 'Устанавливаю SteaMidra...';
+  toast('Установка SteaMidra началась. Это может занять несколько минут.', 'ok');
+
+  const result = await api.installSffApp();
+  btn.disabled = false;
+  if (label) label.textContent = oldText;
+
+  if (result?.ok) {
+    toast('SteaMidra установлена и переведена на русский', 'ok');
+  } else {
+    toast(result?.error || 'Не удалось установить SteaMidra', 'err');
+  }
+});
+
 document.getElementById('btn-export').addEventListener('click', async () => {
   const result = await api.exportBackup(store);
   if (result.ok) {

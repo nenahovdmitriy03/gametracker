@@ -13,6 +13,9 @@ let overlayPendingTimer = null;
 const getDataPath = () => path.join(app.getPath('userData'), 'gametracker-data.json');
 const appIconPath = path.join(__dirname, 'assets', 'icon.ico');
 const getWindowIcon = () => fsSync.existsSync(appIconPath) ? appIconPath : undefined;
+const SFF_APP_DIR = path.join(app.getPath('documents'), 'SFF');
+const SFF_RUNNER = path.join(SFF_APP_DIR, 'run_sff.bat');
+const SFF_INSTALLER = path.join(__dirname, 'scripts', 'install-sff.ps1');
 
 function createOverlayWindow() {
   if (overlayWindow && !overlayWindow.isDestroyed()) return overlayWindow;
@@ -311,6 +314,73 @@ ipcMain.handle('game:launchLocal', async (_e, { launchPath }) => {
       launchPath: normalizedPath,
       baselineProcessNames,
     };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+});
+
+ipcMain.handle('sff:open', async () => {
+  try {
+    if (!fsSync.existsSync(SFF_APP_DIR)) {
+      return { ok: false, error: `SteaMidra не найдена: ${SFF_APP_DIR}` };
+    }
+
+    if (!fsSync.existsSync(SFF_RUNNER)) {
+      return { ok: false, error: `Файл запуска SteaMidra не найден: ${SFF_RUNNER}` };
+    }
+
+    const { spawn } = require('child_process');
+    const child = spawn('cmd.exe', ['/c', 'start', '', SFF_RUNNER], {
+      cwd: SFF_APP_DIR,
+      detached: true,
+      windowsHide: true,
+      stdio: 'ignore',
+    });
+    child.unref();
+    return { ok: true, path: SFF_RUNNER };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+});
+
+ipcMain.handle('sff:install', async () => {
+  try {
+    if (!fsSync.existsSync(SFF_INSTALLER)) {
+      return { ok: false, error: `Установщик SteaMidra не найден: ${SFF_INSTALLER}` };
+    }
+
+    const { execFile } = require('child_process');
+    const result = await new Promise(resolve => {
+      execFile(
+        'powershell.exe',
+        [
+          '-NoProfile',
+          '-ExecutionPolicy', 'Bypass',
+          '-File', SFF_INSTALLER,
+          '-InstallDir', SFF_APP_DIR,
+        ],
+        {
+          cwd: __dirname,
+          windowsHide: true,
+          maxBuffer: 1024 * 1024 * 12,
+          timeout: 1000 * 60 * 15,
+        },
+        (error, stdout, stderr) => {
+          if (error) {
+            resolve({
+              ok: false,
+              error: stderr || stdout || error.message,
+              stdout,
+              stderr,
+            });
+            return;
+          }
+          resolve({ ok: true, stdout, stderr, path: SFF_RUNNER });
+        }
+      );
+    });
+
+    return result;
   } catch (err) {
     return { ok: false, error: err.message };
   }

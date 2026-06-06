@@ -39,6 +39,8 @@ contextBridge.exposeInMainWorld('api', {
   pickPoster:        (opts)  => ipcRenderer.invoke('poster:pick', opts),
   pickExecutable:    ()      => ipcRenderer.invoke('game:pickExecutable'),
   launchLocalGame:   (opts)  => ipcRenderer.invoke('game:launchLocal', opts),
+  openSffApp:         ()      => ipcRenderer.invoke('sff:open'),
+  installSffApp:      ()      => ipcRenderer.invoke('sff:install'),
 
   saveDataSync:        (data) => ipcRenderer.sendSync('data:save-sync', data),
   watchGameProcess:    (opts) => ipcRenderer.invoke('game:startWatch', opts),
