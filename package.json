@@ -7,7 +7,8 @@
     "start": "set ELECTRON_RUN_AS_NODE=&& electron .",
     "build": "electron-builder",
     "make:icon": "powershell -ExecutionPolicy Bypass -File scripts/generate-icon.ps1",
-    "build:launcher": "powershell -ExecutionPolicy Bypass -File scripts/update-launcher.ps1"
+    "build:launcher": "powershell -ExecutionPolicy Bypass -File scripts/update-launcher.ps1",
+    "watch:launcher": "powershell -ExecutionPolicy Bypass -File scripts/watch-launcher.ps1"
   },
   "build": {
     "appId": "com.gametracker.app",
