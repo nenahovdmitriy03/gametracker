@@ -3302,9 +3302,9 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
   --sl-library-gap: 20px;
   display: block !important;
   position: relative;
-  margin: -28px -32px;
-  width: calc(100% + 64px);
-  height: calc(100% + 56px);
+  margin: -22px -28px;
+  width: calc(100% + 56px);
+  height: calc(100% + 44px);
   overflow: hidden;
   animation: none;
 }
