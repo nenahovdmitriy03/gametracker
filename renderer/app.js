@@ -3170,8 +3170,25 @@ function openSLSettingsModal() {
   renderSLHeroEditor(game);
   const steamSyncDisabledEl = document.getElementById('sl-steam-sync-disabled');
   if (steamSyncDisabledEl) steamSyncDisabledEl.checked = !!game.steamSyncDisabled;
+  setGameSettingsTab('media');
   openModal('modal-sl-settings');
 }
+
+/* Game settings tabs */
+function setGameSettingsTab(tabId = 'media') {
+  document.querySelectorAll('[data-game-tab]').forEach(btn => {
+    const active = btn.dataset.gameTab === tabId;
+    btn.classList.toggle('active', active);
+  });
+  document.querySelectorAll('[data-game-panel]').forEach(panel => {
+    panel.classList.toggle('active', panel.dataset.gamePanel === tabId);
+  });
+}
+document.querySelector('.game-settings-tabs')?.addEventListener('click', e => {
+  const tab = e.target.closest('[data-game-tab]');
+  if (!tab) return;
+  setGameSettingsTab(tab.dataset.gameTab);
+});
 
 function renderSLPosterEditor(game) {
   const poster = gamePoster(game) || gameCover(game);
@@ -5278,7 +5295,138 @@ function clearAmbientBackground() {
 }
 
 // ══════════ КАРТОЧКА ИГРЫ ════════════════════════════════
+const USE_OLD_GAME_CARD_DESIGN = false; // Поменяйте на true для отката на старый дизайн
+
 function makeGameCard(game) {
+  if (USE_OLD_GAME_CARD_DESIGN) {
+    return makeGameCardOld(game);
+  }
+  return makeGameCardV2(game);
+}
+
+function makeGameCardV2(game) {
+  const card  = document.createElement('div');
+  card.className = 'game-card-v2';
+  card.dataset.gameId = game.id;
+  card.draggable = true;
+
+  const cover    = gameCover(game);
+  
+  // Ambient Background Events
+  card.addEventListener('mouseenter', () => {
+    if (cover) setAmbientBackground(cover);
+  });
+  card.addEventListener('mouseleave', () => {
+    clearAmbientBackground();
+  });
+
+  const hoursStr = `${fmtH(game.hoursPlayed || 0)}`;
+  const achPct   = game.achievementsTotal > 0
+    ? Math.round((game.achievementsUnlocked || 0) / game.achievementsTotal * 100) : 0;
+  const achStr   = game.achievementsTotal > 0
+    ? `🏆 ${game.achievementsUnlocked || 0}/${game.achievementsTotal}` : '';
+  const lastPlayed = game.lastPlayedAt
+    ? new Date(game.lastPlayedAt).toLocaleDateString('ru-RU', { day:'numeric', month:'short', year:'numeric' })
+    : 'Никогда';
+  const hasNotes  = !!game.notes?.trim();
+  const tierInfo = getGameTierInfo(game.id);
+  const tierBadge = tierInfo
+    ? `<div class="gc-tier-badge" style="--tier-color:${esc(tierInfo.color)}" title="Тир ${esc(tierInfo.label)}">${esc(tierInfo.shortLabel)}</div>`
+    : '';
+  const statusBadge = game.status
+    ? `<div class="gc-status-badge ${game.status}">${STATUS_LABELS[game.status]}</div>` : '';
+  const tagsHtml = (game.tags?.length)
+    ? `<div class="gc-tags">${game.tags.slice(0,3).map(t => `<span class="gc-tag">${esc(t)}</span>`).join('')}</div>` : '';
+  const canLaunch = canLaunchLocally(game) || !!game.appid;
+
+  card.innerHTML = `
+    <div class="gc-art">
+      ${cover
+        ? `<img class="gc-cover" src="${esc(cover)}" alt="${esc(game.title)}" decoding="async"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+           <div class="gc-no-cover" style="display:none">🎮</div>`
+        : `<div class="gc-no-cover">🎮</div>`}
+      <div class="gc-art-overlay"></div>
+      ${canLaunch ? `<button class="gc-launch-btn" title="Запустить игру">▶</button>` : ''}
+      ${tierBadge}
+      ${statusBadge}
+      ${game.rating ? `<div class="gc-badge-rating">★ ${game.rating}</div>` : ''}
+      ${game.achievementsTotal > 0 ? `
+        <div class="gc-ach-bar">
+          <div class="gc-ach-bar-fill" style="width:${achPct}%"></div>
+        </div>` : ''}
+    </div>
+    <div class="gc-info">
+      <div class="gc-title" title="${esc(game.title)}">${esc(game.title)}</div>
+      <div class="gc-stats">
+        <span class="gc-hours">${hoursStr}<span>ч</span></span>
+        ${achStr ? `<span class="gc-ach-count">${achStr}</span>` : ''}
+      </div>
+      <div class="gc-meta">
+        <span class="gc-last-played">${lastPlayed}</span>
+        ${hasNotes ? '<span class="gc-notes-dot" title="Есть заметки">📝</span>' : ''}
+      </div>
+    </div>
+    ${tagsHtml}
+  `;
+
+  const artEl = card.querySelector('.gc-art');
+  const coverEl = card.querySelector('.gc-cover');
+  if (artEl && coverEl) {
+    artEl.classList.add('is-media-loading');
+    coverEl.addEventListener('load', () => artEl.classList.remove('is-media-loading'));
+    coverEl.addEventListener('error', () => artEl.classList.remove('is-media-loading'));
+    if (coverEl.complete) artEl.classList.remove('is-media-loading');
+  }
+
+  card.addEventListener('click', () => openGameModal(game.id));
+  card.addEventListener('contextmenu', e => openGameStatusMenu(e, game.id));
+
+  const launchBtn = card.querySelector('.gc-launch-btn');
+  if (launchBtn) {
+    launchBtn.addEventListener('click', async e => {
+      e.stopPropagation();
+      await launchGameFromLauncher(game.id);
+    });
+  }
+
+  // Drag & drop
+  card.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text/plain', game.id);
+    card.classList.add('dragging');
+  });
+  card.addEventListener('dragend', () => card.classList.remove('dragging'));
+  card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drag-over'); });
+  card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+  card.addEventListener('drop', e => {
+    e.preventDefault();
+    card.classList.remove('drag-over');
+    const draggedId = e.dataTransfer.getData('text/plain');
+    if (draggedId === game.id) return;
+    reorderGames(draggedId, game.id);
+  });
+
+  // 3D Tilt Effect
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    card.style.zIndex = 10;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.zIndex = '';
+  });
+
+  return card;
+}
+
+function makeGameCardOld(game) {
   const card  = document.createElement('div');
   card.className = 'game-card';
   card.dataset.gameId = game.id;

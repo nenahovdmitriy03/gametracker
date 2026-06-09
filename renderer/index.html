@@ -484,100 +484,117 @@
               <button class="modal-close" data-close="modal-sl-settings">✕</button>
             </div>
             <div class="modal-body sl-settings-body">
-              <div class="sl-settings-section">
+              <div class="settings-tabs game-settings-tabs" style="margin-bottom: 16px; justify-content: space-between;">
+                <button class="settings-tab active" type="button" data-game-tab="media">Оформление</button>
+                <button class="settings-tab" type="button" data-game-tab="launch">Запуск</button>
+                <button class="settings-tab" type="button" data-game-tab="achievements">Достижения</button>
+                <button class="settings-tab" type="button" data-game-tab="saves">Сохранения</button>
+              </div>
+
+              <!-- Media Section -->
+              <div class="game-settings-panel active" data-game-panel="media">
+                <div class="sl-settings-section sl-settings-media" style="margin-top: 0;">
+                <div class="sl-settings-section-head">
+                  <div>
+                    <div class="sl-settings-section-title">Оформление</div>
+                    <div class="sl-settings-section-copy">Постер и фоновое изображение</div>
+                  </div>
+                </div>
+                <div class="sl-media-cards">
+                  <div class="sl-media-card sl-poster-card" id="sl-btn-pick-poster">
+                    <img class="sl-poster-preview-img hidden" id="sl-poster-preview-img" alt="" />
+                    <div class="sl-poster-preview-ph" id="sl-poster-preview-ph">🎮</div>
+                    <div class="sl-media-overlay">
+                      <span>Изменить постер</span>
+                    </div>
+                  </div>
+                  <div class="sl-media-card sl-hero-card" id="sl-btn-pick-hero">
+                    <img class="sl-hero-preview-img hidden" id="sl-hero-preview-img" alt="" />
+                    <div class="sl-hero-preview-ph" id="sl-hero-preview-ph">🎮</div>
+                    <div class="sl-media-overlay">
+                      <span>Изменить фон</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="sl-settings-actions" style="margin-top: 10px;">
+                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-poster" type="button">Сбросить постер</button>
+                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-hero" type="button">Сбросить фон</button>
+                </div>
+                <input id="sl-poster-url" type="hidden" />
+                <input id="sl-hero-url" type="hidden" />
+              </div>
+              </div>
+
+              <!-- Launch & Sync Section -->
+              <div class="game-settings-panel" data-game-panel="launch">
+              <div class="sl-settings-section" style="margin-top: 0;">
+                <div class="sl-settings-section-head">
+                  <div>
+                    <div class="sl-settings-section-title">Запуск</div>
+                    <div class="sl-settings-section-copy">Путь к игре и интеграция</div>
+                  </div>
+                </div>
+                <div class="sl-gear-path-row sl-settings-path-row" id="sl-btn-pick-launch" style="cursor:pointer;" title="Нажмите, чтобы выбрать файл">
+                  <span class="sl-gear-path-val" id="sl-launch-path-val">Исполняемый файл не задан</span>
+                  <div class="sl-gear-path-pick">📁</div>
+                </div>
+                <label class="sl-toggle-row" style="cursor: default; margin-top: 12px; padding: 10px 14px;">
+                  <div class="sl-toggle-info" style="flex: 1;">
+                    <span class="sl-toggle-label">Steam AppID</span>
+                    <span class="sl-toggle-desc">Для отслеживания достижений</span>
+                  </div>
+                  <input class="sl-settings-input" id="sl-steam-appid" type="text" placeholder="ID" inputmode="numeric" style="width: 100px; padding: 6px 10px; text-align: center; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.2);" />
+                </label>
+                <label class="sl-toggle-row">
+                  <div class="sl-toggle-info">
+                    <span class="sl-toggle-label">Отключить Steam</span>
+                    <span class="sl-toggle-desc">Запускать локально без обновлений Steam</span>
+                  </div>
+                  <input id="sl-steam-sync-disabled" type="checkbox" class="sl-toggle-input" />
+                  <div class="sl-toggle-switch"></div>
+                </label>
+                <div class="sl-settings-actions" style="margin-top: 10px;">
+                  <button class="sl-gear-item" id="sl-btn-save-local-link">Сохранить</button>
+                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-clear-local-link">Сброс</button>
+                </div>
+              </div>
+              </div>
+
+              <!-- Achievements Section -->
+              <div class="game-settings-panel" data-game-panel="achievements">
+              <div class="sl-settings-section" style="margin-top: 0;">
                 <div class="sl-settings-section-head">
                   <div>
                     <div class="sl-settings-section-title">Достижения</div>
-                    <div class="sl-settings-section-copy">Обновление списка, прогресса и иконок</div>
                   </div>
                 </div>
                 <div class="sl-settings-actions">
-                  <button class="sl-gear-item" id="sl-btn-ach-online">🔄 Steam онлайн</button>
-                  <button class="sl-gear-item" id="sl-btn-ach-local">💾 Локальный кеш</button>
+                  <button class="sl-gear-item" id="sl-btn-ach-online">🔄 Steam</button>
+                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-ach-local">💾 Локальный кеш</button>
                 </div>
               </div>
-              <div class="sl-settings-section">
-                <div class="sl-settings-section-head">
-                  <div>
-                    <div class="sl-settings-section-title">Постер</div>
-                    <div class="sl-settings-section-copy">Картинка для карточек в библиотеке</div>
-                  </div>
-                </div>
-                <div class="sl-poster-editor">
-                  <div class="sl-poster-preview">
-                    <img class="sl-poster-preview-img hidden" id="sl-poster-preview-img" alt="" />
-                    <div class="sl-poster-preview-ph" id="sl-poster-preview-ph">🎮</div>
-                  </div>
-                  <div class="sl-poster-fields">
-                    <div class="sl-settings-actions">
-                      <button class="sl-gear-item" id="sl-btn-pick-poster" type="button">Выбрать файл</button>
-                      <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-poster" type="button">Сбросить</button>
-                    </div>
-                    <input class="sl-settings-input" id="sl-poster-url" type="url" placeholder="https://..." autocomplete="off" />
-                    <div class="sl-settings-note">Лучше всего смотрится вертикальный постер 2:3: 600x900 px или 1200x1800 px. Подойдут JPG, PNG или WebP.</div>
-                  </div>
-                </div>
               </div>
-              <div class="sl-settings-section">
-                <div class="sl-settings-section-head">
-                  <div>
-                    <div class="sl-settings-section-title">Фон игры</div>
-                    <div class="sl-settings-section-copy">Широкая картинка внутри страницы игры</div>
-                  </div>
-                </div>
-                <div class="sl-hero-editor">
-                  <div class="sl-hero-preview">
-                    <img class="sl-hero-preview-img hidden" id="sl-hero-preview-img" alt="" />
-                    <div class="sl-hero-preview-ph" id="sl-hero-preview-ph">🎮</div>
-                  </div>
-                  <div class="sl-poster-fields">
-                    <div class="sl-settings-actions">
-                      <button class="sl-gear-item" id="sl-btn-pick-hero" type="button">Выбрать файл</button>
-                      <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-reset-hero" type="button">Сбросить</button>
-                    </div>
-                    <input class="sl-settings-input" id="sl-hero-url" type="url" placeholder="https://..." autocomplete="off" />
-                    <div class="sl-settings-note">Для фона лучше широкая картинка 16:9: 1920x1080 px или 2560x1440 px. Важные детали держи ближе к центру.</div>
-                  </div>
-                </div>
-              </div>
-              <div class="sl-settings-section">
-                <div class="sl-settings-section-head">
-                  <div>
-                    <div class="sl-settings-section-title">Запуск и синхронизация</div>
-                    <div class="sl-settings-section-copy">Для локальной версии укажи .exe и отключи Steam-обновления</div>
-                  </div>
-                </div>
-                <div class="sl-gear-path-row sl-settings-path-row">
-                  <span class="sl-gear-path-val" id="sl-launch-path-val">Исполняемый файл не задан</span>
-                  <button class="sl-gear-path-pick" id="sl-btn-pick-launch" title="Выбрать файл игры">📁</button>
-                </div>
-                <input class="sl-settings-input" id="sl-steam-appid" type="text" placeholder="Steam AppID для локального трекинга достижений" inputmode="numeric" />
-                <div class="sl-settings-note">Можно привязать локальную игру к Steam AppID, чтобы подтянуть список достижений и ловить новые открытия во время сессии.</div>
-                <label class="sl-settings-check">
-                  <input id="sl-steam-sync-disabled" type="checkbox" />
-                  <span>Не обновлять эту игру через Steam</span>
-                </label>
-                <div class="sl-settings-actions">
-                  <button class="sl-gear-item" id="sl-btn-save-local-link">Сохранить локальный режим</button>
-                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-clear-local-link">Вернуть Steam-синхронизацию</button>
-                </div>
-              </div>
-              <div class="sl-settings-section">
+
+              <!-- Saves Section -->
+              <div class="game-settings-panel" data-game-panel="saves">
+              <div class="sl-settings-section" style="margin-top: 0;">
                 <div class="sl-settings-section-head">
                   <div>
                     <div class="sl-settings-section-title">Сохранения</div>
-                    <div class="sl-settings-section-copy">Ручная отправка и восстановление из Google Drive</div>
+                    <div class="sl-settings-section-copy">Google Drive синхронизация</div>
                   </div>
                 </div>
-                <div class="sl-gear-path-row sl-settings-path-row">
+                <div class="sl-gear-path-row sl-settings-path-row" id="sl-btn-pick-save" style="cursor:pointer;" title="Нажмите, чтобы выбрать папку">
                   <span class="sl-gear-path-val" id="sl-save-path-val">Папка не задана</span>
-                  <button class="sl-gear-path-pick" id="sl-btn-pick-save" title="Выбрать папку">📁</button>
+                  <div class="sl-gear-path-pick">📁</div>
                 </div>
                 <div class="sl-settings-actions">
-                  <button class="sl-gear-item" id="sl-btn-upload-save">↑ Загрузить в Drive</button>
-                  <button class="sl-gear-item" id="sl-btn-download-save">↓ Восстановить</button>
+                  <button class="sl-gear-item" id="sl-btn-upload-save">↑ В Drive</button>
+                  <button class="sl-gear-item sl-gear-item-secondary" id="sl-btn-download-save">↓ Загрузить</button>
                 </div>
               </div>
+              </div>
+
               <div class="sl-gear-status sl-settings-status" id="sl-gear-status"></div>
             </div>
           </div>
