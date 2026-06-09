@@ -6,62 +6,103 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 
-// ── Load source as text ──
+// ── Load source files as text ──
 const src = readFileSync(new URL('../renderer/app.js', import.meta.url), 'utf8');
 
-// ── Build a map of ALL top-level function names → bodies ──
-const fnMap = (() => {
+// ═══════════════════════════════════════════════════
+// Source-code extraction helpers
+// ═══════════════════════════════════════════════════
+
+/**
+ * Build a map of ALL top-level declarations:
+ *   - function NAME(...) { ... }
+ *   - const/let/var NAME = [...]; or = {...}; (literal arrays/objects)
+ *
+ * Key = declaration name, Value = source text of the full declaration.
+ */
+const declMap = (() => {
   const map = {};
-  const re = /^function (\w+)\s*\([^)]*\)\s*\{/gm;
+
+  // ── Functions ──
+  const fnRe = /^function (\w+)\s*\([^)]*\)\s*\{/gm;
   let m;
-  while ((m = re.exec(src)) !== null) {
+  while ((m = fnRe.exec(src)) !== null) {
     const name = m[1];
     const start = m.index;
-    let depth = 0, end = start;
-    for (let i = start + m[0].length - 1; i < src.length; i++) {
+    // Find the opening '{' of the function body (last char of match)
+    const braceStart = start + m[0].length - 1;
+    let depth = 0, end = braceStart;
+    for (let i = braceStart; i < src.length; i++) {
       if (src[i] === '{') depth++;
       else if (src[i] === '}') { depth--; if (depth === 0) { end = i + 1; break; } }
     }
     map[name] = src.slice(start, end);
   }
+
+  // ── Constants (arrays & objects only — safe to evaluate) ──
+  const constRe = /^(?:const|let|var)\s+(\w+)\s*=\s*([\[{])/gm;
+  while ((m = constRe.exec(src)) !== null) {
+    const name = m[1];
+    if (map[name]) continue; // already captured as function
+    const start = m.index;
+    const bracketChar = m[2];
+    const closeChar = bracketChar === '[' ? ']' : '}';
+    const bracketStart = start + m[0].length - 1;
+    let depth = 0, end = bracketStart;
+    for (let i = bracketStart; i < src.length; i++) {
+      if (src[i] === bracketChar) depth++;
+      else if (src[i] === closeChar) {
+        depth--;
+        if (depth === 0) {
+          // include up to the semicolon if present
+          end = i + 1;
+          if (src[end] === ';') end++;
+          break;
+        }
+      }
+    }
+    map[name] = src.slice(start, end);
+  }
+
   return map;
 })();
 
 /**
- * Extract a function and ALL functions it (transitively) calls.
- * Returns the callable function, or null if not found.
+ * Extract a function + ALL transitive dependencies (functions & consts).
+ * Uses BFS with word-boundary matching (catches callbacks like .map(fn)).
+ * Returns the callable function, or null if extraction fails.
  */
 function extractFnWithDeps(name) {
-  if (!fnMap[name]) return null;
+  if (!declMap[name]) return null;
 
-  // BFS to find all transitive dependencies
   const needed = new Set();
   const queue = [name];
   while (queue.length) {
-    const fn = queue.shift();
-    if (needed.has(fn)) continue;
-    if (!fnMap[fn]) continue; // external/unknown — will be stubbed
-    needed.add(fn);
-    // Scan body for calls to known functions
-    const body = fnMap[fn];
-    for (const other of Object.keys(fnMap)) {
-      if (!needed.has(other) && body.includes(other + '(')) {
+    const curr = queue.shift();
+    if (needed.has(curr)) continue;
+    if (!declMap[curr]) continue;
+    needed.add(curr);
+
+    const body = declMap[curr];
+    // Check for references to other known declarations (word boundary)
+    for (const other of Object.keys(declMap)) {
+      if (!needed.has(other) && new RegExp('\\b' + other + '\\b').test(body)) {
         queue.push(other);
       }
     }
   }
 
-  const bodies = [...needed].map(n => fnMap[n]).join('\n');
+  const code = [...needed].map(n => declMap[n]).join('\n');
   try {
-    return new Function(bodies + `\nreturn ${name};`)();
+    return new Function(code + `\nreturn ${name};`)();
   } catch { return null; }
 }
 
 /** Quick single-function extract (no dep resolution) */
 function extractFn(name) {
-  if (!fnMap[name]) return null;
+  if (!declMap[name]) return null;
   try {
-    return new Function(fnMap[name] + `\nreturn ${name};`)();
+    return new Function(declMap[name] + `\nreturn ${name};`)();
   } catch { return null; }
 }
 
@@ -90,9 +131,6 @@ describe('parseVdf', () => {
 });
 
 // ═══════════ fmtH (format hours) ══════════════════
-// h >= 1000 → toLocaleString('ru')  (string)
-// h >= 10   → Math.round(h)         (number)
-// else      → (+h).toFixed(1)       (string)
 
 describe('fmtH (format hours)', () => {
   const fmtH = extractFn('fmtH');
@@ -184,7 +222,6 @@ describe('calcStreak', () => {
 // ═══════════ normalizeStore ═══════════════════════
 
 describe('normalizeStore', () => {
-  // Auto-resolve all transitive deps
   const normalizeStore = extractFnWithDeps('normalizeStore');
 
   it.skipIf(!normalizeStore)('returns valid store from empty object', () => {
