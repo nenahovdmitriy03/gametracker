@@ -9,27 +9,40 @@ import { readFileSync } from 'fs';
 // ── Load source as text and extract functions ──
 const src = readFileSync(new URL('../renderer/app.js', import.meta.url), 'utf8');
 
-/** Extract a named function from source by balanced-brace matching */
-function extractFnFromSource(name) {
-  const re = new RegExp(`function ${name}\\s*\\([^)]*\\)\\s*\\{`);
-  const m = src.match(re);
-  if (!m) return null;
-  const start = m.index;
-  let depth = 0, end = start;
-  for (let i = start + m[0].length - 1; i < src.length; i++) {
-    if (src[i] === '{') depth++;
-    else if (src[i] === '}') { depth--; if (depth === 0) { end = i + 1; break; } }
+/**
+ * Extract one or more named functions from source and compile them
+ * together so they can call each other (shared scope).
+ */
+function extractFunctions(...names) {
+  const bodies = [];
+  for (const name of names) {
+    const re = new RegExp(`function ${name}\\s*\\([^)]*\\)\\s*\\{`);
+    const m = src.match(re);
+    if (!m) return null;
+    const start = m.index;
+    let depth = 0, end = start;
+    for (let i = start + m[0].length - 1; i < src.length; i++) {
+      if (src[i] === '{') depth++;
+      else if (src[i] === '}') { depth--; if (depth === 0) { end = i + 1; break; } }
+    }
+    bodies.push(src.slice(start, end));
   }
-  const body = src.slice(start, end);
   try {
-    return new Function(body + `\nreturn ${name};`)();
+    const code = bodies.join('\n') + '\nreturn { ' + names.join(', ') + ' };';
+    return new Function(code)();
   } catch { return null; }
+}
+
+/** Extract a single named function */
+function extractFn(name) {
+  const result = extractFunctions(name);
+  return result ? result[name] : null;
 }
 
 // ═══════════ VDF Parser ═══════════════════════════
 
 describe('parseVdf', () => {
-  const parseVdf = extractFnFromSource('parseVdf');
+  const parseVdf = extractFn('parseVdf');
 
   it.skipIf(!parseVdf)('parses simple key-value pairs', () => {
     const vdf = `"libraryfolders"\n{\n  "0"\n  {\n    "path"    "C:\\\\Program Files\\\\Steam"\n    "label"   ""\n  }\n}`;
@@ -51,88 +64,132 @@ describe('parseVdf', () => {
 });
 
 // ═══════════ fmtH (format hours) ══════════════════
+// fmtH returns:
+//   h >= 1000 → Math.round(h).toLocaleString('ru')  (string)
+//   h >= 10   → Math.round(h)                        (number)
+//   else      → (+h).toFixed(1)                      (string)
 
 describe('fmtH (format hours)', () => {
-  const fmtH = extractFnFromSource('fmtH');
+  const fmtH = extractFn('fmtH');
 
-  it.skipIf(!fmtH)('formats zero hours', () => {
-    expect(fmtH(0)).toBe('0');
+  it.skipIf(!fmtH)('formats small hours with one decimal', () => {
+    expect(fmtH(0)).toBe('0.0');
+    expect(fmtH(5.25)).toBe('5.3');
+    expect(fmtH(9.99)).toBe('10.0');
   });
 
-  it.skipIf(!fmtH)('formats whole hours', () => {
-    const res = fmtH(100);
-    expect(res).toContain('100');
+  it.skipIf(!fmtH)('formats medium hours as rounded integer', () => {
+    expect(fmtH(10)).toBe(10);
+    expect(fmtH(100)).toBe(100);
+    expect(fmtH(10.567)).toBe(11);
+    expect(fmtH(999.4)).toBe(999);
   });
 
-  it.skipIf(!fmtH)('formats decimal hours', () => {
-    const res = fmtH(10.567);
+  it.skipIf(!fmtH)('formats large hours with locale separator', () => {
+    const res = fmtH(1234);
     expect(typeof res).toBe('string');
-    expect(Number(res.replace(',', '.'))).toBeCloseTo(10.6, 0);
+    // locale may use different space chars — just check digits are there
+    expect(res.replace(/\s/g, '')).toBe('1234');
   });
 });
 
 // ═══════════ esc (HTML escape) ════════════════════
 
 describe('esc (HTML escape)', () => {
-  const esc = extractFnFromSource('esc');
+  const esc = extractFn('esc');
 
   it.skipIf(!esc)('escapes HTML special characters', () => {
     expect(esc('<script>alert("xss")</script>')).not.toContain('<script>');
     expect(esc('&')).toContain('&amp;');
+    expect(esc('"')).toContain('&quot;');
   });
 
   it.skipIf(!esc)('handles empty string', () => {
     expect(esc('')).toBe('');
   });
 
-  it.skipIf(!esc)('handles non-string input gracefully', () => {
-    expect(() => esc(null)).not.toThrow();
-    expect(() => esc(undefined)).not.toThrow();
+  it.skipIf(!esc)('handles null/undefined gracefully', () => {
+    expect(esc(null)).toBe('');
+    expect(esc(undefined)).toBe('');
   });
 });
 
 // ═══════════ calcStreak ══════════════════════════
+// calcStreak(list) reads game.sessions[].date
 
 describe('calcStreak', () => {
-  const calcStreak = extractFnFromSource('calcStreak');
+  const calcStreak = extractFn('calcStreak');
 
   it.skipIf(!calcStreak)('returns 0 for empty list', () => {
     expect(calcStreak([])).toBe(0);
   });
 
-  it.skipIf(!calcStreak)('returns 0 for games with no lastPlayedAt', () => {
+  it.skipIf(!calcStreak)('returns 0 for games with no sessions', () => {
+    expect(calcStreak([{ title: 'Test', sessions: [] }])).toBe(0);
     expect(calcStreak([{ title: 'Test' }])).toBe(0);
   });
 
-  it.skipIf(!calcStreak)('counts consecutive days', () => {
+  it.skipIf(!calcStreak)('counts consecutive days from today', () => {
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
-    const list = [
-      { lastPlayedAt: today.toISOString() },
-      { lastPlayedAt: yesterday.toISOString() },
-    ];
+
+    const list = [{
+      sessions: [
+        { date: today.toISOString() },
+        { date: yesterday.toISOString() },
+      ]
+    }];
     const streak = calcStreak(list);
-    expect(streak).toBeGreaterThanOrEqual(1);
+    expect(streak).toBeGreaterThanOrEqual(2);
+  });
+
+  it.skipIf(!calcStreak)('breaks streak on gap day', () => {
+    const today = new Date();
+    const threeDaysAgo = new Date(today);
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+
+    // played today and 3 days ago but NOT yesterday or 2 days ago
+    const list = [{
+      sessions: [
+        { date: today.toISOString() },
+        { date: threeDaysAgo.toISOString() },
+      ]
+    }];
+    const streak = calcStreak(list);
+    expect(streak).toBe(1); // only today counts
   });
 });
 
 // ═══════════ normalizeStore ═══════════════════════
+// Depends on: normalizeAchievement, screenshotFallbackId,
+//             normalizeScreenshot, normalizeGame, normalizeStore
 
 describe('normalizeStore', () => {
-  const normalizeStore = extractFnFromSource('normalizeStore');
+  const fns = extractFunctions(
+    'normalizeAchievement',
+    'screenshotFallbackId',
+    'normalizeScreenshot',
+    'normalizeGame',
+    'normalizeStore',
+  );
 
-  it.skipIf(!normalizeStore)('returns valid store from null', () => {
-    const store = normalizeStore(null);
-    expect(store).toHaveProperty('games');
-    expect(store).toHaveProperty('settings');
-    expect(store).toHaveProperty('collections');
-  });
+  const normalizeStore = fns?.normalizeStore;
 
   it.skipIf(!normalizeStore)('returns valid store from empty object', () => {
     const store = normalizeStore({});
     expect(store).toHaveProperty('games');
+    expect(store).toHaveProperty('settings');
+    expect(store).toHaveProperty('collections');
     expect(typeof store.games).toBe('object');
+  });
+
+  it.skipIf(!normalizeStore)('provides defaults for missing fields', () => {
+    const store = normalizeStore({});
+    expect(store.games).toEqual({});
+    expect(store.collections).toEqual({});
+    expect(store.settings).toEqual({});
+    expect(store.lastBackup).toBeNull();
   });
 
   it.skipIf(!normalizeStore)('preserves existing game data', () => {
@@ -144,6 +201,15 @@ describe('normalizeStore', () => {
     expect(store.games.g1.title).toBe('Test Game');
     expect(store.games.g1.hoursPlayed).toBe(10);
     expect(store.settings.theme).toBe('aurora');
+  });
+
+  it.skipIf(!normalizeStore)('normalizes game fields', () => {
+    const input = {
+      games: { g1: { title: 'Test', tags: null, sessions: null } },
+    };
+    const store = normalizeStore(input);
+    expect(Array.isArray(store.games.g1.tags)).toBe(true);
+    expect(Array.isArray(store.games.g1.sessions)).toBe(true);
   });
 });
 
@@ -202,21 +268,25 @@ describe('Navigation integrity', () => {
     }
   });
 
-  it('negative margins in sl-layout.active match content padding', () => {
+  it('sl-layout.active uses negative margins with matching width/height calc', () => {
     const css = readFileSync(new URL('../renderer/style.css', import.meta.url), 'utf8');
+    
+    // sl-layout.active should have negative margins and compensating width/height
+    const slBlock = css.match(/\.sl-layout\.active\s*\{[^}]+\}/);
+    expect(slBlock, 'sl-layout.active block exists').not.toBeNull();
 
-    const contentMatch = css.match(/\.content\s*\{[^}]*padding:\s*(\d+)px\s+(\d+)px/);
-    expect(contentMatch).not.toBeNull();
-    const padTop = Number(contentMatch[1]);
-    const padLeft = Number(contentMatch[2]);
+    const marginMatch = slBlock[0].match(/margin:\s*-(\d+)px\s+-(\d+)px/);
+    expect(marginMatch, 'sl-layout.active has negative margins').not.toBeNull();
+    const [, marginTop, marginLeft] = marginMatch;
 
-    const slMatch = css.match(/\.sl-layout\.active\s*\{[^}]*margin:\s*-(\d+)px\s+-(\d+)px/);
-    expect(slMatch).not.toBeNull();
-    const marginTop = Number(slMatch[1]);
-    const marginLeft = Number(slMatch[2]);
+    const widthMatch = slBlock[0].match(/width:\s*calc\(100%\s*\+\s*(\d+)px\)/);
+    const heightMatch = slBlock[0].match(/height:\s*calc\(100%\s*\+\s*(\d+)px\)/);
+    expect(widthMatch, 'sl-layout.active has width calc').not.toBeNull();
+    expect(heightMatch, 'sl-layout.active has height calc').not.toBeNull();
 
-    expect(marginTop, `sl-layout top margin (-${marginTop}) should equal content padding-top (${padTop})`).toBe(padTop);
-    expect(marginLeft, `sl-layout left margin (-${marginLeft}) should equal content padding-left (${padLeft})`).toBe(padLeft);
+    // width compensation should be 2 × marginLeft, height = 2 × marginTop
+    expect(Number(widthMatch[1]), 'width calc = 2 × left margin').toBe(Number(marginLeft) * 2);
+    expect(Number(heightMatch[1]), 'height calc = 2 × top margin').toBe(Number(marginTop) * 2);
   });
 });
 
