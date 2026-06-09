@@ -3460,7 +3460,7 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
 
 
 /* в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
-   РќРђРЎРўР РћР™РљР
+   РќРђРЎРўР РћР™РљР^X
    в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
 .settings-section {
   margin-bottom: 36px;
@@ -9383,4 +9383,112 @@ body.perf-lite .sl-game-list.is-scrolling .sl-item-thumb img {
   .stats-view .sv-metric-val {
     font-size: 27px;
   }
+}
+
+/* ═══════════════════════════════════════════════════
+   UI POLISH — additive (count-up, confetti, a11y, empty CTA)
+   Добавлено отдельным блоком, чтобы не трогать базовые стили.
+   ═══════════════════════════════════════════════════ */
+
+/* ── Accessibility: единый focus-visible ring ── */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+.nav-item:focus-visible,
+.theme-card:focus-visible,
+.density-card:focus-visible,
+.sl-status-pill:focus-visible,
+.lib-filter-btn:focus-visible,
+.settings-tab:focus-visible,
+.sl-game-item:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+/* мышиный клик не должен показывать ring */
+:focus:not(:focus-visible) { outline: none; }
+
+/* ── Tactile press feedback на кнопках ── */
+button:active:not(:disabled),
+.nav-item:active,
+.sl-status-pill:active,
+.lib-filter-btn:active {
+  transform: scale(.97);
+}
+
+/* ── Stat count-up: лёгкая стабилизация чисел ── */
+#ssc-games, #ssc-hours, #ssc-ach, #ssc-completed {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Sidebar empty state с CTA ── */
+.sl-list-empty-icon {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 10px;
+  opacity: .7;
+}
+.sl-list-empty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 12px;
+}
+.sl-list-empty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border3);
+  background: var(--accent-dim);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.sl-list-empty-cta:hover {
+  background: rgba(129,140,248,.20);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ── Confetti ── */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 9px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: confettiFly 1.5s cubic-bezier(.16,.84,.44,1) forwards;
+}
+@keyframes confettiFly {
+  0%   { opacity: 1; transform: translate(0,0) rotate(0deg) scale(1); }
+  12%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--dx), calc(var(--dy) + 60vh)) rotate(var(--rot)) scale(.7); }
+}
+
+/* ── Уважение к prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .confetti-layer { display: none !important; }
 }

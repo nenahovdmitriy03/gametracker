@@ -2983,7 +2983,12 @@ function renderSLGameList(list) {
   slGameListVirtual = { list, start: 0, end: 0 };
   container.innerHTML = '';
   if (!list.length) {
-    container.innerHTML = '<div class="sl-list-empty">Игры не найдены</div>';
+    container.innerHTML = `
+      <div class="sl-list-empty">
+        <div class="sl-list-empty-icon">🎮</div>
+        <div class="sl-list-empty-title">Игры не найдены</div>
+        <button class="sl-list-empty-cta" type="button" onclick="document.getElementById('btn-add-game')?.click()">+ Добавить игру</button>
+      </div>`;
     return;
   }
   const totalHeight = list.length * SL_GAME_LIST_ITEM_HEIGHT;
@@ -3556,7 +3561,7 @@ function makeSLOverviewCard(game) {
         <span class="sl-overview-fallback-icon">🎮</span>
         <span class="sl-overview-fallback-title">${esc(game.title || 'Игра')}</span>
       </div>
-      <div class="sl-overview-title-overlay">${esc(game.title || 'РРіСЂР°')}</div>
+      <div class="sl-overview-title-overlay">${esc(game.title || 'Р^XРіСЂР°')}</div>
       ${tierBadge}
       ${statusLabel ? `<div class="sl-overview-status">${esc(statusLabel)}</div>` : ''}
       ${ratingText ? `<div class="sl-overview-rating">${esc(ratingText)}</div>` : ''}
@@ -7611,7 +7616,7 @@ document.getElementById('btn-do-ea-import').addEventListener('click', async () =
   if (!result?.ok) {
     btn.disabled = false;
     progWrap.classList.add('hidden');
-    errEl.textContent = result?.error || 'РРјРїРѕСЂС‚ РёР· EA App РЅРµ СѓРґР°Р»СЃСЏ.';
+    errEl.textContent = result?.error || 'Р^XРјРїРѕСЂС‚ РёР· EA App РЅРµ СѓРґР°Р»СЃСЏ.';
     errEl.classList.remove('hidden');
     return;
   }
@@ -7640,7 +7645,7 @@ document.getElementById('btn-do-ea-import').addEventListener('click', async () =
     progWrap.classList.add('hidden');
     fill.style.width = '0%';
     closeModal('modal-ea');
-    toast(`РРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ ${result.games.length} РёРіСЂ РёР· EA App!`, 'ok');
+    toast(`Р^XРјРїРѕСЂС‚РёСЂРѕРІР°РЅРѕ ${result.games.length} РёРіСЂ РёР· EA App!`, 'ok');
   }, 700);
 });
 
