@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$InstallDir = (Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'SFF'),
   [string]$RepoUrl = 'https://github.com/Midrags/SFF.git'
 )
