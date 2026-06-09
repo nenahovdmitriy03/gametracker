@@ -4272,7 +4272,7 @@ textarea { resize: vertical; min-height: 72px; line-height: 1.6; }
   user-select: none;
   content-visibility: auto;
   contain: layout paint style;
-  contain-intrinsic-size: 34px;
+  contain-intrinsic-size: 44px;
 }
 .sl-game-list.is-scrolling .sl-game-item {
   transition: none;

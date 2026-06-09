@@ -33,7 +33,11 @@ const LIBRARY_SIDEBAR_AUTO_COLLAPSE_WIDTH = 1280;
 const LIBRARY_SIDEBAR_STORAGE_KEY = 'gt.librarySidebarCollapsed';
 const LIBRARY_SEARCH_DEBOUNCE_MS = 120;
 const SL_GAME_LIST_ITEM_HEIGHT = 44;
-const SL_GAME_LIST_OVERSCAN = 10;
+const SL_GAME_LIST_OVERSCAN = 12;
+// Перестраиваем окно списка только когда видимая зона подходит к краю
+// уже отрисованного буфера ближе чем на это число строк. Так DOM
+// пересобирается раз в ~(OVERSCAN - MARGIN) строк, а не каждые 44px скролла.
+const SL_GAME_LIST_RERENDER_MARGIN = 4;
 let openedGameId     = null;   // id игры в открытой модалке
 let activeCollection = null;   // id выбранной коллекции (фильтр библиотеки) или null = все
 let editingCollId    = null;   // id редактируемой коллекции или null = создание новой
@@ -3004,7 +3008,19 @@ function renderSLGameListWindow() {
 
   const viewportHeight = container.clientHeight || 640;
   const scrollTop = container.scrollTop || 0;
-  const start = Math.max(0, Math.floor(scrollTop / SL_GAME_LIST_ITEM_HEIGHT) - SL_GAME_LIST_OVERSCAN);
+  const firstVisible = Math.floor(scrollTop / SL_GAME_LIST_ITEM_HEIGHT);
+  const lastVisible = Math.ceil((scrollTop + viewportHeight) / SL_GAME_LIST_ITEM_HEIGHT);
+
+  // Пока видимая область остаётся внутри уже отрисованного буфера —
+  // не трогаем DOM. Это убирает дёрганье при прокрутке: вместо полной
+  // пересборки списка каждые 44px мы перестраиваем его раз в несколько строк.
+  if (container.childElementCount &&
+      firstVisible >= slGameListVirtual.start + SL_GAME_LIST_RERENDER_MARGIN &&
+      lastVisible <= slGameListVirtual.end - SL_GAME_LIST_RERENDER_MARGIN) {
+    return;
+  }
+
+  const start = Math.max(0, firstVisible - SL_GAME_LIST_OVERSCAN);
   const visibleCount = Math.ceil(viewportHeight / SL_GAME_LIST_ITEM_HEIGHT) + SL_GAME_LIST_OVERSCAN * 2;
   const end = Math.min(list.length, start + visibleCount);
 
