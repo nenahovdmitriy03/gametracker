@@ -7076,6 +7076,17 @@ function stopSession() {
 
   const game = store.games[gameId];
   if (!game) return;
+
+  // Steam-игры: фактическое время берём из самого Steam (разница playtime при
+  // синхронизации), живой трекер процессов для них не считаем — иначе задвоение,
+  // а для игр с анти-читом (PUBG/BattlEye) он ещё и ненадёжен. Steam-время точнее.
+  if (String(game.source || '').toLowerCase() === 'steam' && !game.steamSyncDisabled) {
+    game.lastPlayedAt = new Date().toISOString();
+    save(); renderAll();
+    toast('Время появится после синхронизации со Steam', 'ok');
+    return;
+  }
+
   game.hoursPlayed  = +((game.hoursPlayed || 0) + minutes / 60).toFixed(3);
   game.lastPlayedAt = new Date().toISOString();
   game.sessions     = [...(game.sessions || []), { date: new Date().toISOString(), minutes: Math.round(minutes) }].slice(-200);
@@ -7103,9 +7114,15 @@ api.onAppRequestClose(async () => {
       await syncPolledAchievements(closingGameId, { notify: true, rerender: false }).catch(() => {});
     }
     if (game && minutes >= 0.5) {
-      game.hoursPlayed  = +((game.hoursPlayed || 0) + minutes / 60).toFixed(3);
-      game.lastPlayedAt = new Date().toISOString();
-      game.sessions     = [...(game.sessions || []), { date: new Date().toISOString(), minutes: Math.round(minutes) }].slice(-200);
+      const steamTracked = String(game.source || '').toLowerCase() === 'steam' && !game.steamSyncDisabled;
+      if (steamTracked) {
+        // Время по Steam-игре подтянется из Steam при следующей синхронизации.
+        game.lastPlayedAt = new Date().toISOString();
+      } else {
+        game.hoursPlayed  = +((game.hoursPlayed || 0) + minutes / 60).toFixed(3);
+        game.lastPlayedAt = new Date().toISOString();
+        game.sessions     = [...(game.sessions || []), { date: new Date().toISOString(), minutes: Math.round(minutes) }].slice(-200);
+      }
     }
     activeSession = null;
     clearStoredOverlaySession();
@@ -7363,6 +7380,21 @@ function mergeSteamImportGames(games = []) {
     const nextLastPlayedAt = latestIsoDate(importedLastPlayedAt, prev.lastPlayedAt);
     const nextLaunchPath = String(prev.launchPath || '').trim();
 
+    // ── Время игры из Steam: считаем по разнице playtime между синхронизациями ──
+    // playtime_forever приходит в минутах. На первой синхронизации просто
+    // запоминаем базу (без сессии), дальше каждая положительная разница —
+    // это время, наигранное со прошлого захода в лаунчер.
+    const newSteamMinutes = Math.max(0, Math.round(Number(g.playtime_forever) || 0));
+    const prevSteamMinutes = Number.isFinite(Number(prev.steamMinutesForever))
+      ? Math.max(0, Math.round(Number(prev.steamMinutesForever)))
+      : null;
+    let nextSessions = Array.isArray(prev.sessions) ? prev.sessions.slice() : [];
+    if (prevSteamMinutes !== null && newSteamMinutes > prevSteamMinutes) {
+      const deltaMin = newSteamMinutes - prevSteamMinutes;
+      const sessionDate = importedLastPlayedAt || syncedAt;
+      nextSessions = [...nextSessions, { date: sessionDate, minutes: deltaMin, source: 'steam' }].slice(-200);
+    }
+
     const next = {
       ...prev,
       id: gameId,
@@ -7370,6 +7402,7 @@ function mergeSteamImportGames(games = []) {
       appid: String(g.appid),
       platform: 'Steam',
       hoursPlayed: +((g.playtime_forever || 0) / 60).toFixed(2),
+      steamMinutesForever: newSteamMinutes,
       coverUrl: nextCoverUrl,
       posterUrl: nextPosterUrl,
       source: 'steam',
@@ -7378,7 +7411,7 @@ function mergeSteamImportGames(games = []) {
       achievements: g.achievements?.length ? g.achievements : (prev.achievements || []),
       achievementsUnlocked: g.achievementsUnlocked ?? prev.achievementsUnlocked ?? 0,
       achievementsTotal: g.achievementsTotal ?? prev.achievementsTotal ?? 0,
-      sessions: prev.sessions || [],
+      sessions: nextSessions,
       notes: prev.notes || '',
       rating: prev.rating || 0,
       status: prev.status || null,
