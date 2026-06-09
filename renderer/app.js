@@ -2427,7 +2427,7 @@ function setSettingsTab(tabId = 'appearance') {
   });
 }
 
-document.querySelector('.settings-tabs')?.addEventListener('click', event => {
+document.querySelector('#view-settings .settings-tabs')?.addEventListener('click', event => {
   const tab = event.target.closest('[data-settings-tab]');
   if (!tab) return;
   setSettingsTab(tab.dataset.settingsTab);

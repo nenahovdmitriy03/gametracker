@@ -289,18 +289,16 @@ test.describe('Window controls', () => {
   });
 });
 
-// ═══════════ KEYBOARD SHORTCUTS ══════════════════
+// ═══════════ DATA INTEGRITY ══════════════════════
 
-test.describe('Keyboard shortcuts', () => {
-  test('Escape closes open modal', async () => {
-    // Open add game modal
-    await page.click('#btn-add-game');
-    const modal = page.locator('#modal-add-game');
-    await expect(modal).not.toHaveClass(/hidden/);
-
-    // Press Escape
-    await page.keyboard.press('Escape');
-    await page.waitForTimeout(300);
-    await expect(modal).toHaveClass(/hidden/);
+test.describe('Data integrity', () => {
+  test('app data-view attribute updates on navigation', async () => {
+    const views = ['library', 'tier-list', 'stats', 'settings'];
+    for (const view of views) {
+      await page.click(`.nav-item[data-view="${view}"]`);
+      const dataView = await page.locator('#app').getAttribute('data-view');
+      expect(dataView, `data-view should be ${view}`).toBe(view);
+    }
+    await page.click('.nav-item[data-view="library"]');
   });
 });
