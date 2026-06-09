@@ -2371,7 +2371,7 @@ function renderDashboard() {
 // ══════════════════════════════════════════════════════════
 // НАСТРОЙКИ — ТЕМЫ
 // ══════════════════════════════════════════════════════════
-const THEMES = ['steam', 'aurora', 'obsidian', 'forest', 'crimson', 'slate'];
+const THEMES = ['steam', 'aurora', 'obsidian', 'neon', 'forest', 'crimson', 'slate'];
 const DENSITY_MODES = ['compact', 'normal', 'wide'];
 
 function applyTheme(themeId) {
