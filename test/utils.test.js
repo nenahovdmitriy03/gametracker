@@ -6,37 +6,63 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 
-// ── Load source as text and extract functions ──
+// ── Load source as text ──
 const src = readFileSync(new URL('../renderer/app.js', import.meta.url), 'utf8');
 
-/**
- * Extract one or more named functions from source and compile them
- * together so they can call each other (shared scope).
- */
-function extractFunctions(...names) {
-  const bodies = [];
-  for (const name of names) {
-    const re = new RegExp(`function ${name}\\s*\\([^)]*\\)\\s*\\{`);
-    const m = src.match(re);
-    if (!m) return null;
+// ── Build a map of ALL top-level function names → bodies ──
+const fnMap = (() => {
+  const map = {};
+  const re = /^function (\w+)\s*\([^)]*\)\s*\{/gm;
+  let m;
+  while ((m = re.exec(src)) !== null) {
+    const name = m[1];
     const start = m.index;
     let depth = 0, end = start;
     for (let i = start + m[0].length - 1; i < src.length; i++) {
       if (src[i] === '{') depth++;
       else if (src[i] === '}') { depth--; if (depth === 0) { end = i + 1; break; } }
     }
-    bodies.push(src.slice(start, end));
+    map[name] = src.slice(start, end);
   }
+  return map;
+})();
+
+/**
+ * Extract a function and ALL functions it (transitively) calls.
+ * Returns the callable function, or null if not found.
+ */
+function extractFnWithDeps(name) {
+  if (!fnMap[name]) return null;
+
+  // BFS to find all transitive dependencies
+  const needed = new Set();
+  const queue = [name];
+  while (queue.length) {
+    const fn = queue.shift();
+    if (needed.has(fn)) continue;
+    if (!fnMap[fn]) continue; // external/unknown — will be stubbed
+    needed.add(fn);
+    // Scan body for calls to known functions
+    const body = fnMap[fn];
+    for (const other of Object.keys(fnMap)) {
+      if (!needed.has(other) && body.includes(other + '(')) {
+        queue.push(other);
+      }
+    }
+  }
+
+  const bodies = [...needed].map(n => fnMap[n]).join('\n');
   try {
-    const code = bodies.join('\n') + '\nreturn { ' + names.join(', ') + ' };';
-    return new Function(code)();
+    return new Function(bodies + `\nreturn ${name};`)();
   } catch { return null; }
 }
 
-/** Extract a single named function */
+/** Quick single-function extract (no dep resolution) */
 function extractFn(name) {
-  const result = extractFunctions(name);
-  return result ? result[name] : null;
+  if (!fnMap[name]) return null;
+  try {
+    return new Function(fnMap[name] + `\nreturn ${name};`)();
+  } catch { return null; }
 }
 
 // ═══════════ VDF Parser ═══════════════════════════
@@ -64,10 +90,9 @@ describe('parseVdf', () => {
 });
 
 // ═══════════ fmtH (format hours) ══════════════════
-// fmtH returns:
-//   h >= 1000 → Math.round(h).toLocaleString('ru')  (string)
-//   h >= 10   → Math.round(h)                        (number)
-//   else      → (+h).toFixed(1)                      (string)
+// h >= 1000 → toLocaleString('ru')  (string)
+// h >= 10   → Math.round(h)         (number)
+// else      → (+h).toFixed(1)       (string)
 
 describe('fmtH (format hours)', () => {
   const fmtH = extractFn('fmtH');
@@ -88,7 +113,6 @@ describe('fmtH (format hours)', () => {
   it.skipIf(!fmtH)('formats large hours with locale separator', () => {
     const res = fmtH(1234);
     expect(typeof res).toBe('string');
-    // locale may use different space chars — just check digits are there
     expect(res.replace(/\s/g, '')).toBe('1234');
   });
 });
@@ -115,7 +139,6 @@ describe('esc (HTML escape)', () => {
 });
 
 // ═══════════ calcStreak ══════════════════════════
-// calcStreak(list) reads game.sessions[].date
 
 describe('calcStreak', () => {
   const calcStreak = extractFn('calcStreak');
@@ -140,8 +163,7 @@ describe('calcStreak', () => {
         { date: yesterday.toISOString() },
       ]
     }];
-    const streak = calcStreak(list);
-    expect(streak).toBeGreaterThanOrEqual(2);
+    expect(calcStreak(list)).toBeGreaterThanOrEqual(2);
   });
 
   it.skipIf(!calcStreak)('breaks streak on gap day', () => {
@@ -149,32 +171,21 @@ describe('calcStreak', () => {
     const threeDaysAgo = new Date(today);
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
 
-    // played today and 3 days ago but NOT yesterday or 2 days ago
     const list = [{
       sessions: [
         { date: today.toISOString() },
         { date: threeDaysAgo.toISOString() },
       ]
     }];
-    const streak = calcStreak(list);
-    expect(streak).toBe(1); // only today counts
+    expect(calcStreak(list)).toBe(1);
   });
 });
 
 // ═══════════ normalizeStore ═══════════════════════
-// Depends on: normalizeAchievement, screenshotFallbackId,
-//             normalizeScreenshot, normalizeGame, normalizeStore
 
 describe('normalizeStore', () => {
-  const fns = extractFunctions(
-    'normalizeAchievement',
-    'screenshotFallbackId',
-    'normalizeScreenshot',
-    'normalizeGame',
-    'normalizeStore',
-  );
-
-  const normalizeStore = fns?.normalizeStore;
+  // Auto-resolve all transitive deps
+  const normalizeStore = extractFnWithDeps('normalizeStore');
 
   it.skipIf(!normalizeStore)('returns valid store from empty object', () => {
     const store = normalizeStore({});
@@ -270,8 +281,7 @@ describe('Navigation integrity', () => {
 
   it('sl-layout.active uses negative margins with matching width/height calc', () => {
     const css = readFileSync(new URL('../renderer/style.css', import.meta.url), 'utf8');
-    
-    // sl-layout.active should have negative margins and compensating width/height
+
     const slBlock = css.match(/\.sl-layout\.active\s*\{[^}]+\}/);
     expect(slBlock, 'sl-layout.active block exists').not.toBeNull();
 
@@ -284,7 +294,6 @@ describe('Navigation integrity', () => {
     expect(widthMatch, 'sl-layout.active has width calc').not.toBeNull();
     expect(heightMatch, 'sl-layout.active has height calc').not.toBeNull();
 
-    // width compensation should be 2 × marginLeft, height = 2 × marginTop
     expect(Number(widthMatch[1]), 'width calc = 2 × left margin').toBe(Number(marginLeft) * 2);
     expect(Number(heightMatch[1]), 'height calc = 2 × top margin').toBe(Number(marginTop) * 2);
   });
