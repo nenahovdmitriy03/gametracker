@@ -25,6 +25,12 @@
       "node_modules/**/*",
       "!node_modules/electron-builder/**/*"
     ],
+    "extraResources": [
+      {
+        "from": "scripts",
+        "to": "scripts"
+      }
+    ],
     "win": {
       "icon": "assets/icon.ico",
       "target": [{ "target": "nsis", "arch": ["x64"] }]

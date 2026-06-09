@@ -15,7 +15,23 @@ const appIconPath = path.join(__dirname, 'assets', 'icon.ico');
 const getWindowIcon = () => fsSync.existsSync(appIconPath) ? appIconPath : undefined;
 const SFF_APP_DIR = path.join(app.getPath('documents'), 'SFF');
 const SFF_RUNNER = path.join(SFF_APP_DIR, 'run_sff.bat');
-const SFF_INSTALLER = path.join(__dirname, 'scripts', 'install-sff.ps1');
+// В упакованной сборке scripts/ лежит в resources (extraResources), а не
+// внутри app.asar — иначе PowerShell не сможет прочитать .ps1 и кнопка
+// "Установить / обновить" падает с "Установщик не найден".
+function resolveSffInstaller() {
+  const candidates = app.isPackaged
+    ? [
+        path.join(process.resourcesPath, 'scripts', 'install-sff.ps1'),
+        path.join(process.resourcesPath, 'app', 'scripts', 'install-sff.ps1'),
+        path.join(__dirname, 'scripts', 'install-sff.ps1'),
+      ]
+    : [path.join(__dirname, 'scripts', 'install-sff.ps1')];
+  for (const candidate of candidates) {
+    if (fsSync.existsSync(candidate)) return candidate;
+  }
+  return candidates[0];
+}
+const SFF_INSTALLER = resolveSffInstaller();
 
 function createOverlayWindow() {
   if (overlayWindow && !overlayWindow.isDestroyed()) return overlayWindow;
@@ -286,7 +302,7 @@ ipcMain.handle('game:pickExecutable', async () => {
     title: 'Р’С‹Р±РµСЂРё РёСЃРїРѕР»РЅСЏРµРјС‹Р№ С„Р°Р№Р» РёРіСЂС‹',
     properties: ['openFile'],
     filters: [
-      { name: 'РСЃРїРѕР»РЅСЏРµРјС‹Рµ С„Р°Р№Р»С‹', extensions: ['exe'] },
+      { name: 'Р^XСЃРїРѕР»РЅСЏРµРјС‹Рµ С„Р°Р№Р»С‹', extensions: ['exe'] },
       { name: 'Р’СЃРµ С„Р°Р№Р»С‹', extensions: ['*'] },
     ],
   });
@@ -343,6 +359,23 @@ ipcMain.handle('sff:open', async () => {
   }
 });
 
+// Достаём осмысленную строку ошибки из вывода PowerShell (наши throw-сообщения).
+function summarizeSffError(stderr = '', stdout = '', fallback = '') {
+  const text = `${stderr || ''}\n${stdout || ''}`;
+  if (/Git was not found/i.test(text)) {
+    return 'Не найден Git. Установи Git (git-scm.com) и попробуй снова.';
+  }
+  if (/Python 3\.12\+ was not found/i.test(text)) {
+    return 'Не найден Python 3.12+. Установи Python 3.12/3.13 (python.org) и попробуй снова.';
+  }
+  const line = String(stderr || stdout || '')
+    .split(/\r?\n/)
+    .map(s => s.trim())
+    .filter(Boolean)
+    .pop();
+  return line || fallback || 'Неизвестная ошибка установки.';
+}
+
 ipcMain.handle('sff:install', async () => {
   try {
     if (!fsSync.existsSync(SFF_INSTALLER)) {
@@ -360,16 +393,41 @@ ipcMain.handle('sff:install', async () => {
           '-InstallDir', SFF_APP_DIR,
         ],
         {
-          cwd: __dirname,
+          // cwd должен существовать и в упакованной сборке — берём папку установщика.
+          cwd: path.dirname(SFF_INSTALLER),
           windowsHide: true,
           maxBuffer: 1024 * 1024 * 12,
           timeout: 1000 * 60 * 15,
         },
         (error, stdout, stderr) => {
           if (error) {
+            // Сам PowerShell не запустился (нет в PATH / заблокирован).
+            if (error.code === 'ENOENT') {
+              resolve({
+                ok: false,
+                error: 'Не удалось запустить PowerShell. Проверь, что powershell.exe доступен в системе.',
+                stdout, stderr,
+              });
+              return;
+            }
+            if (error.killed) {
+              resolve({
+                ok: false,
+                error: 'Установка прервана по таймауту (15 мин). Проверь интернет и попробуй снова.',
+                stdout, stderr,
+              });
+              return;
+            }
+            // Пишем полный лог в файл, чтобы можно было разобраться.
+            let logPath = '';
+            try {
+              logPath = path.join(app.getPath('userData'), 'sff-install.log');
+              fsSync.writeFileSync(logPath, `--- STDOUT ---\n${stdout || ''}\n\n--- STDERR ---\n${stderr || ''}\n`, 'utf-8');
+            } catch {}
             resolve({
               ok: false,
-              error: stderr || stdout || error.message,
+              error: summarizeSffError(stderr, stdout, error.message),
+              logPath,
               stdout,
               stderr,
             });
@@ -1670,7 +1728,7 @@ async function fetchGameAchievements(apiKey, steamId, appid, translate = false) 
     const playerAchs = playerJson?.playerstats?.achievements || [];
     const schemaAchs = schemaJson?.game?.availableGameStats?.achievements || [];
 
-    // РРЅРґРµРєСЃ СЃС…РµРјС‹ РїРѕ API-РёРјРµРЅРё
+    // Р^XРЅРґРµРєСЃ СЃС…РµРјС‹ РїРѕ API-РёРјРµРЅРё
     const schemaMap = {};
     schemaAchs.forEach(a => { schemaMap[a.name] = a; });
 
@@ -1687,7 +1745,7 @@ async function fetchGameAchievements(apiKey, steamId, appid, translate = false) 
         globalPercent: globalPercentMap[a.name] ?? null,
       }));
     } else {
-      // РћР±СЉРµРґРёРЅСЏРµРј: СЃС‚Р°С‚СѓСЃ РёРіСЂРѕРєР° + РёРєРѕРЅРєРё Рё Р РЈРЎРЎРљРР• РЅР°Р·РІР°РЅРёСЏ РёР· СЃС…РµРјС‹
+      // РћР±СЉРµРґРёРЅСЏРµРј: СЃС‚Р°С‚СѓСЃ РёРіСЂРѕРєР° + РёРєРѕРЅРєРё Рё Р РЈРЎРЎРљР^XР• РЅР°Р·РІР°РЅРёСЏ РёР· СЃС…РµРјС‹
       achievements = playerAchs.map(a => {
         const schema = schemaMap[a.apiname];
         return {
@@ -1717,7 +1775,7 @@ async function fetchGameAchievements(apiKey, steamId, appid, translate = false) 
   }
 }
 
-// в•ђв•ђ Р›РћРљРђР›Р¬РќР«Р• Р”РћРЎРўРР–Р•РќРРЇ (appcache/stats) в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+// в•ђв•ђ Р›РћРљРђР›Р¬РќР«Р• Р”РћРЎРўР^XР–Р•РќР^XРЇ (appcache/stats) в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 // РџР°СЂСЃРµСЂ Р±РёРЅР°СЂРЅРѕРіРѕ VDF (Valve Data Format)
 function parseBinaryVDFRet(buf, off) {
@@ -2309,7 +2367,7 @@ ipcMain.handle('steam:import', async (_e, { apiKey, steamId, steamPath }) => {
       `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${apiKey}&steamids=${steamId}`
     ).then(r => r.json());
     const player = summaryJson?.response?.players?.[0];
-    if (!player) throw new Error('РРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ. РџСЂРѕРІРµСЂСЊС‚Рµ Steam ID.');
+    if (!player) throw new Error('Р^XРіСЂРѕРє РЅРµ РЅР°Р№РґРµРЅ. РџСЂРѕРІРµСЂСЊС‚Рµ Steam ID.');
 
     const gamesJson = await fetch(
       `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${apiKey}&steamid=${steamId}&include_appinfo=true&include_played_free_games=true`
@@ -2394,7 +2452,7 @@ function getOAuthClient(clientId, clientSecret) {
   return _oauthClient;
 }
 
-// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ: РїСЂРѕРІРµСЂСЏРµРј СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ С‚РѕРєРµРЅС‹
+// Р^XРЅРёС†РёР°Р»РёР·Р°С†РёСЏ: РїСЂРѕРІРµСЂСЏРµРј СЃРѕС…СЂР°РЅС‘РЅРЅС‹Рµ С‚РѕРєРµРЅС‹
 ipcMain.handle('drive:init', async (_e, { clientId, clientSecret }) => {
   try {
     if (!clientId || !clientSecret) return { ok: true, connected: false };
